@@ -42,7 +42,7 @@ export function Hero() {
   }, [goToNext]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden group/hero">
+    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
       {/* Background Image Slider */}
       <div className="absolute inset-0 z-0">
         {heroImages.map((src, index) => (
@@ -73,10 +73,10 @@ export function Hero() {
       {/* Left Arrow */}
       <button
         onClick={goToPrevious}
-        className="absolute left-0 top-0 bottom-0 w-24 md:w-32 z-20 flex items-center justify-start pl-4 md:pl-8 opacity-0 group-hover/hero:opacity-100 transition-opacity duration-300 cursor-pointer group/btn"
+        className="group/left absolute left-0 top-0 bottom-0 w-24 md:w-32 z-20 flex items-center justify-start pl-4 md:pl-8 cursor-pointer"
         aria-label="Vorheriges Bild"
       >
-        <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-full p-3 md:p-4 transition-all duration-300 group-hover/btn:bg-white/10 group-hover/btn:scale-110 -translate-x-full group-hover/hero:translate-x-0 transition-transform">
+        <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-full p-3 md:p-4 transition-all duration-300 opacity-0 -translate-x-full group-hover/left:opacity-100 group-hover/left:translate-x-0 group-hover/left:bg-white/10 group-hover/left:scale-110">
           <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
         </div>
       </button>
@@ -84,10 +84,10 @@ export function Hero() {
       {/* Right Arrow */}
       <button
         onClick={goToNext}
-        className="absolute right-0 top-0 bottom-0 w-24 md:w-32 z-20 flex items-center justify-end pr-4 md:pr-8 opacity-0 group-hover/hero:opacity-100 transition-opacity duration-300 cursor-pointer group/btn"
+        className="group/right absolute right-0 top-0 bottom-0 w-24 md:w-32 z-20 flex items-center justify-end pr-4 md:pr-8 cursor-pointer"
         aria-label="Nächstes Bild"
       >
-        <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-full p-3 md:p-4 transition-all duration-300 group-hover/btn:bg-white/10 group-hover/btn:scale-110 translate-x-full group-hover/hero:translate-x-0 transition-transform">
+        <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-full p-3 md:p-4 transition-all duration-300 opacity-0 translate-x-full group-hover/right:opacity-100 group-hover/right:translate-x-0 group-hover/right:bg-white/10 group-hover/right:scale-110">
           <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
         </div>
       </button>
