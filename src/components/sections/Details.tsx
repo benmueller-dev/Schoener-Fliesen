@@ -7,37 +7,26 @@ const galleryItems = [
   {
     src: "/Fotos/Badezimmer-Sankt-Augustin.png",
     title: "Modernes Bad",
-    subtitle: "Sankt Augustin",
-  },
-  {
-    src: "/Fotos/Badezimmer-Sankt-Augustin-2.png",
-    title: "Elegantes Design",
-    subtitle: "Klare Linien",
   },
   {
     src: "/Fotos/Badezimmer-Waschbecken-Sankt-Augustin.png",
     title: "Die Armatur",
-    subtitle: "Handpoliertes Finish",
   },
   {
     src: "/Fotos/Badezimmer-Dusche-Sankt-Augustin.png",
     title: "Begehbare Dusche",
-    subtitle: "Bodengleich & Barrierefrei",
   },
   {
     src: "/Fotos/Badezimmer-Sankt-Augustin-Warm.png",
     title: "Warme Atmosphäre",
-    subtitle: "Naturstein & LED",
   },
   {
     src: "/Fotos/Badezimmer-Sankt-Augustin-Warm2.png",
     title: "Ambiente",
-    subtitle: "Smart Lighting Integration",
   },
   {
     src: "/Fotos/Badezimmer-Sankt-Augustin-Warm3.png",
     title: "Wohlfühloase",
-    subtitle: "Premium-Ausstattung",
   },
 ];
 
