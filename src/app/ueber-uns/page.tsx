@@ -1,0 +1,140 @@
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/sections";
+import { Stats } from "@/components/sections";
+import Image from "next/image";
+
+export const metadata = {
+  title: "Über uns | Schöner Fliesen",
+  description: "Ihr Bad- und Heizungspartner in Sankt Augustin. Seit über 20 Jahren gestalten wir Bäder, die Funktion und Ästhetik verbinden.",
+};
+
+export default function UeberUnsPage() {
+  return (
+    <>
+      <Navigation />
+      <main>
+        {/* Hero Section */}
+        <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1920&auto=format&fit=crop"
+              alt="Modernes Badezimmer"
+              fill
+              className="object-cover opacity-30"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black" />
+          </div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-6">
+            <div className="max-w-3xl">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--gold)]/20 bg-[var(--gold)]/5 mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
+                <span className="text-xs uppercase tracking-widest text-[var(--gold-light)] font-medium">
+                  Über uns
+                </span>
+              </span>
+
+              <h1 className="text-4xl md:text-6xl font-medium tracking-tighter text-white mb-6">
+                Ihr Bad- und Heizungspartner{" "}
+                <span className="gold-gradient">in Sankt Augustin</span>
+              </h1>
+
+              <p className="text-lg md:text-xl text-zinc-400 leading-relaxed">
+                Willkommen bei Schöner Fliesen – Bad & Heizung, Ihrem Meisterbetrieb für
+                ganzheitliche Bad- und Heizungslösungen im Rhein-Sieg-Kreis.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Stats Section */}
+        <Stats />
+
+        {/* About Content */}
+        <section className="py-20 md:py-28 bg-black">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-6">
+                  Seit über 20 Jahren gestalten wir Bäder, die Funktion und Ästhetik verbinden
+                </h2>
+                <div className="space-y-4 text-zinc-400 leading-relaxed">
+                  <p>
+                    Von der barrierefreien Modernisierung bis zum luxuriösen Wellnessbad –
+                    unsere Arbeit beginnt mit einer individuellen Beratung und endet erst,
+                    wenn Sie Ihr neues Bad mit einem Lächeln betreten.
+                  </p>
+                  <p>
+                    Als Meisterbetrieb legen wir höchsten Wert auf Qualität und Präzision.
+                    Jedes Projekt wird von unserem erfahrenen Team mit Leidenschaft und
+                    handwerklichem Können umgesetzt.
+                  </p>
+                  <p>
+                    Wir arbeiten mit führenden Herstellern zusammen, um Ihnen die beste
+                    Material- und Designqualität zu garantieren. Transparente Festpreise
+                    und termingerechte Fertigstellung sind für uns selbstverständlich.
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative">
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1200&auto=format&fit=crop"
+                    alt="Unser Team bei der Arbeit"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -left-6 bg-zinc-900 border border-white/10 rounded-xl p-6 backdrop-blur-sm">
+                  <div className="text-3xl font-light text-white mb-1">20+</div>
+                  <div className="text-sm text-[var(--gold)]">Jahre Erfahrung</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Values Section */}
+        <section className="py-20 md:py-28 bg-zinc-950">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-4">
+                Unsere Werte
+              </h2>
+              <p className="text-zinc-400 max-w-2xl mx-auto">
+                Was uns als Meisterbetrieb auszeichnet
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Qualität",
+                  description: "Höchste handwerkliche Standards und ausschließlich erstklassige Materialien für langlebige Ergebnisse."
+                },
+                {
+                  title: "Transparenz",
+                  description: "Faire Festpreise ohne versteckte Kosten. Sie wissen von Anfang an, was Ihr Projekt kostet."
+                },
+                {
+                  title: "Zuverlässigkeit",
+                  description: "Termingerechte Fertigstellung und saubere Arbeitsweise sind für uns selbstverständlich."
+                }
+              ].map((value, index) => (
+                <div
+                  key={index}
+                  className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-[var(--gold)]/30 transition-colors"
+                >
+                  <h3 className="text-xl font-medium text-white mb-3">{value.title}</h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed">{value.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}
