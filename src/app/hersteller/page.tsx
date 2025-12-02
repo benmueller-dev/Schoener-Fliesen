@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/sections";
+import { AnimateIn } from "@/components/AnimateIn";
 import Image from "next/image";
 
 export const metadata = {
@@ -41,22 +42,28 @@ export default function HerstellerPage() {
 
           <div className="relative z-10 max-w-7xl mx-auto px-6">
             <div className="max-w-3xl">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--gold)]/20 bg-[var(--gold)]/5 mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
-                <span className="text-xs uppercase tracking-widest text-[var(--gold-light)] font-medium">
-                  Hersteller
+              <AnimateIn>
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--gold)]/20 bg-[var(--gold)]/5 mb-6">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
+                  <span className="text-xs uppercase tracking-widest text-[var(--gold-light)] font-medium">
+                    Hersteller
+                  </span>
                 </span>
-              </span>
+              </AnimateIn>
 
-              <h1 className="text-4xl md:text-6xl font-medium tracking-tighter text-white mb-6">
-                Unsere{" "}
-                <span className="gold-gradient">Partner</span>
-              </h1>
+              <AnimateIn delay={0.1}>
+                <h1 className="text-4xl md:text-6xl font-medium tracking-tighter text-white mb-6">
+                  Unsere{" "}
+                  <span className="gold-gradient">Partner</span>
+                </h1>
+              </AnimateIn>
 
-              <p className="text-lg md:text-xl text-zinc-400 leading-relaxed">
-                Wir arbeiten mit führenden Marken für höchste Material- und Designqualität.
-                Entdecken Sie unsere Partnerhersteller.
-              </p>
+              <AnimateIn delay={0.2}>
+                <p className="text-lg md:text-xl text-zinc-400 leading-relaxed">
+                  Wir arbeiten mit führenden Marken für höchste Material- und Designqualität.
+                  Entdecken Sie unsere Partnerhersteller.
+                </p>
+              </AnimateIn>
             </div>
           </div>
         </section>
@@ -66,16 +73,15 @@ export default function HerstellerPage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {partners.map((partner, index) => (
-                <div
-                  key={index}
-                  className="group p-6 md:p-8 rounded-2xl bg-zinc-950 border border-white/5 hover:border-[var(--gold)]/30 transition-all duration-300 flex flex-col items-center justify-center text-center"
-                >
-                  <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-[var(--gold)]/10 transition-colors">
-                    <span className="text-2xl font-light text-white">{partner.name.charAt(0)}</span>
+                <AnimateIn key={index} delay={index * 0.05}>
+                  <div className="group p-6 md:p-8 rounded-2xl bg-zinc-950 border border-white/5 hover:border-[var(--gold)]/30 transition-all duration-300 flex flex-col items-center justify-center text-center h-full">
+                    <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-[var(--gold)]/10 transition-colors">
+                      <span className="text-2xl font-light text-white">{partner.name.charAt(0)}</span>
+                    </div>
+                    <h3 className="text-sm md:text-base font-medium text-white mb-1">{partner.name}</h3>
+                    <p className="text-xs text-zinc-500">{partner.category}</p>
                   </div>
-                  <h3 className="text-sm md:text-base font-medium text-white mb-1">{partner.name}</h3>
-                  <p className="text-xs text-zinc-500">{partner.category}</p>
-                </div>
+                </AnimateIn>
               ))}
             </div>
           </div>
@@ -84,25 +90,31 @@ export default function HerstellerPage() {
         {/* Info Section */}
         <section className="py-20 md:py-28 bg-zinc-950">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-6">
-              Qualität durch starke Partnerschaften
-            </h2>
-            <p className="text-zinc-400 leading-relaxed mb-8">
-              Unsere langjährigen Partnerschaften mit renommierten Herstellern ermöglichen es uns,
-              Ihnen stets die beste Qualität und neuesten Innovationen zu bieten.
-              Von Premium-Armaturen über hochwertige Fliesen bis hin zu modernsten Heizsystemen –
-              wir setzen auf bewährte Marken, denen wir vertrauen.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <div className="px-6 py-3 bg-white/5 border border-white/10 rounded-full">
-                <span className="text-2xl font-light text-white">30+</span>
-                <span className="text-sm text-zinc-400 ml-2">Partnerhersteller</span>
+            <AnimateIn>
+              <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-6">
+                Qualität durch starke Partnerschaften
+              </h2>
+            </AnimateIn>
+            <AnimateIn delay={0.1}>
+              <p className="text-zinc-400 leading-relaxed mb-8">
+                Unsere langjährigen Partnerschaften mit renommierten Herstellern ermöglichen es uns,
+                Ihnen stets die beste Qualität und neuesten Innovationen zu bieten.
+                Von Premium-Armaturen über hochwertige Fliesen bis hin zu modernsten Heizsystemen –
+                wir setzen auf bewährte Marken, denen wir vertrauen.
+              </p>
+            </AnimateIn>
+            <AnimateIn delay={0.2}>
+              <div className="flex flex-wrap justify-center gap-4">
+                <div className="px-6 py-3 bg-white/5 border border-white/10 rounded-full">
+                  <span className="text-2xl font-light text-white">30+</span>
+                  <span className="text-sm text-zinc-400 ml-2">Partnerhersteller</span>
+                </div>
+                <div className="px-6 py-3 bg-white/5 border border-white/10 rounded-full">
+                  <span className="text-2xl font-light text-white">20+</span>
+                  <span className="text-sm text-zinc-400 ml-2">Jahre Zusammenarbeit</span>
+                </div>
               </div>
-              <div className="px-6 py-3 bg-white/5 border border-white/10 rounded-full">
-                <span className="text-2xl font-light text-white">20+</span>
-                <span className="text-sm text-zinc-400 ml-2">Jahre Zusammenarbeit</span>
-              </div>
-            </div>
+            </AnimateIn>
           </div>
         </section>
       </main>

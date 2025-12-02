@@ -1,24 +1,31 @@
+"use client";
+
+import { AnimateIn } from "@/components/AnimateIn";
+
 interface StatItemProps {
   value: string;
   label: string;
   description: string;
+  delay?: number;
 }
 
-function StatItem({ value, label, description }: StatItemProps) {
+function StatItem({ value, label, description, delay = 0 }: StatItemProps) {
   return (
-    <div className="group">
-      <div className="text-5xl md:text-6xl font-light text-white mb-2 tracking-tight">
-        {value}
+    <AnimateIn delay={delay}>
+      <div className="group">
+        <div className="text-5xl md:text-6xl font-light text-white mb-2 tracking-tight">
+          {value}
+        </div>
+        <div className="text-xs uppercase tracking-widest text-[#C0953F] font-medium mb-3">
+          {label}
+        </div>
+        <p className="text-zinc-500 text-sm leading-relaxed">{description}</p>
       </div>
-      <div className="text-xs uppercase tracking-widest text-[#C0953F] font-medium mb-3">
-        {label}
-      </div>
-      <p className="text-zinc-500 text-sm leading-relaxed">{description}</p>
-    </div>
+    </AnimateIn>
   );
 }
 
-const stats: StatItemProps[] = [
+const stats: Omit<StatItemProps, "delay">[] = [
   {
     value: "20+",
     label: "Jahre Erfahrung",
@@ -48,7 +55,7 @@ export function Stats() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {stats.map((stat, index) => (
-            <StatItem key={index} {...stat} />
+            <StatItem key={index} {...stat} delay={index * 0.1} />
           ))}
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/sections";
+import { AnimateIn } from "@/components/AnimateIn";
 import Image from "next/image";
 import { Quote } from "lucide-react";
 
@@ -63,22 +64,28 @@ export default function ReferenzenPage() {
 
           <div className="relative z-10 max-w-7xl mx-auto px-6">
             <div className="max-w-3xl">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--gold)]/20 bg-[var(--gold)]/5 mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
-                <span className="text-xs uppercase tracking-widest text-[var(--gold-light)] font-medium">
-                  Referenzen
+              <AnimateIn>
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--gold)]/20 bg-[var(--gold)]/5 mb-6">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
+                  <span className="text-xs uppercase tracking-widest text-[var(--gold-light)] font-medium">
+                    Referenzen
+                  </span>
                 </span>
-              </span>
+              </AnimateIn>
 
-              <h1 className="text-4xl md:text-6xl font-medium tracking-tighter text-white mb-6">
-                So könnte Ihr neues{" "}
-                <span className="gold-gradient">Badezimmer aussehen</span>
-              </h1>
+              <AnimateIn delay={0.1}>
+                <h1 className="text-4xl md:text-6xl font-medium tracking-tighter text-white mb-6">
+                  So könnte Ihr neues{" "}
+                  <span className="gold-gradient">Badezimmer aussehen</span>
+                </h1>
+              </AnimateIn>
 
-              <p className="text-lg md:text-xl text-zinc-400 leading-relaxed">
-                Sehen Sie selbst, wie aus alten Räumen moderne Wohlfühloasen werden.
-                In unserer Galerie zeigen wir ausgewählte Projekte.
-              </p>
+              <AnimateIn delay={0.2}>
+                <p className="text-lg md:text-xl text-zinc-400 leading-relaxed">
+                  Sehen Sie selbst, wie aus alten Räumen moderne Wohlfühloasen werden.
+                  In unserer Galerie zeigen wir ausgewählte Projekte.
+                </p>
+              </AnimateIn>
             </div>
           </div>
         </section>
@@ -90,60 +97,68 @@ export default function ReferenzenPage() {
               <div key={index} className="space-y-8">
                 {/* Before/After Images */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="relative">
-                    <div className="aspect-[4/3] rounded-2xl overflow-hidden">
-                      <Image
-                        src={project.beforeImage}
-                        alt={`${project.title} - Vorher`}
-                        fill
-                        className="object-cover"
-                      />
+                  <AnimateIn delay={0.1} from="left">
+                    <div className="relative">
+                      <div className="aspect-[4/3] rounded-2xl overflow-hidden">
+                        <Image
+                          src={project.beforeImage}
+                          alt={`${project.title} - Vorher`}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <span className="absolute top-4 left-4 px-3 py-1 bg-black/70 backdrop-blur-sm rounded-full text-xs font-medium text-white">
+                        Vorher
+                      </span>
                     </div>
-                    <span className="absolute top-4 left-4 px-3 py-1 bg-black/70 backdrop-blur-sm rounded-full text-xs font-medium text-white">
-                      Vorher
-                    </span>
-                  </div>
-                  <div className="relative">
-                    <div className="aspect-[4/3] rounded-2xl overflow-hidden">
-                      <Image
-                        src={project.afterImage}
-                        alt={`${project.title} - Nachher`}
-                        fill
-                        className="object-cover"
-                      />
+                  </AnimateIn>
+                  <AnimateIn delay={0.2} from="right">
+                    <div className="relative">
+                      <div className="aspect-[4/3] rounded-2xl overflow-hidden">
+                        <Image
+                          src={project.afterImage}
+                          alt={`${project.title} - Nachher`}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <span className="absolute top-4 left-4 px-3 py-1 bg-[var(--gold)] rounded-full text-xs font-medium text-white">
+                        Nachher
+                      </span>
                     </div>
-                    <span className="absolute top-4 left-4 px-3 py-1 bg-[var(--gold)] rounded-full text-xs font-medium text-white">
-                      Nachher
-                    </span>
-                  </div>
+                  </AnimateIn>
                 </div>
 
                 {/* Project Info */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <div>
-                    <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">
-                      {project.title}
-                    </h2>
-                    <p className="text-zinc-400 leading-relaxed mb-6">
-                      {project.description}
-                    </p>
-                    <div className="flex gap-4">
-                      <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-zinc-400">
-                        {project.type}
-                      </span>
-                      <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-zinc-400">
-                        {project.duration}
-                      </span>
+                  <AnimateIn delay={0.3}>
+                    <div>
+                      <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">
+                        {project.title}
+                      </h2>
+                      <p className="text-zinc-400 leading-relaxed mb-6">
+                        {project.description}
+                      </p>
+                      <div className="flex gap-4">
+                        <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-zinc-400">
+                          {project.type}
+                        </span>
+                        <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-zinc-400">
+                          {project.duration}
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                  </AnimateIn>
 
-                  <div className="bg-zinc-950 border border-white/5 rounded-2xl p-6">
-                    <Quote className="w-8 h-8 text-[var(--gold)]/30 mb-4" />
-                    <p className="text-zinc-300 italic mb-4 leading-relaxed">
-                      &ldquo;{project.testimonial.text}&rdquo;
-                    </p>
-                    <p className="text-sm text-[var(--gold)]">{project.testimonial.author}</p>
-                  </div>
+                  <AnimateIn delay={0.4}>
+                    <div className="bg-zinc-950 border border-white/5 rounded-2xl p-6">
+                      <Quote className="w-8 h-8 text-[var(--gold)]/30 mb-4" />
+                      <p className="text-zinc-300 italic mb-4 leading-relaxed">
+                        &ldquo;{project.testimonial.text}&rdquo;
+                      </p>
+                      <p className="text-sm text-[var(--gold)]">{project.testimonial.author}</p>
+                    </div>
+                  </AnimateIn>
                 </div>
               </div>
             ))}
@@ -154,26 +169,29 @@ export default function ReferenzenPage() {
         <section className="py-20 md:py-28 bg-zinc-950">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-4">
-                Das sagen unsere Kunden
-              </h2>
-              <p className="text-zinc-400 max-w-2xl mx-auto">
-                Lesen Sie, wie unsere Kunden die Zusammenarbeit mit Schöner Fliesen erleben.
-              </p>
+              <AnimateIn>
+                <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-4">
+                  Das sagen unsere Kunden
+                </h2>
+              </AnimateIn>
+              <AnimateIn delay={0.1}>
+                <p className="text-zinc-400 max-w-2xl mx-auto">
+                  Lesen Sie, wie unsere Kunden die Zusammenarbeit mit Schöner Fliesen erleben.
+                </p>
+              </AnimateIn>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="p-6 rounded-2xl bg-white/5 border border-white/10"
-                >
-                  <Quote className="w-6 h-6 text-[var(--gold)]/30 mb-4" />
-                  <p className="text-zinc-400 text-sm leading-relaxed mb-4">
-                    &ldquo;{testimonial.text}&rdquo;
-                  </p>
-                  <p className="text-sm font-medium text-white">{testimonial.author}</p>
-                </div>
+                <AnimateIn key={index} delay={index * 0.1}>
+                  <div className="p-6 rounded-2xl bg-white/5 border border-white/10 h-full">
+                    <Quote className="w-6 h-6 text-[var(--gold)]/30 mb-4" />
+                    <p className="text-zinc-400 text-sm leading-relaxed mb-4">
+                      &ldquo;{testimonial.text}&rdquo;
+                    </p>
+                    <p className="text-sm font-medium text-white">{testimonial.author}</p>
+                  </div>
+                </AnimateIn>
               ))}
             </div>
           </div>

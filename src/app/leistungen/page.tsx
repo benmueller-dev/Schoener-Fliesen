@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/sections";
+import { AnimateIn } from "@/components/AnimateIn";
 import Image from "next/image";
 import { Bath, Droplets, Wrench, Flame, Lightbulb, Palette } from "lucide-react";
 
@@ -95,22 +96,28 @@ export default function LeistungenPage() {
 
           <div className="relative z-10 max-w-7xl mx-auto px-6">
             <div className="max-w-3xl">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--gold)]/20 bg-[var(--gold)]/5 mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
-                <span className="text-xs uppercase tracking-widest text-[var(--gold-light)] font-medium">
-                  Leistungen
+              <AnimateIn>
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--gold)]/20 bg-[var(--gold)]/5 mb-6">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
+                  <span className="text-xs uppercase tracking-widest text-[var(--gold-light)] font-medium">
+                    Leistungen
+                  </span>
                 </span>
-              </span>
+              </AnimateIn>
 
-              <h1 className="text-4xl md:text-6xl font-medium tracking-tighter text-white mb-6">
-                Unsere Kompetenz{" "}
-                <span className="gold-gradient">im Überblick</span>
-              </h1>
+              <AnimateIn delay={0.1}>
+                <h1 className="text-4xl md:text-6xl font-medium tracking-tighter text-white mb-6">
+                  Unsere Kompetenz{" "}
+                  <span className="gold-gradient">im Überblick</span>
+                </h1>
+              </AnimateIn>
 
-              <p className="text-lg md:text-xl text-zinc-400 leading-relaxed">
-                Vom ersten Entwurf bis zur fertigen Wohlfühloase – hier finden Sie alle
-                Leistungen, die wir für Sie realisieren.
-              </p>
+              <AnimateIn delay={0.2}>
+                <p className="text-lg md:text-xl text-zinc-400 leading-relaxed">
+                  Vom ersten Entwurf bis zur fertigen Wohlfühloase – hier finden Sie alle
+                  Leistungen, die wir für Sie realisieren.
+                </p>
+              </AnimateIn>
             </div>
           </div>
         </section>
@@ -120,27 +127,26 @@ export default function LeistungenPage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {services.map((service, index) => (
-                <div
-                  key={index}
-                  className="group p-8 rounded-2xl bg-zinc-950 border border-white/5 hover:border-[var(--gold)]/30 transition-all duration-300"
-                >
-                  <div className="w-12 h-12 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/20 flex items-center justify-center mb-6 group-hover:bg-[var(--gold)]/20 transition-colors">
-                    <service.icon className="w-6 h-6 text-[var(--gold)]" strokeWidth={1.5} />
-                  </div>
+                <AnimateIn key={index} delay={index * 0.1}>
+                  <div className="group p-8 rounded-2xl bg-zinc-950 border border-white/5 hover:border-[var(--gold)]/30 transition-all duration-300 h-full">
+                    <div className="w-12 h-12 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/20 flex items-center justify-center mb-6 group-hover:bg-[var(--gold)]/20 transition-colors">
+                      <service.icon className="w-6 h-6 text-[var(--gold)]" strokeWidth={1.5} />
+                    </div>
 
-                  <h3 className="text-xl font-medium text-white mb-2">{service.title}</h3>
-                  <p className="text-zinc-500 text-sm mb-6">{service.subtitle}</p>
+                    <h3 className="text-xl font-medium text-white mb-2">{service.title}</h3>
+                    <p className="text-zinc-500 text-sm mb-6">{service.subtitle}</p>
 
-                  <div className="space-y-2">
-                    <p className="text-xs uppercase tracking-wider text-zinc-600 mb-3">Leistungen:</p>
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-sm text-zinc-400">
-                        <span className="w-1 h-1 rounded-full bg-[var(--gold)]" />
-                        {feature}
-                      </div>
-                    ))}
+                    <div className="space-y-2">
+                      <p className="text-xs uppercase tracking-wider text-zinc-600 mb-3">Leistungen:</p>
+                      {service.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-sm text-zinc-400">
+                          <span className="w-1 h-1 rounded-full bg-[var(--gold)]" />
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </AnimateIn>
               ))}
             </div>
           </div>
@@ -149,18 +155,24 @@ export default function LeistungenPage() {
         {/* CTA Section */}
         <section className="py-20 md:py-28 bg-zinc-950">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-6">
-              Bereit für Ihr neues Bad?
-            </h2>
-            <p className="text-zinc-400 mb-8 max-w-xl mx-auto">
-              Kontaktieren Sie uns für eine unverbindliche Beratung. Wir freuen uns auf Ihr Projekt.
-            </p>
-            <a
-              href="/kontakt"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-[var(--gold)] text-white rounded-full hover:bg-[var(--gold-light)] transition-colors font-medium text-sm"
-            >
-              Jetzt Planung anfragen
-            </a>
+            <AnimateIn>
+              <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-6">
+                Bereit für Ihr neues Bad?
+              </h2>
+            </AnimateIn>
+            <AnimateIn delay={0.1}>
+              <p className="text-zinc-400 mb-8 max-w-xl mx-auto">
+                Kontaktieren Sie uns für eine unverbindliche Beratung. Wir freuen uns auf Ihr Projekt.
+              </p>
+            </AnimateIn>
+            <AnimateIn delay={0.2}>
+              <a
+                href="/kontakt"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-[var(--gold)] text-white rounded-full hover:bg-[var(--gold-light)] transition-colors font-medium text-sm"
+              >
+                Jetzt Planung anfragen
+              </a>
+            </AnimateIn>
           </div>
         </section>
       </main>
