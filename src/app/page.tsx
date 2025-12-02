@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import {
   Hero,
-  Philosophy,
+  Stats,
   Collection,
   Details,
   CTA,
@@ -14,7 +14,7 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
-        <Philosophy />
+        <Stats />
         <Collection />
         <Details />
         <CTA />
