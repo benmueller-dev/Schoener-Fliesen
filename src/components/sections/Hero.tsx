@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const heroImages = [
   "https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=1920&auto=format&fit=crop",
@@ -16,23 +17,32 @@ export function Hero() {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const goToSlide = useCallback((index: number) => {
-    if (isTransitioning || index === currentIndex) return;
+    if (isTransitioning) return;
+    const newIndex = (index + heroImages.length) % heroImages.length;
+    if (newIndex === currentIndex) return;
     setIsTransitioning(true);
-    setCurrentIndex(index);
+    setCurrentIndex(newIndex);
     setTimeout(() => setIsTransitioning(false), 1000);
   }, [isTransitioning, currentIndex]);
 
+  const goToPrevious = useCallback(() => {
+    goToSlide(currentIndex - 1);
+  }, [currentIndex, goToSlide]);
+
+  const goToNext = useCallback(() => {
+    goToSlide(currentIndex + 1);
+  }, [currentIndex, goToSlide]);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      const nextIndex = (currentIndex + 1) % heroImages.length;
-      goToSlide(nextIndex);
+      goToNext();
     }, 6000);
 
     return () => clearInterval(interval);
-  }, [currentIndex, goToSlide]);
+  }, [goToNext]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden group/hero">
       {/* Background Image Slider */}
       <div className="absolute inset-0 z-0">
         {heroImages.map((src, index) => (
@@ -59,6 +69,28 @@ export function Hero() {
       {/* Vignette & Gradient Overlays */}
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-10" />
       <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-transparent z-10" />
+
+      {/* Left Arrow */}
+      <button
+        onClick={goToPrevious}
+        className="absolute left-0 top-0 bottom-0 w-24 md:w-32 z-20 flex items-center justify-start pl-4 md:pl-8 opacity-0 group-hover/hero:opacity-100 transition-opacity duration-300 cursor-pointer group/btn"
+        aria-label="Vorheriges Bild"
+      >
+        <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-full p-3 md:p-4 transition-all duration-300 group-hover/btn:bg-white/10 group-hover/btn:scale-110 -translate-x-full group-hover/hero:translate-x-0 transition-transform">
+          <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
+        </div>
+      </button>
+
+      {/* Right Arrow */}
+      <button
+        onClick={goToNext}
+        className="absolute right-0 top-0 bottom-0 w-24 md:w-32 z-20 flex items-center justify-end pr-4 md:pr-8 opacity-0 group-hover/hero:opacity-100 transition-opacity duration-300 cursor-pointer group/btn"
+        aria-label="Nächstes Bild"
+      >
+        <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-full p-3 md:p-4 transition-all duration-300 group-hover/btn:bg-white/10 group-hover/btn:scale-110 translate-x-full group-hover/hero:translate-x-0 transition-transform">
+          <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
+        </div>
+      </button>
 
       {/* Content */}
       <div className="relative z-20 text-center max-w-4xl mx-auto px-6">
