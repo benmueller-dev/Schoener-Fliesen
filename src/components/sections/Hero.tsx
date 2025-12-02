@@ -62,9 +62,9 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-20 text-center max-w-4xl mx-auto px-6">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/5 mb-8 animate-title">
-          <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-          <span className="text-xs uppercase tracking-widest text-amber-300 font-medium">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--gold)]/20 bg-[var(--gold)]/5 mb-8 animate-title">
+          <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
+          <span className="text-xs uppercase tracking-widest text-[var(--gold-light)] font-medium">
             Über 20 Jahre Erfahrung
           </span>
         </div>
@@ -85,7 +85,7 @@ export function Hero() {
         </p>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 animate-title animate-delay-300">
-          <button className="w-full md:w-auto px-8 py-3 bg-amber-600 text-white rounded-full hover:bg-amber-500 transition-colors font-medium text-sm tracking-wide">
+          <button className="w-full md:w-auto px-8 py-3 bg-[var(--gold)] text-white rounded-full hover:bg-[var(--gold-light)] transition-colors font-medium text-sm tracking-wide">
             Jetzt Planung anfragen
           </button>
         </div>
@@ -99,7 +99,7 @@ export function Hero() {
             onClick={() => goToSlide(index)}
             className={`transition-all duration-300 rounded-full ${
               index === currentIndex
-                ? "w-8 h-2 bg-amber-500"
+                ? "w-8 h-2 bg-[var(--gold)]"
                 : "w-2 h-2 bg-white/30 hover:bg-white/50"
             }`}
             aria-label={`Gehe zu Bild ${index + 1}`}

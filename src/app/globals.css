@@ -44,6 +44,9 @@
 
 :root {
   --radius: 0.625rem;
+  --gold: #C79B41;
+  --gold-light: #d4af5a;
+  --gold-dark: #a8832f;
   --background: oklch(0 0 0);
   --foreground: oklch(0.7 0 0);
   --card: oklch(0.1 0 0);
@@ -134,7 +137,7 @@
 }
 
 .gold-gradient {
-  background: linear-gradient(135deg, #fef3c7 0%, #d97706 100%);
+  background: linear-gradient(135deg, #fffcf0 0%, var(--gold) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
