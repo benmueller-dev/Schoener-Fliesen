@@ -5,19 +5,39 @@ import { AnimateIn } from "@/components/AnimateIn";
 
 const galleryItems = [
   {
-    src: "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg",
+    src: "/Fotos/Badezimmer-Sankt-Augustin.png",
+    title: "Modernes Bad",
+    subtitle: "Sankt Augustin",
+  },
+  {
+    src: "/Fotos/Badezimmer-Sankt-Augustin-2.png",
+    title: "Elegantes Design",
+    subtitle: "Klare Linien",
+  },
+  {
+    src: "/Fotos/Badezimmer-Waschbecken-Sankt-Augustin.png",
     title: "Die Armatur",
     subtitle: "Handpoliertes Finish",
   },
   {
-    src: "https://images.unsplash.com/photo-1549488344-cbb6c34cf08b?q=80&w=800&auto=format&fit=crop",
-    title: "Freistehend",
-    subtitle: "Monolithischer Stein",
+    src: "/Fotos/Badezimmer-Dusche-Sankt-Augustin.png",
+    title: "Begehbare Dusche",
+    subtitle: "Bodengleich & Barrierefrei",
   },
   {
-    src: "https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=800&auto=format&fit=crop",
+    src: "/Fotos/Badezimmer-Sankt-Augustin-Warm.png",
+    title: "Warme Atmosphäre",
+    subtitle: "Naturstein & LED",
+  },
+  {
+    src: "/Fotos/Badezimmer-Sankt-Augustin-Warm2.png",
     title: "Ambiente",
     subtitle: "Smart Lighting Integration",
+  },
+  {
+    src: "/Fotos/Badezimmer-Sankt-Augustin-Warm3.png",
+    title: "Wohlfühloase",
+    subtitle: "Premium-Ausstattung",
   },
 ];
 
@@ -56,10 +76,9 @@ export function Details() {
                   sizes="(max-width: 768px) 85vw, 600px"
                 />
                 <div className="absolute bottom-8 left-8">
-                  <h4 className="text-2xl text-white font-medium">
-                    {item.title}
-                  </h4>
-                  <p className="text-[var(--gold-light)]/80 text-sm mt-1">{item.subtitle}</p>
+                  <span className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
+                    <span className="text-lg text-white font-medium">{item.title}</span>
+                  </span>
                 </div>
               </div>
             ))}
