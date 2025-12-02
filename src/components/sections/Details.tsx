@@ -59,21 +59,38 @@ export function Details() {
             </div>
           </AnimateIn>
         </div>
+      </div>
 
-        {/* Horizontal Gallery */}
-        <AnimateIn delay={0.3}>
-          <div className="flex gap-6 overflow-x-auto no-scrollbar pb-8 snap-x">
+      {/* Horizontal Gallery - Full Width */}
+      <AnimateIn delay={0.3}>
+        <div className="relative">
+          {/* Left fade overlay */}
+          <div
+            className="absolute left-0 top-0 bottom-8 w-40 md:w-80 z-10 pointer-events-none"
+            style={{
+              background: "linear-gradient(to right, rgb(0,0,0) 0%, rgba(0,0,0,0.6) 25%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%)"
+            }}
+          />
+          {/* Right fade overlay */}
+          <div
+            className="absolute right-0 top-0 bottom-8 w-40 md:w-80 z-10 pointer-events-none"
+            style={{
+              background: "linear-gradient(to left, rgb(0,0,0) 0%, rgba(0,0,0,0.6) 25%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%)"
+            }}
+          />
+
+          <div className="flex gap-6 overflow-x-auto no-scrollbar pb-8 snap-x px-6 md:px-12">
             {galleryItems.map((item, index) => (
               <div
                 key={index}
-                className="min-w-[85vw] md:min-w-[600px] h-[500px] bg-zinc-900 rounded-3xl overflow-hidden relative snap-center shrink-0 border border-white/5"
+                className="min-w-[85vw] md:min-w-[700px] h-[500px] md:h-[600px] bg-zinc-900 rounded-3xl overflow-hidden relative snap-center shrink-0 border border-white/5"
               >
                 <Image
                   src={item.src}
                   alt={item.title}
                   fill
-                  className="object-cover opacity-80"
-                  sizes="(max-width: 768px) 85vw, 600px"
+                  className="object-cover opacity-90"
+                  sizes="(max-width: 768px) 85vw, 700px"
                 />
                 <div className="absolute bottom-8 left-8">
                   <span className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
@@ -83,8 +100,8 @@ export function Details() {
               </div>
             ))}
           </div>
-        </AnimateIn>
-      </div>
+        </div>
+      </AnimateIn>
     </section>
   );
 }
