@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Menu } from "lucide-react";
 
 export function Navigation() {
@@ -9,10 +10,16 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link
           href="#"
-          className="text-lg font-medium tracking-tighter text-white flex items-center gap-2"
+          className="flex items-center"
         >
-          <div className="w-3 h-3 bg-amber-500 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.5)]" />
-          AURUM.
+          <Image
+            src="/schoener-fliesen_logo.png"
+            alt="Schöner Fliesen Logo"
+            width={180}
+            height={48}
+            className="h-10 w-auto"
+            priority
+          />
         </Link>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Instagram, Twitter, Linkedin } from "lucide-react";
 
 const discoverLinks = [
@@ -27,12 +28,18 @@ export function Footer() {
           <div className="col-span-1 md:col-span-1">
             <Link
               href="#"
-              className="text-xl font-medium tracking-tighter text-white flex items-center gap-2 mb-6"
+              className="block mb-6"
             >
-              AURUM.
+              <Image
+                src="/schoener-fliesen_logo.png"
+                alt="Schöner Fliesen Logo"
+                width={160}
+                height={42}
+                className="h-8 w-auto"
+              />
             </Link>
             <p className="text-zinc-500 text-sm">
-              Definition von Luxus im privaten Raum.
+              Meisterbetrieb für exklusive Fliesen.
             </p>
           </div>
 
@@ -87,7 +94,7 @@ export function Footer() {
 
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-zinc-600 text-xs">
-            © 2024 AURUM Interiors. All rights reserved.
+            © 2024 Schöner Fliesen. Alle Rechte vorbehalten.
           </p>
           <div className="flex gap-6 text-xs text-zinc-600">
             <Link href="#" className="hover:text-zinc-400">

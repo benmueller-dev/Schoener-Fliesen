@@ -29,7 +29,7 @@ export function Details() {
           </h2>
           <div className="mt-8 md:mt-0 max-w-xs text-zinc-400 text-sm leading-relaxed">
             Unsere Armaturen werden aus massiven Messingblöcken gefräst und mit
-            24 Karat Gold veredelt. Das ist kein Standard. Das ist AURUM.
+            24 Karat Gold veredelt. Das ist kein Standard. Das ist Schöner Fliesen.
           </div>
         </div>
 

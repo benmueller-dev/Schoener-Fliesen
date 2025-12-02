@@ -9,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "AURUM | Exklusive Badezimmer",
-  description: "Wir erschaffen Räume der Stille und Eleganz. Reduziert auf das Wesentliche, veredelt mit purem Gold.",
+  title: "Schöner Fliesen | Meisterbetrieb für exklusive Fliesen",
+  description: "Wir erschaffen Räume der Stille und Eleganz. Meisterbetrieb für exklusive Fliesen und edle Badezimmer.",
 };
 
 export default function RootLayout({
