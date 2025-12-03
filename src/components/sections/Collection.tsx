@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, Award } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, Euro } from "lucide-react";
 import { AnimateIn } from "@/components/AnimateIn";
 
 export function Collection() {
@@ -11,20 +12,20 @@ export function Collection() {
         <AnimateIn>
           <div>
             <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white mb-2">
-              Unsere Signaturen
+              Unsere Projekte
             </h2>
             <p className="text-zinc-500">
-              Kuratierte Räume für höchste Ansprüche.
+              Individuell geplant, termingerecht umgesetzt.
             </p>
           </div>
         </AnimateIn>
         <AnimateIn delay={0.2}>
-          <a
-            href="#"
+          <Link
+            href="/referenzen"
             className="hidden md:flex items-center gap-2 text-[var(--gold)] text-sm hover:text-[var(--gold-light)] transition-colors"
           >
-            Alle ansehen <ArrowRight className="w-4 h-4" />
-          </a>
+            Alle Referenzen <ArrowRight className="w-4 h-4" />
+          </Link>
         </AnimateIn>
       </div>
 
@@ -34,8 +35,8 @@ export function Collection() {
           <AnimateIn delay={0.1} className="md:col-span-2 md:row-span-2">
             <div className="relative group rounded-2xl overflow-hidden cursor-pointer h-[400px] md:h-full">
               <Image
-                src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c543a9e1-f226-4ced-80b0-feb8445a75b9_1600w.jpg"
-                alt="Black Marble"
+                src="/Fotos/Badezimmer-Sankt-Augustin.png"
+                alt="Modernes Bad Sankt Augustin"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 66vw"
@@ -43,14 +44,14 @@ export function Collection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80" />
               <div className="absolute bottom-0 left-0 p-8 md:p-12">
                 <span className="text-[var(--gold)] text-xs font-medium tracking-widest uppercase mb-2 block">
-                  Die Noir Edition
+                  Komplettsanierung
                 </span>
                 <h3 className="text-3xl text-white font-medium tracking-tight mb-2">
-                  Midnight Marble
+                  Modernes Bad in Sankt Augustin
                 </h3>
                 <p className="text-zinc-400 text-sm max-w-md line-clamp-2">
-                  Schwarzer Marmor trifft auf gebürstetes Gold. Ein Statement der
-                  absoluten Luxusklasse für anspruchsvolle Ästheten.
+                  Helle Fliesen, bodengleiche Dusche und elegante Holzakzente –
+                  ein zeitloses Wohlfühlbad für die ganze Familie.
                 </p>
               </div>
             </div>
@@ -60,8 +61,8 @@ export function Collection() {
           <AnimateIn delay={0.2}>
             <div className="relative group rounded-2xl overflow-hidden cursor-pointer h-[300px] md:h-full">
               <Image
-                src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop"
-                alt="White Gold"
+                src="/Fotos/Badezimmer-Sankt-Augustin-Warm.png"
+                alt="Warmes Badezimmer"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -71,10 +72,10 @@ export function Collection() {
                 <div className="flex justify-between items-end">
                   <div>
                     <h3 className="text-xl text-white font-medium">
-                      Luminous Gold
+                      Wellness-Oase
                     </h3>
                     <p className="text-zinc-300 text-xs mt-1">
-                      Helles Ambiente, goldene Akzente
+                      Warme Töne, freistehende Badewanne
                     </p>
                   </div>
                   <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur flex items-center justify-center">
@@ -85,27 +86,27 @@ export function Collection() {
             </div>
           </AnimateIn>
 
-          {/* Secondary Item Bottom */}
+          {/* Secondary Item Bottom - Festpreis Box */}
           <AnimateIn delay={0.3}>
             <div className="relative group rounded-2xl overflow-hidden cursor-pointer bg-zinc-900 border border-white/5 p-8 flex flex-col justify-between h-[300px] md:h-full">
               <div>
-                <Award className="w-10 h-10 text-[var(--gold)] mb-4" strokeWidth={1.5} />
+                <Euro className="w-10 h-10 text-[var(--gold)] mb-4" strokeWidth={1.5} />
                 <h3 className="text-2xl text-white font-medium mb-2">
-                  Preisgekröntes Design
+                  Festpreis-Garantie
                 </h3>
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                  Ausgezeichnet mit dem German Design Award 2024 für innovative
-                  Raumkonzepte.
+                  Individuelles Design zum transparenten Festpreis.
+                  Keine versteckten Kosten, keine Überraschungen.
                 </p>
               </div>
               <div className="mt-4">
                 <span className="text-xs text-zinc-500 block mb-2 uppercase tracking-wider">
-                  Materialien
+                  Inklusive
                 </span>
-                <div className="flex -space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-zinc-700 border border-black" />
-                  <div className="w-8 h-8 rounded-full bg-[var(--gold)] border border-black" />
-                  <div className="w-8 h-8 rounded-full bg-stone-400 border border-black" />
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-zinc-400">Planung</span>
+                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-zinc-400">Material</span>
+                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-zinc-400">Montage</span>
                 </div>
               </div>
             </div>

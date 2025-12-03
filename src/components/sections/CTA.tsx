@@ -1,6 +1,5 @@
 "use client";
 
-import { Crown } from "lucide-react";
 import { type FormEvent } from "react";
 import { AnimateIn } from "@/components/AnimateIn";
 import Image from "next/image";
@@ -29,7 +28,13 @@ export function CTA() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <AnimateIn>
-          <Crown className="w-12 h-12 text-[var(--gold)] mx-auto mb-6" strokeWidth={1} />
+          <Image
+            src="/schoener-fliesen_logo.png"
+            alt="Schöner Fliesen Logo"
+            width={200}
+            height={50}
+            className="mx-auto mb-6"
+          />
         </AnimateIn>
         <AnimateIn delay={0.1}>
           <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white mb-6">
