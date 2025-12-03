@@ -44,9 +44,9 @@
 
 :root {
   --radius: 0.625rem;
-  --gold: #C79B41;
-  --gold-light: #d4af5a;
-  --gold-dark: #a8832f;
+  --gold: #BAA973;
+  --gold-light: #c9bb8a;
+  --gold-dark: #a89a64;
   --background: oklch(0 0 0);
   --foreground: oklch(0.7 0 0);
   --card: oklch(0.1 0 0);

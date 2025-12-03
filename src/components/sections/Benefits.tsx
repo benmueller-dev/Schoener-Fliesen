@@ -59,7 +59,7 @@ function GlowCard({ children }: GlowCardProps) {
           transform: "translate(-50%, -50%)",
           width: "500px",
           height: "500px",
-          background: "radial-gradient(circle, rgba(199,155,65,0.25) 0%, rgba(199,155,65,0.1) 30%, rgba(199,155,65,0) 70%)",
+          background: "radial-gradient(circle, rgba(186,169,115,0.25) 0%, rgba(186,169,115,0.1) 30%, rgba(186,169,115,0) 70%)",
           filter: "blur(40px)",
           opacity: isHovering ? 1 : 0,
         }}

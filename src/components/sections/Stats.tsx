@@ -16,7 +16,7 @@ function StatItem({ value, label, description, delay = 0 }: StatItemProps) {
         <div className="text-5xl md:text-6xl font-light text-white mb-2 tracking-tight">
           {value}
         </div>
-        <div className="text-xs uppercase tracking-widest text-[#C0953F] font-medium mb-3">
+        <div className="text-xs uppercase tracking-widest text-[var(--gold)] font-medium mb-3">
           {label}
         </div>
         <p className="text-zinc-500 text-sm leading-relaxed">{description}</p>
