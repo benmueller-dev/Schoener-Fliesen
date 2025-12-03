@@ -50,7 +50,7 @@ export function Hero() {
             key={index}
             className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
               index === currentIndex
-                ? "opacity-50 scale-100"
+                ? "opacity-70 scale-100"
                 : "opacity-0 scale-105"
             }`}
           >
@@ -67,8 +67,8 @@ export function Hero() {
       </div>
 
       {/* Vignette & Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-10" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-transparent z-10" />
 
       {/* Left Arrow */}
       <button
