@@ -3,6 +3,7 @@
 import { Crown } from "lucide-react";
 import { type FormEvent } from "react";
 import { AnimateIn } from "@/components/AnimateIn";
+import Image from "next/image";
 
 export function CTA() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -11,8 +12,22 @@ export function CTA() {
   };
 
   return (
-    <section className="py-24 bg-zinc-950 border-t border-white/5">
-      <div className="max-w-4xl mx-auto px-6 text-center">
+    <section className="relative py-24 overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/Fotos/Badezimmer-Sankt-Augustin.png"
+          alt="Luxuriöses Badezimmer"
+          fill
+          className="object-cover"
+        />
+        {/* Blur + Gradient Overlay */}
+        <div className="absolute inset-0 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/85" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
+      </div>
+
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <AnimateIn>
           <Crown className="w-12 h-12 text-[var(--gold)] mx-auto mb-6" strokeWidth={1} />
         </AnimateIn>
