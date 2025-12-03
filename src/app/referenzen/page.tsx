@@ -1,7 +1,7 @@
 "use client";
 
 import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/sections";
+import { Footer, Details } from "@/components/sections";
 import { AnimateIn } from "@/components/AnimateIn";
 import { SectionBadge } from "@/components/SectionBadge";
 import Image from "next/image";
@@ -281,7 +281,7 @@ export default function ReferenzenPage() {
         </section>
 
         {/* Projects */}
-        <section className="py-20 md:py-28 bg-black">
+        <section id="projekt-1" className="py-20 md:py-28 bg-black scroll-mt-24">
           <div className="max-w-7xl mx-auto px-6 space-y-24">
             {projects.map((project, index) => (
               <div key={index} className="space-y-8">
@@ -337,6 +337,9 @@ export default function ReferenzenPage() {
             ))}
           </div>
         </section>
+
+        {/* Details Gallery */}
+        <Details />
 
         {/* Testimonials Grid */}
         <section className="py-20 md:py-28 bg-zinc-950">

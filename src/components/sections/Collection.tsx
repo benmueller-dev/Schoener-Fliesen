@@ -59,7 +59,7 @@ export function Collection() {
 
           {/* Secondary Item Top */}
           <AnimateIn delay={0.2}>
-            <div className="relative group rounded-2xl overflow-hidden cursor-pointer h-[300px] md:h-full">
+            <Link href="/referenzen#projekt-1" className="relative group rounded-2xl overflow-hidden cursor-pointer h-[300px] md:h-full block">
               <Image
                 src="/Fotos/Badezimmer-Sankt-Augustin-Warm.png"
                 alt="Warmes Badezimmer"
@@ -83,7 +83,7 @@ export function Collection() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </AnimateIn>
 
           {/* Secondary Item Bottom - Festpreis Box */}

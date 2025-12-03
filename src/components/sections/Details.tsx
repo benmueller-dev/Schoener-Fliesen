@@ -153,8 +153,8 @@ export function Details() {
             </AnimateIn>
             <AnimateIn delay={0.2}>
               <div className="mt-8 md:mt-0 max-w-xs text-zinc-400 text-sm leading-relaxed">
-                Unsere Armaturen werden aus massiven Messingblöcken gefräst und mit
-                24 Karat Gold veredelt. Das ist kein Standard. Das ist Schöner Fliesen.
+                Jede Fuge sitzt perfekt, jede Fliese ist exakt ausgerichtet.
+                Wir arbeiten mit höchster Sorgfalt – für Ergebnisse, die begeistern.
               </div>
             </AnimateIn>
           </div>
