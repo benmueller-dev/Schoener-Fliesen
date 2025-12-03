@@ -92,7 +92,7 @@ export default function UeberUnsPage() {
                 <div className="relative">
                   <div className="aspect-[4/3] rounded-2xl overflow-hidden">
                     <Image
-                      src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1200&auto=format&fit=crop"
+                      src="/schoener-fliesen-kfz 3.png"
                       alt="Unser Team bei der Arbeit"
                       fill
                       className="object-cover"

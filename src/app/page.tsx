@@ -2,6 +2,8 @@ import { Navigation } from "@/components/Navigation";
 import {
   Hero,
   Stats,
+  About,
+  Benefits,
   Collection,
   Details,
   CTA,
@@ -15,6 +17,8 @@ export default function Home() {
       <main>
         <Hero />
         <Stats />
+        <About />
+        <Benefits />
         <Collection />
         <Details />
         <CTA />
