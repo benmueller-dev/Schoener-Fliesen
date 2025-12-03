@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { AnimateIn } from "@/components/AnimateIn";
+import { SectionBadge } from "@/components/SectionBadge";
 
 export function About() {
   return (
@@ -13,12 +14,7 @@ export function About() {
           {/* Text Left */}
           <div>
             <AnimateIn>
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--gold)]/20 bg-[var(--gold)]/5 mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
-                <span className="text-xs uppercase tracking-widest text-[var(--gold-light)] font-medium">
-                  Über uns
-                </span>
-              </span>
+              <SectionBadge text="Über uns" />
             </AnimateIn>
 
             <AnimateIn delay={0.1}>

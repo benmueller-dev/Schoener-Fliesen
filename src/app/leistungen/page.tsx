@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/sections";
 import { AnimateIn } from "@/components/AnimateIn";
+import { SectionBadge } from "@/components/SectionBadge";
 import Image from "next/image";
 import { Bath, Droplets, Wrench, Flame, Lightbulb, Palette } from "lucide-react";
 
@@ -97,12 +98,7 @@ export default function LeistungenPage() {
           <div className="relative z-10 max-w-7xl mx-auto px-6">
             <div className="max-w-3xl">
               <AnimateIn>
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--gold)]/20 bg-[var(--gold)]/5 mb-6">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
-                  <span className="text-xs uppercase tracking-widest text-[var(--gold-light)] font-medium">
-                    Leistungen
-                  </span>
-                </span>
+                <SectionBadge text="Leistungen" />
               </AnimateIn>
 
               <AnimateIn delay={0.1}>
