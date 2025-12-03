@@ -13,7 +13,7 @@ function GlowCard({ children }: GlowCardProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [glowPosition, setGlowPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
