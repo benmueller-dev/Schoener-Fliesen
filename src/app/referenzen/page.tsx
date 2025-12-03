@@ -1,13 +1,11 @@
+"use client";
+
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/sections";
 import { AnimateIn } from "@/components/AnimateIn";
 import Image from "next/image";
 import { Quote } from "lucide-react";
-
-export const metadata = {
-  title: "Referenzen | Schöner Fliesen",
-  description: "Entdecken Sie unsere Projekte – von der ersten Idee bis zur perfekten Umsetzung.",
-};
+import { useState } from "react";
 
 const projects = [
   {
@@ -19,20 +17,20 @@ const projects = [
       text: "Wir sind begeistert vom Ergebnis! Unser altes Bad war dunkel und unpraktisch – jetzt ist es hell, modern und perfekt durchdacht. Die Arbeiten liefen absolut termingerecht und sauber, das Team war jederzeit freundlich und professionell.",
       author: "Julia H., Sankt Augustin"
     },
-    beforeImage: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
-    afterImage: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Barrierefreies Komfortbad in Bonn",
-    description: "Für dieses Projekt wurde ein in die Jahre gekommenes Bad vollständig modernisiert und barrierefrei umgebaut. Entstanden ist ein eleganter Raum mit bodengleicher Dusche, rutschhemmenden Fliesen und stilvoller LED-Beleuchtung.",
-    type: "Barrierefreies Bad",
-    duration: "4 Wochen",
-    testimonial: {
-      text: "Einfach top! Das Team hat unsere Wünsche perfekt umgesetzt – alles sauber, pünktlich und mit Liebe zum Detail. Jetzt haben wir ein Bad, das nicht nur praktisch, sondern richtig schön ist.",
-      author: "Michael T., Bonn"
-    },
-    beforeImage: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop",
-    afterImage: "https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=800&auto=format&fit=crop",
+    beforeImages: [
+      "/Referenz 1/Vorher/Mittel (IMG_0078).jpeg",
+      "/Referenz 1/Vorher/Mittel (IMG_0079).jpeg",
+      "/Referenz 1/Vorher/Mittel (IMG_0080).jpeg",
+      "/Referenz 1/Vorher/Mittel (IMG_0082).jpeg",
+      "/Referenz 1/Vorher/Mittel (IMG_0083).jpeg",
+    ],
+    afterImages: [
+      "/Referenz 1/Nachher/Mittel (IMG_1715).jpeg",
+      "/Referenz 1/Nachher/Mittel (IMG_1716).jpeg",
+      "/Referenz 1/Nachher/Mittel (IMG_1717).jpeg",
+      "/Referenz 1/Nachher/Mittel (IMG_1718).jpeg",
+      "/Referenz 1/Nachher/Mittel (IMG_1719).jpeg",
+    ],
   },
 ];
 
@@ -45,6 +43,58 @@ const testimonials = [
   { text: "Sehr Guter Unternehmer im bereich Fliesen diese Firma arbeit hoch professionell und das auch noch zu einem sehr fairen Preis bin zufrieden mit der Firma.", author: "Angelina Thiemann" },
 ];
 
+function ImageGallery({
+  images,
+  label,
+  isGold = false
+}: {
+  images: string[];
+  label: string;
+  isGold?: boolean;
+}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  return (
+    <div className="relative">
+      <div className="aspect-[4/3] rounded-2xl overflow-hidden relative">
+        {images.map((src, idx) => (
+          <Image
+            key={idx}
+            src={src}
+            alt={`${label} ${idx + 1}`}
+            fill
+            className={`object-cover transition-opacity duration-500 ${
+              idx === currentIndex ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Label Badge */}
+      <span className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium text-white ${
+        isGold ? "bg-[var(--gold)]" : "bg-black/70 backdrop-blur-sm"
+      }`}>
+        {label}
+      </span>
+
+      {/* Dot Navigation */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        {images.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrentIndex(idx)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              idx === currentIndex
+                ? isGold ? "bg-[var(--gold)] w-6" : "bg-white w-6"
+                : "bg-white/40 hover:bg-white/60"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function ReferenzenPage() {
   return (
     <>
@@ -54,7 +104,7 @@ export default function ReferenzenPage() {
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
           <div className="absolute inset-0 z-0">
             <Image
-              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1920&auto=format&fit=crop"
+              src="/Referenz 1/Nachher/Mittel (IMG_1715).jpeg"
               alt="Referenzen"
               fill
               className="object-cover opacity-30"
@@ -95,37 +145,20 @@ export default function ReferenzenPage() {
           <div className="max-w-7xl mx-auto px-6 space-y-24">
             {projects.map((project, index) => (
               <div key={index} className="space-y-8">
-                {/* Before/After Images */}
+                {/* Before/After Image Galleries */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <AnimateIn delay={0.1} from="left">
-                    <div className="relative">
-                      <div className="aspect-[4/3] rounded-2xl overflow-hidden">
-                        <Image
-                          src={project.beforeImage}
-                          alt={`${project.title} - Vorher`}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <span className="absolute top-4 left-4 px-3 py-1 bg-black/70 backdrop-blur-sm rounded-full text-xs font-medium text-white">
-                        Vorher
-                      </span>
-                    </div>
+                    <ImageGallery
+                      images={project.beforeImages}
+                      label="Vorher"
+                    />
                   </AnimateIn>
                   <AnimateIn delay={0.2} from="right">
-                    <div className="relative">
-                      <div className="aspect-[4/3] rounded-2xl overflow-hidden">
-                        <Image
-                          src={project.afterImage}
-                          alt={`${project.title} - Nachher`}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <span className="absolute top-4 left-4 px-3 py-1 bg-[var(--gold)] rounded-full text-xs font-medium text-white">
-                        Nachher
-                      </span>
-                    </div>
+                    <ImageGallery
+                      images={project.afterImages}
+                      label="Nachher"
+                      isGold
+                    />
                   </AnimateIn>
                 </div>
 
