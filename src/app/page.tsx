@@ -3,6 +3,7 @@ import {
   Hero,
   Stats,
   About,
+  GalleryMarquee,
   Benefits,
   Collection,
   Details,
@@ -17,6 +18,7 @@ export default function Home() {
       <main>
         <Hero />
         <Stats />
+        <GalleryMarquee />
         <About />
         <Benefits />
         <Collection />

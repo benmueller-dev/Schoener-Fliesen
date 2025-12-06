@@ -6,6 +6,7 @@ const navLinks = [
   { href: "/ueber-uns", label: "Über uns" },
   { href: "/leistungen", label: "Leistungen" },
   { href: "/referenzen", label: "Referenzen" },
+  { href: "/showroom", label: "Showroom" },
   { href: "/hersteller", label: "Hersteller" },
   { href: "/kontakt", label: "Kontakt" },
 ];

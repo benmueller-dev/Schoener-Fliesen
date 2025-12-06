@@ -123,6 +123,22 @@
   }
 }
 
+/* Horizontal marquee for gallery */
+@keyframes marqueeX {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.gallery-track {
+  width: max-content;
+  /* Slow pace as requested */
+  animation: marqueeX 300s linear infinite;
+}
+
 .animate-title {
   animation: slideInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   opacity: 0;
