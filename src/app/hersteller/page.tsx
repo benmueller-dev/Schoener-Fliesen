@@ -9,19 +9,55 @@ export const metadata = {
   description: "Unsere Partner – führende Marken für höchste Material- und Designqualität.",
 };
 
-const partners = [
-  { name: "Villeroy & Boch", category: "Sanitär & Fliesen" },
-  { name: "Grohe", category: "Armaturen" },
-  { name: "Duravit", category: "Sanitärkeramik" },
-  { name: "Hansgrohe", category: "Armaturen" },
-  { name: "Geberit", category: "Sanitärtechnik" },
-  { name: "Kermi", category: "Heizkörper & Duschen" },
-  { name: "ATAG", category: "Heizsysteme" },
-  { name: "Kaldewei", category: "Badewannen & Duschen" },
-  { name: "Agrob Buchtal", category: "Fliesen" },
-  { name: "Marazzi", category: "Fliesen" },
-  { name: "Porcelanosa", category: "Fliesen" },
-  { name: "Swarovski Lighting", category: "Beleuchtung" },
+// Heizungs-Partner (erste Reihe wie im Screenshot)
+const heatingPartners = [
+  { name: "ATAG", src: "/Logos/Atag_logo.jpg" },
+  { name: "elco", src: "/Logos/elco_logo.jpg" },
+  { name: "Viessmann", src: "/Logos/viessmann_logo.jpg" },
+];
+
+// Weitere Material-/Hersteller-Logos (nur vorhandene Dateien referenziert)
+const materialPartners: { name: string; src: string }[] = [
+  { name: "Villeroy & Boch", src: "/Logos/villeroy-und-boch.jpg" },
+  { name: "Dornbracht", src: "/Logos/dornbracht.jpg" },
+  { name: "Kaldewei", src: "/Logos/kaldewei.jpg" },
+  { name: "Hansgrohe", src: "/Logos/hans-grohe.jpg" },
+  { name: "Hoesch", src: "/Logos/hoesch.jpg" },
+  { name: "Grohe", src: "/Logos/grohe.jpg" },
+  { name: "Geberit", src: "/Logos/geberit.jpg" },
+  { name: "Viega", src: "/Logos/viega.jpg" },
+  { name: "Zehnder", src: "/Logos/zehnder.jpg" },
+  { name: "Kermi", src: "/Logos/kermi.jpg" },
+  { name: "Uponor", src: "/Logos/uponor.jpg" },
+  { name: "Swarovski", src: "/Logos/swarovski.jpg" },
+  { name: "Steinberg", src: "/Logos/steinberg.jpg" },
+  { name: "burgbad", src: "/Logos/burgbad.jpg" },
+  { name: "EMCO", src: "/Logos/emco.jpg" },
+  { name: "HSK", src: "/Logos/hsk-badexperten.jpg" },
+  { name: "Keuco", src: "/Logos/keuco.jpg" },
+  { name: "Artweger", src: "/Logos/artweger.jpg" },
+  { name: "Extenzo", src: "/Logos/extenzo-spanndecken.jpg" },
+  { name: "Smedbo", src: "/Logos/smedbo.jpg" },
+  { name: "Gira", src: "/Logos/gira.jpg" },
+  { name: "Brumberg", src: "/Logos/brumberg.jpg" },
+  { name: "Nordholm", src: "/Logos/nordholm.jpg" },
+  { name: "Weber Deitermann", src: "/Logos/weber-deitermann.jpg" },
+  { name: "Schonbek", src: "/Logos/schonbek.jpg" },
+  { name: "Clage", src: "/Logos/clage.jpg" },
+  { name: "Hansa", src: "/Logos/hansa.jpg" },
+  { name: "Alape", src: "/Logos/alape.jpg" },
+  { name: "Agrob Buchtal", src: "/Logos/agrob-buchtal.jpg" },
+  { name: "Burger Küchenmöbel", src: "/Logos/burger-kuechenmoebel.jpg" },
+  { name: "Decor Walther", src: "/Logos/decor-walther.jpg" },
+  { name: "Abyss & Habidecor", src: "/Logos/abyss-und-habidecor.jpg" },
+  { name: "Aquanova", src: "/Logos/aquanova.jpg" },
+  { name: "nicol", src: "/Logos/nicol-wohnbadausstattungen.jpg" },
+  { name: "Heinrich Baustoffzentrum", src: "/Logos/heinrich-baustoffzentrum.jpg" },
+  { name: "Pung Fliesen Center", src: "/Logos/pung-fliesen-center.jpg" },
+  { name: "Schmidt + Rudersdorf", src: "/Logos/schmidt-rudersdorf.jpg" },
+  { name: "Raab Karcher", src: "/Logos/raab-karcher.jpg" },
+  { name: "Brenner & Klaudt", src: "/Logos/brenner-und-klaudt.jpg" },
+  { name: "Richter + Frenzel", src: "/Logos/richter-frenzel.jpg" },
 ];
 
 export default function HerstellerPage() {
@@ -64,18 +100,35 @@ export default function HerstellerPage() {
           </div>
         </section>
 
-        {/* Partners Grid */}
+        {/* Heating Partners */}
+        <section className="py-16 md:py-20 bg-black">
+          <div className="max-w-7xl mx-auto px-6">
+            <AnimateIn>
+              <h2 className="text-white text-lg md:text-xl font-medium mb-6">Unsere Partner im Bereich Heizung</h2>
+            </AnimateIn>
+            <div className="grid grid-cols-3 gap-4 md:gap-6">
+              {heatingPartners.map((p, i) => (
+                <AnimateIn key={p.name} delay={i * 0.05}>
+                  <div className="p-4 md:p-6 rounded-2xl bg-zinc-950 border border-white/5 flex items-center justify-center">
+                    <Image src={p.src} alt={`${p.name} Logo`} width={220} height={100} className="object-contain w-auto h-12 md:h-16" />
+                  </div>
+                </AnimateIn>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Material Partners Grid */}
         <section className="py-20 md:py-28 bg-black">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {partners.map((partner, index) => (
-                <AnimateIn key={index} delay={index * 0.05}>
-                  <div className="group p-6 md:p-8 rounded-2xl bg-zinc-950 border border-white/5 hover:border-[var(--gold)]/30 transition-all duration-300 flex flex-col items-center justify-center text-center h-full">
-                    <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-[var(--gold)]/10 transition-colors">
-                      <span className="text-2xl font-light text-white">{partner.name.charAt(0)}</span>
-                    </div>
-                    <h3 className="text-sm md:text-base font-medium text-white mb-1">{partner.name}</h3>
-                    <p className="text-xs text-zinc-500">{partner.category}</p>
+            <AnimateIn>
+              <h2 className="text-white text-lg md:text-xl font-medium mb-6">Mit hochwertigen Materialien arbeiten wir mit ausgewählten Lieferanten</h2>
+            </AnimateIn>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+              {materialPartners.map((p, i) => (
+                <AnimateIn key={p.name} delay={i * 0.02}>
+                  <div className="p-4 rounded-xl bg-zinc-950 border border-white/5 flex items-center justify-center h-20 md:h-24">
+                    <Image src={p.src} alt={`${p.name} Logo`} width={200} height={96} className="object-contain w-auto h-full" />
                   </div>
                 </AnimateIn>
               ))}
