@@ -146,7 +146,7 @@ export function Details() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-16">
             <AnimateIn>
-              <h2 className="text-4xl md:text-6xl font-medium tracking-tighter text-white max-w-2xl">
+              <h2 className="text-4xl md:text-6xl font-light tracking-tighter text-white max-w-2xl">
                 Präzision bis in <br />
                 <span className="text-zinc-600">das kleinste Detail.</span>
               </h2>

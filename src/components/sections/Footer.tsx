@@ -13,14 +13,15 @@ const navLinks = [
 
 const contactInfo = [
   { icon: MapPin, value: "Hennefer Str. 25, 53757 Sankt Augustin" },
-  { icon: Mail, value: "info@schoener-fliesen.de", href: "mailto:info@schoener-fliesen.de" },
-  { icon: Phone, value: "02241 343307", href: "tel:+492241343307" },
+  { icon: Mail, value: "info@schoener-fliesen.com", href: "mailto:info@schoener-fliesen.com" },
+  { icon: Phone, value: "0175 4018760", href: "tel:+491754018760" },
 ];
 
-const socialLinks = [
-  { href: "#", icon: Instagram, label: "Instagram" },
-  { href: "#", icon: Facebook, label: "Facebook" },
-];
+// Social links disabled
+// const socialLinks = [
+//   { href: "#", icon: Instagram, label: "Instagram" },
+//   { href: "#", icon: Facebook, label: "Facebook" },
+// ];
 
 export function Footer() {
   return (
@@ -41,18 +42,6 @@ export function Footer() {
             <p className="text-zinc-500 text-sm mb-4">
               Meisterbetrieb für exklusive Bad- und Heizungslösungen im Rhein-Sieg-Kreis.
             </p>
-            <div className="flex gap-3">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-500 hover:text-[var(--gold)] hover:border-[var(--gold)]/30 transition-colors"
-                  aria-label={link.label}
-                >
-                  <link.icon className="w-4 h-4" />
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Navigation */}
@@ -98,10 +87,10 @@ export function Footer() {
             © 2025 Schöner Fliesen GmbH. Alle Rechte vorbehalten.
           </p>
           <div className="flex gap-6 text-xs text-zinc-600">
-            <Link href="#" className="hover:text-zinc-400 transition-colors">
+            <Link href="/datenschutz" className="hover:text-zinc-400 transition-colors">
               Datenschutz
             </Link>
-            <Link href="#" className="hover:text-zinc-400 transition-colors">
+            <Link href="/impressum" className="hover:text-zinc-400 transition-colors">
               Impressum
             </Link>
           </div>

@@ -19,12 +19,12 @@ export default function UeberUnsPage() {
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
           <div className="absolute inset-0 z-0">
             <Image
-              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1920&auto=format&fit=crop"
+              src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1920&auto=format&fit=crop"
               alt="Modernes Badezimmer"
               fill
-              className="object-cover opacity-30"
+              className="object-cover opacity-50"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -34,7 +34,7 @@ export default function UeberUnsPage() {
               </AnimateIn>
 
               <AnimateIn delay={0.1}>
-                <h1 className="text-4xl md:text-6xl font-medium tracking-tighter text-white mb-6">
+                <h1 className="text-4xl md:text-6xl font-light tracking-tighter text-white mb-6">
                   Ihr Bad- und Heizungspartner{" "}
                   <span className="gold-gradient">in Sankt Augustin</span>
                 </h1>
@@ -59,7 +59,7 @@ export default function UeberUnsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <div>
                 <AnimateIn>
-                  <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-6">
+                  <h2 className="text-3xl md:text-4xl font-light tracking-tight text-white mb-6">
                     Seit über 20 Jahren gestalten wir Bäder, die Funktion und Ästhetik verbinden
                   </h2>
                 </AnimateIn>
@@ -88,8 +88,8 @@ export default function UeberUnsPage() {
                 <div className="relative">
                   <div className="aspect-[4/3] rounded-2xl overflow-hidden">
                     <Image
-                      src="/schoener-fliesen-kfz 3.png"
-                      alt="Unser Team bei der Arbeit"
+                      src="/laden.jpg"
+                      alt="Schöner Fliesen Laden"
                       fill
                       className="object-cover"
                     />
@@ -109,7 +109,7 @@ export default function UeberUnsPage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <AnimateIn>
-                <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-4">
+                <h2 className="text-3xl md:text-4xl font-light tracking-tight text-white mb-4">
                   Unsere Werte
                 </h2>
               </AnimateIn>

@@ -249,12 +249,12 @@ export default function ReferenzenPage() {
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
           <div className="absolute inset-0 z-0">
             <Image
-              src="/Referenz 1/Nachher/Mittel (IMG_1715).jpeg"
+              src="/Hero/pexels-ranamatloob567-35189673.jpg"
               alt="Referenzen"
               fill
-              className="object-cover opacity-30"
+              className="object-cover opacity-50"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -264,7 +264,7 @@ export default function ReferenzenPage() {
               </AnimateIn>
 
               <AnimateIn delay={0.1}>
-                <h1 className="text-4xl md:text-6xl font-medium tracking-tighter text-white mb-6">
+                <h1 className="text-4xl md:text-6xl font-light tracking-tighter text-white mb-6">
                   So könnte Ihr neues{" "}
                   <span className="gold-gradient">Badezimmer aussehen</span>
                 </h1>
@@ -306,7 +306,7 @@ export default function ReferenzenPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   <AnimateIn delay={0.3}>
                     <div>
-                      <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">
+                      <h2 className="text-2xl md:text-3xl font-light text-white mb-4">
                         {project.title}
                       </h2>
                       <p className="text-zinc-400 leading-relaxed mb-6">
@@ -346,7 +346,7 @@ export default function ReferenzenPage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <AnimateIn>
-                <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-4">
+                <h2 className="text-3xl md:text-4xl font-light tracking-tight text-white mb-4">
                   Das sagen unsere Kunden
                 </h2>
               </AnimateIn>

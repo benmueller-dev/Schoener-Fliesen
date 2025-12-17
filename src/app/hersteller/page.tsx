@@ -69,12 +69,12 @@ export default function HerstellerPage() {
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
           <div className="absolute inset-0 z-0">
             <Image
-              src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1920&auto=format&fit=crop"
+              src="/Hero/pexels-fotoaibe-1571462 (1).jpg"
               alt="Premium Materialien"
               fill
-              className="object-cover opacity-30"
+              className="object-cover opacity-50"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -84,7 +84,7 @@ export default function HerstellerPage() {
               </AnimateIn>
 
               <AnimateIn delay={0.1}>
-                <h1 className="text-4xl md:text-6xl font-medium tracking-tighter text-white mb-6">
+                <h1 className="text-4xl md:text-6xl font-light tracking-tighter text-white mb-6">
                   Unsere{" "}
                   <span className="gold-gradient">Partner</span>
                 </h1>
@@ -104,7 +104,7 @@ export default function HerstellerPage() {
         <section className="py-16 md:py-20 bg-black">
           <div className="max-w-7xl mx-auto px-6">
             <AnimateIn>
-              <h2 className="text-white text-lg md:text-xl font-medium mb-6">Unsere Partner im Bereich Heizung</h2>
+              <h2 className="text-white text-lg md:text-xl font-light mb-6">Unsere Partner im Bereich Heizung</h2>
             </AnimateIn>
             <div className="grid grid-cols-3 gap-4 md:gap-6">
               {heatingPartners.map((p, i) => (
@@ -122,7 +122,7 @@ export default function HerstellerPage() {
         <section className="py-20 md:py-28 bg-black">
           <div className="max-w-7xl mx-auto px-6">
             <AnimateIn>
-              <h2 className="text-white text-lg md:text-xl font-medium mb-6">Mit hochwertigen Materialien arbeiten wir mit ausgewählten Lieferanten</h2>
+              <h2 className="text-white text-lg md:text-xl font-light mb-6">Mit hochwertigen Materialien arbeiten wir mit ausgewählten Lieferanten</h2>
             </AnimateIn>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
               {materialPartners.map((p, i) => (
@@ -140,7 +140,7 @@ export default function HerstellerPage() {
         <section className="py-20 md:py-28 bg-zinc-950">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <AnimateIn>
-              <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-6">
+              <h2 className="text-3xl md:text-4xl font-light tracking-tight text-white mb-6">
                 Qualität durch starke Partnerschaften
               </h2>
             </AnimateIn>

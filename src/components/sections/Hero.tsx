@@ -6,9 +6,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const heroImages = [
   "https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=1920&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=1920&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1604014237800-1c9102c219da?q=80&w=1920&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=1920&auto=format&fit=crop",
+  "/Hero/pexels-fotoaibe-1571462 (1).jpg",
+  "/Hero/pexels-ranamatloob567-35189673.jpg",
   "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1920&auto=format&fit=crop",
 ];
 
@@ -50,7 +49,7 @@ export function Hero() {
             key={index}
             className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
               index === currentIndex
-                ? "opacity-70 scale-100"
+                ? "opacity-90 scale-100"
                 : "opacity-0 scale-105"
             }`}
           >
@@ -67,8 +66,8 @@ export function Hero() {
       </div>
 
       {/* Vignette & Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-10" />
 
       {/* Left Arrow */}
       <button
@@ -93,7 +92,7 @@ export function Hero() {
       </button>
 
       {/* Content */}
-      <div className="relative z-20 text-center max-w-4xl mx-auto px-6">
+      <div className="relative z-20 text-center max-w-[823px] mx-auto px-0">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--gold)]/20 bg-[var(--gold)]/5 mb-8 animate-title">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
           <span className="text-xs uppercase tracking-widest text-[var(--gold-light)] font-medium">
@@ -101,16 +100,19 @@ export function Hero() {
           </span>
         </div>
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter mb-8 leading-[0.9]">
-          <span className="block text-white animate-title animate-delay-100">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tighter mb-8 leading-[0.9]">
+          <span className="block text-white animate-title animate-delay-100 font-light text-[60px]">
             Komplettrenovierung
           </span>
-          <span className="block gold-gradient animate-title animate-delay-200 pb-2">
+          <span className="block gold-gradient animate-title animate-delay-200 pb-2 pt-[11px] tracking-[-2.7px]">
             vom Badprofi.
           </span>
         </h1>
 
-        <p className="text-lg md:text-xl text-zinc-400 font-light max-w-2xl mx-auto mb-12 animate-title animate-delay-300 leading-relaxed">
+        <p
+          className="text-lg md:text-xl text-zinc-400 font-light max-w-[728px] mx-auto mb-12 animate-title animate-delay-300 leading-relaxed"
+          style={{ fontFamily: "Poppins" }}
+        >
           Hochwertige Badgestaltung muss nicht teuer sein.{" "}
           <br className="hidden md:block" />
           Wir kombinieren Qualität und Stil mit transparenten, fairen Festpreisen.

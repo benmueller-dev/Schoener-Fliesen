@@ -11,7 +11,7 @@ export function Collection() {
       <div className="max-w-7xl mx-auto px-6 mb-12 flex items-end justify-between">
         <AnimateIn>
           <div>
-            <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white mb-2">
+            <h2 className="text-3xl md:text-5xl font-light tracking-tight text-white mb-2">
               Unsere Projekte
             </h2>
             <p className="text-zinc-500">
@@ -46,7 +46,7 @@ export function Collection() {
                 <span className="text-[var(--gold)] text-xs font-medium tracking-widest uppercase mb-2 block">
                   Komplettsanierung
                 </span>
-                <h3 className="text-3xl text-white font-medium tracking-tight mb-2">
+                <h3 className="text-3xl text-white font-light tracking-tight mb-2">
                   Modernes Bad in Sankt Augustin
                 </h3>
                 <p className="text-zinc-400 text-sm max-w-md line-clamp-2">
@@ -71,7 +71,7 @@ export function Collection() {
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="flex justify-between items-end">
                   <div>
-                    <h3 className="text-xl text-white font-medium">
+                    <h3 className="text-xl text-white font-light">
                       Wellness-Oase
                     </h3>
                     <p className="text-zinc-300 text-xs mt-1">
@@ -91,7 +91,7 @@ export function Collection() {
             <div className="relative group rounded-2xl overflow-hidden cursor-pointer bg-zinc-900 border border-white/5 p-8 flex flex-col justify-between h-[300px] md:h-full">
               <div>
                 <Euro className="w-10 h-10 text-[var(--gold)] mb-4" strokeWidth={1.5} />
-                <h3 className="text-2xl text-white font-medium mb-2">
+                <h3 className="text-2xl text-white font-light mb-2">
                   Festpreis-Garantie
                 </h3>
                 <p className="text-zinc-400 text-sm leading-relaxed">

@@ -6,6 +6,7 @@ import { AnimateIn } from "@/components/AnimateIn";
 import { SectionBadge } from "@/components/SectionBadge";
 import { MapPin, Mail, Phone } from "lucide-react";
 import { useState, FormEvent } from "react";
+import Link from "next/link";
 
 const contactInfo = [
   {
@@ -16,14 +17,14 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "info@schoener-fliesen.de",
-    href: "mailto:info@schoener-fliesen.de",
+    value: "info@schoener-fliesen.com",
+    href: "mailto:info@schoener-fliesen.com",
   },
   {
     icon: Phone,
     label: "Telefon",
-    value: "02241 343307",
-    href: "tel:+4922413433077",
+    value: "0175 4018760",
+    href: "tel:+491754018760",
   },
 ];
 
@@ -33,12 +34,57 @@ export default function KontaktPage() {
     email: "",
     phone: "",
     message: "",
+    privacy: false,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      // Send directly to Web3Forms from the client
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
+          subject: `Neue Kontaktanfrage von ${formData.name}`,
+          from_name: "Schöner Fliesen Website",
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || "Nicht angegeben",
+          message: formData.message,
+          to: ["mueller.ben100@gmail.com", "info@schoener-fliesen.com"],
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+          privacy: false,
+        });
+      } else {
+        console.error("Web3Forms error:", data);
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -54,7 +100,7 @@ export default function KontaktPage() {
               </AnimateIn>
 
               <AnimateIn delay={0.1}>
-                <h1 className="text-4xl md:text-6xl font-medium tracking-tighter text-white mb-6">
+                <h1 className="text-4xl md:text-6xl font-light tracking-tighter text-white mb-6">
                   Nehmen Sie{" "}
                   <span className="gold-gradient">Kontakt auf</span>
                 </h1>
@@ -77,7 +123,7 @@ export default function KontaktPage() {
               {/* Contact Info */}
               <div>
                 <AnimateIn>
-                  <h2 className="text-2xl font-medium text-white mb-8">Kontaktdaten</h2>
+                  <h2 className="text-2xl font-light text-white mb-8">Kontaktdaten</h2>
                 </AnimateIn>
 
                 <div className="space-y-6 mb-12">
@@ -126,7 +172,7 @@ export default function KontaktPage() {
               {/* Contact Form */}
               <div>
                 <AnimateIn from="right">
-                  <h2 className="text-2xl font-medium text-white mb-8">Nachricht senden</h2>
+                  <h2 className="text-2xl font-light text-white mb-8">Nachricht senden</h2>
                 </AnimateIn>
 
                 <AnimateIn delay={0.2} from="right">
@@ -190,11 +236,42 @@ export default function KontaktPage() {
                       />
                     </div>
 
+                    <div className="flex items-start gap-3">
+                      <input
+                        type="checkbox"
+                        id="privacy"
+                        required
+                        checked={formData.privacy}
+                        onChange={(e) => setFormData({ ...formData, privacy: e.target.checked })}
+                        className="mt-1 w-4 h-4 rounded border-white/10 bg-white/5 text-[var(--gold)] focus:ring-[var(--gold)]/50"
+                      />
+                      <label htmlFor="privacy" className="text-sm text-zinc-400">
+                        Ich habe die{" "}
+                        <Link href="/datenschutz" className="text-[var(--gold)] hover:text-[var(--gold-light)] underline">
+                          Datenschutzerklärung
+                        </Link>{" "}
+                        zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen dauerhaft gespeichert werden. *
+                      </label>
+                    </div>
+
+                    {submitStatus === "success" && (
+                      <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
+                        <p className="text-green-400 text-sm">Vielen Dank! Ihre Nachricht wurde erfolgreich versendet.</p>
+                      </div>
+                    )}
+
+                    {submitStatus === "error" && (
+                      <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
+                        <p className="text-red-400 text-sm">Es gab einen Fehler beim Versenden Ihrer Nachricht. Bitte versuchen Sie es erneut.</p>
+                      </div>
+                    )}
+
                     <button
                       type="submit"
-                      className="w-full py-3 bg-[var(--gold)] text-white rounded-lg font-medium hover:bg-[var(--gold-light)] transition-colors"
+                      disabled={isSubmitting}
+                      className="w-full py-3 bg-[var(--gold)] text-white rounded-lg font-medium hover:bg-[var(--gold-light)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Nachricht senden
+                      {isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
                     </button>
                   </form>
                 </AnimateIn>

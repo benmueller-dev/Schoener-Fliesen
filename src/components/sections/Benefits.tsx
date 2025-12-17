@@ -110,7 +110,7 @@ export function Benefits() {
         {/* Header */}
         <div className="text-center mb-16">
           <AnimateIn>
-            <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white mb-4">
+            <h2 className="text-3xl md:text-5xl font-light tracking-tight text-white mb-4">
               Warum wir Ihr idealer Partner sind
             </h2>
           </AnimateIn>
@@ -129,7 +129,7 @@ export function Benefits() {
                 <div className="w-12 h-12 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-[var(--gold)]/10 group-hover:border-[var(--gold)]/30 transition-colors">
                   <benefit.icon className="w-5 h-5 text-zinc-400 group-hover:text-[var(--gold)] transition-colors" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-lg font-medium text-white mb-3">{benefit.title}</h3>
+                <h3 className="text-lg font-normal text-white mb-3">{benefit.title}</h3>
                 <p className="text-zinc-500 text-sm leading-relaxed">{benefit.description}</p>
               </GlowCard>
             </AnimateIn>

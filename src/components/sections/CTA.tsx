@@ -37,7 +37,7 @@ export function CTA() {
           />
         </AnimateIn>
         <AnimateIn delay={0.1}>
-          <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white mb-6">
+          <h2 className="text-3xl md:text-5xl font-light tracking-tight text-white mb-6">
             Bereit für die Verwandlung?
           </h2>
         </AnimateIn>

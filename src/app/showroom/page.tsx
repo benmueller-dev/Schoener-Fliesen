@@ -41,10 +41,10 @@ export default function ShowroomPage() {
               src={encodeURI(showroomImages[0])}
               alt="Showroom Hintergrund"
               fill
-              className="object-cover opacity-30"
+              className="object-cover opacity-50"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -53,7 +53,7 @@ export default function ShowroomPage() {
                 <SectionBadge text="Showroom" />
               </AnimateIn>
               <AnimateIn delay={0.1}>
-                <h1 className="text-4xl md:text-6xl font-medium tracking-tighter text-white mb-6">
+                <h1 className="text-4xl md:text-6xl font-light tracking-tighter text-white mb-6">
                   Entdecken Sie unseren <span className="gold-gradient">Showroom</span>
                 </h1>
               </AnimateIn>
@@ -75,11 +75,11 @@ export default function ShowroomPage() {
             <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 { title: "Adresse", text: "Hennefer Str. 25, 53757 Sankt Augustin" },
-                { title: "Öffnungszeiten", text: "Nach Vereinbarung – rufen Sie uns an: 02241 343307" },
+                { title: "Öffnungszeiten", text: "Nach Vereinbarung – rufen Sie uns an: 0175 4018760" },
                 { title: "Beratung", text: "Individuelle Planung mit Material- und Farbberatung vor Ort." },
               ].map((item, i) => (
                 <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10">
-                  <h3 className="text-white font-medium mb-2">{item.title}</h3>
+                  <h3 className="text-white font-light mb-2">{item.title}</h3>
                   <p className="text-zinc-400 text-sm leading-relaxed">{item.text}</p>
                 </div>
               ))}
