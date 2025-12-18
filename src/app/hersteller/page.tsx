@@ -148,15 +148,27 @@ export default function HerstellerPage() {
         </section>
 
         {/* Info Section */}
-        <section className="py-20 md:py-28 bg-zinc-950">
-          <div className="max-w-4xl mx-auto px-6 text-center">
+        <section className="relative py-20 md:py-28 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/Gallery/12.jpeg"
+              alt="Partnerschaften Hintergrund"
+              fill
+              className="object-cover"
+            />
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-black/75" />
+          </div>
+
+          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <AnimateIn>
               <h2 className="text-3xl md:text-4xl font-light tracking-tight text-white mb-6">
                 Qualität durch starke Partnerschaften
               </h2>
             </AnimateIn>
             <AnimateIn delay={0.1}>
-              <p className="text-zinc-400 leading-relaxed mb-8">
+              <p className="text-zinc-300 leading-relaxed mb-8">
                 Unsere langjährigen Partnerschaften mit renommierten Herstellern ermöglichen es uns,
                 Ihnen stets die beste Qualität und neuesten Innovationen zu bieten.
                 Von Premium-Armaturen über hochwertige Fliesen bis hin zu modernsten Heizsystemen –
@@ -165,13 +177,13 @@ export default function HerstellerPage() {
             </AnimateIn>
             <AnimateIn delay={0.2}>
               <div className="flex flex-wrap justify-center gap-4">
-                <div className="px-6 py-3 bg-white/5 border border-white/10 rounded-full">
+                <div className="px-6 py-3 backdrop-blur-md bg-white/10 border border-white/20 rounded-full hover:bg-white/15 hover:border-[var(--gold)]/30 transition-all duration-300">
                   <span className="text-2xl font-light text-white">30+</span>
-                  <span className="text-sm text-zinc-400 ml-2">Partnerhersteller</span>
+                  <span className="text-sm text-zinc-300 ml-2">Partnerhersteller</span>
                 </div>
-                <div className="px-6 py-3 bg-white/5 border border-white/10 rounded-full">
+                <div className="px-6 py-3 backdrop-blur-md bg-white/10 border border-white/20 rounded-full hover:bg-white/15 hover:border-[var(--gold)]/30 transition-all duration-300">
                   <span className="text-2xl font-light text-white">25+</span>
-                  <span className="text-sm text-zinc-400 ml-2">Jahre Zusammenarbeit</span>
+                  <span className="text-sm text-zinc-300 ml-2">Jahre Zusammenarbeit</span>
                 </div>
               </div>
             </AnimateIn>
