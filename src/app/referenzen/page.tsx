@@ -397,8 +397,20 @@ export default function ReferenzenPage() {
         <Details />
 
         {/* Testimonials Grid */}
-        <section className="py-20 md:py-28 bg-zinc-950">
-          <div className="max-w-7xl mx-auto px-6">
+        <section className="relative py-20 md:py-28 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1920&auto=format&fit=crop"
+              alt="Kundenfeedback Hintergrund"
+              fill
+              className="object-cover"
+            />
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-black/70" />
+          </div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <AnimateIn>
                 <h2 className="text-3xl md:text-4xl font-light tracking-tight text-white mb-4">
@@ -415,9 +427,9 @@ export default function ReferenzenPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {testimonials.map((testimonial, index) => (
                 <AnimateIn key={index} delay={index * 0.1}>
-                  <div className="p-6 rounded-2xl bg-white/5 border border-white/10 h-full">
-                    <Quote className="w-6 h-6 text-[var(--gold)]/30 mb-4" />
-                    <p className="text-zinc-400 text-sm leading-relaxed mb-4">
+                  <div className="p-6 rounded-2xl backdrop-blur-md bg-white/10 border border-white/20 h-full hover:bg-white/15 hover:border-[var(--gold)]/30 transition-all duration-300">
+                    <Quote className="w-6 h-6 text-[var(--gold)]/50 mb-4" />
+                    <p className="text-zinc-300 text-sm leading-relaxed mb-4">
                       &ldquo;{testimonial.text}&rdquo;
                     </p>
                     <p className="text-sm font-medium text-white">{testimonial.author}</p>
