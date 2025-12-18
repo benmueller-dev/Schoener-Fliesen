@@ -1,9 +1,11 @@
 import { MetadataRoute } from 'next'
+import { getAllCitySlugs } from '@/lib/cities'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.schoener-fliesen.com'
 
-  return [
+  // Basis-Seiten
+  const basePages = [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -65,4 +67,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
   ]
+
+  // Stadt-Seiten dynamisch hinzufügen
+  const citySlugs = getAllCitySlugs()
+  const cityPages = citySlugs.map((slug) => ({
+    url: `${baseUrl}/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.85, // Hohe Priorität für lokale SEO
+  }))
+
+  // Alle Seiten kombinieren
+  return [...basePages, ...cityPages]
 }

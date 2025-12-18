@@ -4,6 +4,8 @@ import { AnimateIn } from "@/components/AnimateIn";
 import { SectionBadge } from "@/components/SectionBadge";
 import { MapPin, CheckCircle } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { getAllCitySlugs } from "@/lib/cities";
 
 export const metadata = {
   title: "Servicegebiet | Fliesenleger & Badsanierung Rhein-Sieg-Kreis",
@@ -90,6 +92,8 @@ const services = [
 ];
 
 export default function ServicegebietPage() {
+  const availableCitySlugs = getAllCitySlugs();
+
   return (
     <>
       <Navigation />
@@ -172,26 +176,46 @@ export default function ServicegebietPage() {
                   <div>
                     <h2 className="text-2xl font-light text-white mb-6">{area.category}</h2>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                      {area.cities.map((city, cityIdx) => (
-                        <div
-                          key={cityIdx}
-                          className={`p-4 rounded-xl border transition-all duration-300 ${
-                            city.highlight
-                              ? "bg-[var(--gold)]/10 border-[var(--gold)]/30"
-                              : "bg-white/5 border-white/10 hover:border-[var(--gold)]/30"
-                          }`}
-                        >
+                      {area.cities.map((city, cityIdx) => {
+                        const citySlug = city.name.toLowerCase()
+                          .replace(/ä/g, 'ae')
+                          .replace(/ö/g, 'oe')
+                          .replace(/ü/g, 'ue')
+                          .replace(/ß/g, 'ss')
+                          .replace(/\s+/g, '-');
+
+                        // Only linkable if city has a dedicated page and is not our main office
+                        const isLinkable = !city.highlight && availableCitySlugs.includes(citySlug);
+
+                        const content = (
                           <div className="flex items-start justify-between gap-2">
                             <h3 className={`font-light ${city.highlight ? "text-[var(--gold)]" : "text-white"}`}>
                               {city.name}
                             </h3>
                             <span className="text-xs text-zinc-500">{city.distance}</span>
                           </div>
-                          {city.highlight && (
-                            <p className="text-xs text-[var(--gold)]/70 mt-1">Unser Hauptsitz</p>
-                          )}
-                        </div>
-                      ))}
+                        );
+
+                        return (
+                          <div key={cityIdx}>
+                            {isLinkable ? (
+                              <Link
+                                href={`/${citySlug}`}
+                                className={`block p-4 rounded-xl border transition-all duration-300 bg-white/5 border-white/10 hover:border-[var(--gold)]/30 hover:bg-white/10`}
+                              >
+                                {content}
+                              </Link>
+                            ) : (
+                              <div
+                                className={`p-4 rounded-xl border transition-all duration-300 bg-[var(--gold)]/10 border-[var(--gold)]/30`}
+                              >
+                                {content}
+                                <p className="text-xs text-[var(--gold)]/70 mt-1">Unser Hauptsitz</p>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 </AnimateIn>
