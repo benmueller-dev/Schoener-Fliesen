@@ -33,11 +33,11 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
   }
 
   return {
-    title: `Fliesenleger ${city.name} | Badsanierung & Heizung | Schöner Fliesen`,
+    title: `Badsanierung ${city.name} | Heizung & Fliesen | Schöner Fliesen`,
     description: `Ihr Meisterbetrieb für Badsanierung & Fliesen in ${city.name}. 25+ Jahre Erfahrung. Nur ${city.distance} von ${city.name}. Kostenlose Beratung! ☎ 0175 4018760`,
     keywords: city.keywords.join(", "),
     openGraph: {
-      title: `Fliesenleger ${city.name} | Schöner Fliesen`,
+      title: `Badsanierung ${city.name} | Schöner Fliesen`,
       description: `Meisterbetrieb für Badsanierung & Fliesen in ${city.name}. 25+ Jahre Erfahrung.`,
       type: "website",
     },
