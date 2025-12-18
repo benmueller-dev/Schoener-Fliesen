@@ -8,7 +8,19 @@ const navLinks = [
   { href: "/referenzen", label: "Referenzen" },
   { href: "/showroom", label: "Showroom" },
   { href: "/hersteller", label: "Hersteller" },
+  { href: "/servicegebiet", label: "Servicegebiet" },
   { href: "/kontakt", label: "Kontakt" },
+];
+
+const serviceAreas = [
+  "Sankt Augustin",
+  "Bonn",
+  "Siegburg",
+  "Troisdorf",
+  "Hennef",
+  "Königswinter",
+  "Niederkassel",
+  "Bornheim",
 ];
 
 const contactInfo = [
@@ -27,9 +39,9 @@ export function Footer() {
   return (
     <footer className="bg-black border-t border-white/10 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Logo & Description */}
-          <div className="col-span-1 md:col-span-1">
+          <div className="col-span-1">
             <Link href="/" className="block mb-6">
               <Image
                 src="/schoener-fliesen_logo.png"
@@ -61,8 +73,25 @@ export function Footer() {
             </ul>
           </div>
 
+          {/* Service Area */}
+          <div>
+            <h4 className="text-white font-medium mb-4">Servicegebiet</h4>
+            <ul className="space-y-2 text-sm text-zinc-500">
+              {serviceAreas.map((city) => (
+                <li key={city}>
+                  <Link
+                    href="/servicegebiet"
+                    className="hover:text-[var(--gold)] transition-colors"
+                  >
+                    {city}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Contact */}
-          <div className="md:col-span-2">
+          <div>
             <h4 className="text-white font-medium mb-4">Kontakt</h4>
             <ul className="space-y-3 text-sm text-zinc-500">
               {contactInfo.map((item, index) => (

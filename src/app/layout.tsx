@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { StructuredData } from "@/components/StructuredData";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -32,6 +34,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,
+  },
 };
 
 export default function RootLayout({
@@ -44,6 +49,8 @@ export default function RootLayout({
       <body
         className={`${poppins.className} ${poppins.variable} font-sans antialiased selection:bg-amber-900/50 selection:text-amber-100`}
       >
+        <GoogleAnalytics />
+        <StructuredData />
         {children}
       </body>
     </html>

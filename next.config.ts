@@ -12,7 +12,13 @@ const nextConfig: NextConfig = {
         hostname: "hoirqrkdgbmvpwutwuwj.supabase.co",
       },
     ],
+    // Optimierte Bildformate für geringeren Bandwidth-Verbrauch
+    formats: ['image/avif', 'image/webp'],
+    // Aggressive Caching für bessere Performance
+    minimumCacheTTL: 60 * 60 * 24 * 365, // 1 Jahr
   },
+  // Komprimierung aktivieren
+  compress: true,
 };
 
 export default nextConfig;

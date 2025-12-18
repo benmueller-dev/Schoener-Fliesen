@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/referenzen", label: "Referenzen" },
   { href: "/showroom", label: "Showroom" },
   { href: "/hersteller", label: "Hersteller" },
+  { href: "/servicegebiet", label: "Servicegebiet" },
 ];
 
 export function Navigation() {
