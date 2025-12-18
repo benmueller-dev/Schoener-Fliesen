@@ -6,9 +6,14 @@ import Image from "next/image";
 import { ShowroomGrid } from "./ShowroomGrid";
 
 export const metadata = {
-  title: "Showroom | Schöner Fliesen",
-  description:
-    "Besuchen Sie unseren Showroom in Sankt Augustin: Inspirationen, Materialien und Beratung für Ihr neues Bad.",
+  title: "Showroom | Fliesenausstellung & Badausstellung Sankt Augustin",
+  description: "Besuchen Sie unseren Showroom in Sankt Augustin. Fliesen, Bad-Exponate & Beratung. Hennefer Str. 25. Termin: 0175 4018760. Jetzt vorbeikommen!",
+  keywords: "Fliesenausstellung Sankt Augustin, Badausstellung Rhein-Sieg-Kreis, Showroom Fliesen Bonn, Badezimmer Inspiration",
+  openGraph: {
+    title: "Showroom | Fliesenausstellung Sankt Augustin",
+    description: "Besuchen Sie unseren Showroom in Sankt Augustin. Fliesen, Bad-Exponate & Beratung.",
+    type: "website",
+  },
 };
 
 const showroomImages: string[] = [

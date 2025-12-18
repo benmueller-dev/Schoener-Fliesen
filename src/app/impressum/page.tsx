@@ -4,8 +4,12 @@ import { AnimateIn } from "@/components/AnimateIn";
 import { SectionBadge } from "@/components/SectionBadge";
 
 export const metadata = {
-  title: "Impressum | Schöner Fliesen",
-  description: "Impressum von Schöner Fliesen GmbH",
+  title: "Impressum | Schöner Fliesen GmbH Sankt Augustin",
+  description: "Impressum der Schöner Fliesen GmbH, Meisterbetrieb für Bad & Heizung, Hennefer Str. 25, 53757 Sankt Augustin. Kontakt & rechtliche Informationen.",
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function ImpressumPage() {

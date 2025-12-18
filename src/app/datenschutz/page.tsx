@@ -4,8 +4,12 @@ import { AnimateIn } from "@/components/AnimateIn";
 import { SectionBadge } from "@/components/SectionBadge";
 
 export const metadata = {
-  title: "Datenschutz | Schöner Fliesen",
-  description: "Datenschutzerklärung von Schöner Fliesen GmbH",
+  title: "Datenschutzerklärung | Schöner Fliesen GmbH",
+  description: "Datenschutzerklärung der Schöner Fliesen GmbH. Informationen zum Umgang mit personenbezogenen Daten gemäß DSGVO.",
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function DatenschutzPage() {

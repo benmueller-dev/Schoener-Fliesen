@@ -6,8 +6,14 @@ import { SectionBadge } from "@/components/SectionBadge";
 import Image from "next/image";
 
 export const metadata = {
-  title: "Über uns | Schöner Fliesen",
-  description: "Ihr Bad- und Heizungspartner in Sankt Augustin. Seit über 20 Jahren gestalten wir Bäder, die Funktion und Ästhetik verbinden.",
+  title: "Über uns | Meisterbetrieb Schöner Fliesen Sankt Augustin",
+  description: "Seit über 25 Jahren Ihr Meisterbetrieb für Bad & Heizung in Sankt Augustin. Höchste Qualität, transparente Festpreise, termingerechte Fertigstellung.",
+  keywords: "Meisterbetrieb Sankt Augustin, Fliesenleger Meister, Bad Heizung Fachbetrieb, Handwerker Rhein-Sieg-Kreis",
+  openGraph: {
+    title: "Über uns | Meisterbetrieb Schöner Fliesen",
+    description: "Seit über 25 Jahren Ihr Meisterbetrieb für Bad & Heizung in Sankt Augustin",
+    type: "website",
+  },
 };
 
 export default function UeberUnsPage() {
@@ -60,7 +66,7 @@ export default function UeberUnsPage() {
               <div>
                 <AnimateIn>
                   <h2 className="text-3xl md:text-4xl font-light tracking-tight text-white mb-6">
-                    Seit über 20 Jahren gestalten wir Bäder, die Funktion und Ästhetik verbinden
+                    Seit über 25 Jahren gestalten wir Bäder, die Funktion und Ästhetik verbinden
                   </h2>
                 </AnimateIn>
                 <AnimateIn delay={0.1}>
@@ -95,7 +101,7 @@ export default function UeberUnsPage() {
                     />
                   </div>
                   <div className="absolute -bottom-6 -left-6 bg-zinc-900 border border-white/10 rounded-xl p-6 backdrop-blur-sm">
-                    <div className="text-3xl font-light text-white mb-1">20+</div>
+                    <div className="text-3xl font-light text-white mb-1">25+</div>
                     <div className="text-sm text-[var(--gold)]">Jahre Erfahrung</div>
                   </div>
                 </div>

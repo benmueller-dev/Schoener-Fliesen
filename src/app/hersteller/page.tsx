@@ -5,19 +5,31 @@ import { SectionBadge } from "@/components/SectionBadge";
 import Image from "next/image";
 
 export const metadata = {
-  title: "Hersteller | Schöner Fliesen",
-  description: "Unsere Partner – führende Marken für höchste Material- und Designqualität.",
+  title: "Hersteller & Partner | Schöner Fliesen Sankt Augustin",
+  description: "Unsere Partner: Villeroy & Boch, Grohe, Hansgrohe, Kermi, Viessmann & mehr. 30+ Premium-Hersteller für höchste Material- und Designqualität.",
+  keywords: "Villeroy Boch Händler, Grohe Fachpartner, Hansgrohe Sankt Augustin, Kermi Heizung, Premium Fliesen Hersteller",
+  openGraph: {
+    title: "Hersteller & Partner | Schöner Fliesen",
+    description: "30+ Premium-Hersteller für höchste Material- und Designqualität",
+    type: "website",
+  },
 };
 
 // Heizungs-Partner (erste Reihe wie im Screenshot)
 const heatingPartners = [
-  { name: "ATAG", src: "/Logos/Atag_logo.jpg" },
-  { name: "elco", src: "/Logos/elco_logo.jpg" },
+  { name: "Kermi", src: "/Logos/kermi.png" },
   { name: "Viessmann", src: "/Logos/viessmann_logo.jpg" },
 ];
 
 // Weitere Material-/Hersteller-Logos (nur vorhandene Dateien referenziert)
 const materialPartners: { name: string; src: string }[] = [
+  { name: "Avenarius", src: "/Logos/neu/avenarius.png" },
+  { name: "Föhrer Panno", src: "/Logos/neu/fohrer panno.png" },
+  { name: "Laguna", src: "/Logos/neu/laguna.png" },
+  { name: "MR Spanndecken", src: "/Logos/neu/mrspanndecken.png" },
+  { name: "Primabad", src: "/Logos/neu/primabad.png" },
+  { name: "Repabad", src: "/Logos/neu/repabad.png" },
+  { name: "Thebalux", src: "/Logos/neu/thebalux.png" },
   { name: "Villeroy & Boch", src: "/Logos/villeroy-und-boch.jpg" },
   { name: "Dornbracht", src: "/Logos/dornbracht.jpg" },
   { name: "Kaldewei", src: "/Logos/kaldewei.jpg" },
@@ -27,7 +39,6 @@ const materialPartners: { name: string; src: string }[] = [
   { name: "Geberit", src: "/Logos/geberit.jpg" },
   { name: "Viega", src: "/Logos/viega.jpg" },
   { name: "Zehnder", src: "/Logos/zehnder.jpg" },
-  { name: "Kermi", src: "/Logos/kermi.jpg" },
   { name: "Uponor", src: "/Logos/uponor.jpg" },
   { name: "Swarovski", src: "/Logos/swarovski.jpg" },
   { name: "Steinberg", src: "/Logos/steinberg.jpg" },
@@ -106,7 +117,7 @@ export default function HerstellerPage() {
             <AnimateIn>
               <h2 className="text-white text-lg md:text-xl font-light mb-6">Unsere Partner im Bereich Heizung</h2>
             </AnimateIn>
-            <div className="grid grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 gap-4 md:gap-6">
               {heatingPartners.map((p, i) => (
                 <AnimateIn key={p.name} delay={i * 0.05}>
                   <div className="p-4 md:p-6 rounded-2xl bg-zinc-950 border border-white/5 flex items-center justify-center">
@@ -159,7 +170,7 @@ export default function HerstellerPage() {
                   <span className="text-sm text-zinc-400 ml-2">Partnerhersteller</span>
                 </div>
                 <div className="px-6 py-3 bg-white/5 border border-white/10 rounded-full">
-                  <span className="text-2xl font-light text-white">20+</span>
+                  <span className="text-2xl font-light text-white">25+</span>
                   <span className="text-sm text-zinc-400 ml-2">Jahre Zusammenarbeit</span>
                 </div>
               </div>

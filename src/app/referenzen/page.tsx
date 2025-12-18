@@ -40,6 +40,61 @@ const projects = [
       "/Referenz 1/Nachher/IMG_1738.jpeg",
     ],
   },
+  {
+    title: "Elegante Badsanierung",
+    description: "Bei diesem Projekt wurde ein in die Jahre gekommenes Badezimmer komplett modernisiert. Die Transformation umfasste den Austausch aller Fliesen, die Installation moderner Sanitäranlagen und eine durchdachte Raumgestaltung. Das Ergebnis ist ein zeitloses, elegantes Bad mit hochwertigen Materialien und optimaler Funktionalität.",
+    type: "Komplettrenovierung",
+    duration: "3 Wochen",
+    testimonial: {
+      text: "Die Verwandlung unseres Badezimmers übertrifft alle Erwartungen. Aus einem veralteten Raum ist eine moderne Wohlfühloase entstanden. Die Handwerker haben exzellente Arbeit geleistet und stets auf Sauberkeit geachtet.",
+      author: "Familie M."
+    },
+    beforeImages: [
+      "/Referenz 2/Vorher/IMG_6455-min.jpg",
+      "/Referenz 2/Vorher/IMG_6459-min.jpg",
+    ],
+    afterImages: [
+      "/Referenz 2/Nachher/IMG_1938-min.jpg",
+      "/Referenz 2/Nachher/IMG_1940-min.jpg",
+      "/Referenz 2/Nachher/IMG_1941-min.jpg",
+    ],
+  },
+  {
+    title: "Stilvolle Badmodernisierung",
+    description: "Ein weiteres gelungenes Beispiel für unsere Arbeit: Die komplette Neugestaltung eines Badezimmers mit Fokus auf moderne Ästhetik und praktische Funktionalität. Hochwertige Fliesen, moderne Armaturen und eine durchdachte Beleuchtung schaffen ein harmonisches Gesamtbild.",
+    type: "Komplettrenovierung",
+    duration: "3 Wochen",
+    testimonial: {
+      text: "Von der ersten Planung bis zur finalen Umsetzung hat alles perfekt geklappt. Unser Bad sieht fantastisch aus und die Qualität der Arbeit ist hervorragend. Wir würden Schöner Fliesen jederzeit wieder beauftragen!",
+      author: "Thomas K."
+    },
+    beforeImages: [
+      "/Referenz 3/vorher 1.jpg",
+    ],
+    afterImages: [
+      "/Referenz 3/projekt1_n1.jpg",
+      "/Referenz 3/projekt1_n2.jpg",
+      "/Referenz 3/projekt1_n3.jpg",
+    ],
+  },
+  {
+    title: "Zeitgemäße Badumgestaltung",
+    description: "Diese Badsanierung zeigt eindrucksvoll, wie aus einem veralteten Badezimmer ein moderner Rückzugsort wird. Mit sorgfältig ausgewählten Materialien, professioneller Verarbeitung und einem Auge fürs Detail entstand ein Bad, das Komfort und Design perfekt vereint.",
+    type: "Komplettrenovierung",
+    duration: "4 Wochen",
+    testimonial: {
+      text: "Das Ergebnis hat uns komplett überzeugt! Vom ersten Beratungsgespräch bis zur Fertigstellung war alles top organisiert. Die Handwerker waren sehr professionell und haben saubere Arbeit abgeliefert. Danke an das Team!",
+      author: "Sandra W."
+    },
+    beforeImages: [
+      "/Referenz 4/vorher.jpeg",
+    ],
+    afterImages: [
+      "/Referenz 4/projekt2_n1.jpeg",
+      "/Referenz 4/projekt2_n2.jpg",
+      "/Referenz 4/projekt2_n3.jpeg",
+    ],
+  },
 ];
 
 const testimonials = [

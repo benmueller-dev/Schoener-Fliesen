@@ -6,8 +6,14 @@ import Image from "next/image";
 import { Bath, Droplets, Wrench, Flame, Lightbulb, Palette } from "lucide-react";
 
 export const metadata = {
-  title: "Leistungen | Schöner Fliesen",
-  description: "Entdecken Sie unsere Leistungen rund um Bad, Heizung und Fliesen – individuell geplant, präzise umgesetzt und mit Liebe zum Detail.",
+  title: "Leistungen | Badsanierung, Fliesen & Heizung Sankt Augustin",
+  description: "Badsanierung, Fliesenverlegung, Heizungsmodernisierung & mehr in Sankt Augustin. CAD-Planung, barrierefreie Bäder, Spanndecken. Jetzt beraten lassen!",
+  keywords: "Badsanierung Sankt Augustin, Fliesenverlegung Bonn, Heizungsmodernisierung Rhein-Sieg, barrierefreies Bad, Naturstein verlegen, Sanitärinstallation",
+  openGraph: {
+    title: "Unsere Leistungen | Schöner Fliesen",
+    description: "Badsanierung, Fliesenverlegung, Heizungsmodernisierung & mehr in Sankt Augustin",
+    type: "website",
+  },
 };
 
 const services = [

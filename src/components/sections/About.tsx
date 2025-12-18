@@ -27,7 +27,7 @@ export function About() {
             <AnimateIn delay={0.2}>
               <div className="space-y-4 text-zinc-400 leading-relaxed">
                 <p>
-                  Seit über 20 Jahren gestalten wir Bäder, die Funktion und Ästhetik
+                  Seit über 25 Jahren gestalten wir Bäder, die Funktion und Ästhetik
                   verbinden. Als Meisterbetrieb im Rhein-Sieg-Kreis stehen wir für
                   höchste Qualität und handwerkliche Präzision.
                 </p>
@@ -63,7 +63,7 @@ export function About() {
               </div>
               {/* Floating Badge */}
               <div className="absolute -bottom-6 -left-6 bg-zinc-900 border border-white/10 rounded-xl p-6 backdrop-blur-sm">
-                <div className="text-3xl font-light text-white mb-1">20+</div>
+                <div className="text-3xl font-light text-white mb-1">25+</div>
                 <div className="text-sm text-[var(--gold)]">Jahre Erfahrung</div>
               </div>
             </div>

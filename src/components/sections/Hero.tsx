@@ -92,25 +92,25 @@ export function Hero() {
       </button>
 
       {/* Content */}
-      <div className="relative z-20 text-center max-w-[823px] mx-auto px-0">
+      <div className="relative z-20 text-center max-w-[823px] mx-auto px-6 md:px-8">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--gold)]/20 bg-[var(--gold)]/5 mb-8 animate-title">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
           <span className="text-xs uppercase tracking-widest text-[var(--gold-light)] font-medium">
-            Über 20 Jahre Erfahrung
+            Über 25 Jahre Erfahrung
           </span>
         </div>
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tighter mb-8 leading-[0.9]">
-          <span className="block text-white animate-title animate-delay-100 font-light text-[60px]">
+        <h1 className="text-4xl md:text-7xl lg:text-8xl font-light tracking-tighter mb-8 leading-[0.9]">
+          <span className="block text-white animate-title animate-delay-100 font-light text-[40px] md:text-[60px]">
             Komplettrenovierung
           </span>
-          <span className="block gold-gradient animate-title animate-delay-200 pb-2 pt-[11px] tracking-[-2.7px]">
+          <span className="block gold-gradient animate-title animate-delay-200 pb-2 pt-[11px] tracking-[-1.5px] md:tracking-[-2.7px]">
             vom Badprofi.
           </span>
         </h1>
 
         <p
-          className="text-lg md:text-xl text-zinc-400 font-light max-w-[728px] mx-auto mb-12 animate-title animate-delay-300 leading-relaxed"
+          className="text-base md:text-xl text-zinc-400 font-light max-w-[728px] mx-auto mb-12 animate-title animate-delay-300 leading-relaxed px-2"
           style={{ fontFamily: "Poppins" }}
         >
           Hochwertige Badgestaltung muss nicht teuer sein.{" "}
@@ -118,7 +118,7 @@ export function Hero() {
           Wir kombinieren Qualität und Stil mit transparenten, fairen Festpreisen.
         </p>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 animate-title animate-delay-300">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 animate-title animate-delay-300 px-2">
           <button className="w-full md:w-auto px-8 py-3 bg-[var(--gold)] text-white rounded-full hover:bg-[var(--gold-light)] transition-colors font-medium text-sm tracking-wide">
             Jetzt Planung anfragen
           </button>

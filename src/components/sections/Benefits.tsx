@@ -83,8 +83,8 @@ const benefits = [
   },
   {
     icon: Award,
-    title: "Fachkompetenz über 20 Jahre",
-    description: "Über 20 Jahre Erfahrung in der Branche garantieren fachmännische Beratung und Ausführung.",
+    title: "Fachkompetenz über 25 Jahre",
+    description: "Über 25 Jahre Erfahrung in der Branche garantieren fachmännische Beratung und Ausführung.",
   },
   {
     icon: CheckCircle,

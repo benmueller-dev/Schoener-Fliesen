@@ -27,7 +27,7 @@ function StatItem({ value, label, description, delay = 0 }: StatItemProps) {
 
 const stats: Omit<StatItemProps, "delay">[] = [
   {
-    value: "20+",
+    value: "25+",
     label: "Jahre Erfahrung",
     description:
       "Seit über zwei Jahrzehnten steht unser Meisterbetrieb für Qualität.",

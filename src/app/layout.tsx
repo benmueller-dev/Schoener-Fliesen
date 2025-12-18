@@ -9,8 +9,29 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Schöner Fliesen | Meisterbetrieb für exklusive Fliesen",
-  description: "Wir erschaffen Räume der Stille und Eleganz. Meisterbetrieb für exklusive Fliesen und edle Badezimmer.",
+  title: "Schöner Fliesen | Meisterbetrieb für Bad & Heizung Sankt Augustin",
+  description: "Meisterbetrieb für Badsanierung, Fliesen & Heizung in Sankt Augustin. 25+ Jahre Erfahrung im Rhein-Sieg-Kreis. Jetzt Beratung anfragen!",
+  keywords: "Fliesen Sankt Augustin, Badsanierung Sankt Augustin, Bad Heizung Meisterbetrieb, Fliesenleger Rhein-Sieg-Kreis, Badezimmer Renovierung Bonn, Naturstein Köln",
+  openGraph: {
+    title: "Schöner Fliesen | Meisterbetrieb für Bad & Heizung",
+    description: "Meisterbetrieb für Badsanierung, Fliesen & Heizung in Sankt Augustin. 25+ Jahre Erfahrung.",
+    url: "https://www.schoener-fliesen.com",
+    siteName: "Schöner Fliesen GmbH",
+    locale: "de_DE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Schöner Fliesen | Meisterbetrieb für Bad & Heizung",
+    description: "Meisterbetrieb für Badsanierung, Fliesen & Heizung in Sankt Augustin",
+  },
+  icons: {
+    icon: "/favicon.jpg",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
