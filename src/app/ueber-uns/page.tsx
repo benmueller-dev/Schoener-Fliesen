@@ -94,7 +94,7 @@ export default function UeberUnsPage() {
                 <div className="relative">
                   <div className="aspect-[4/3] rounded-2xl overflow-hidden">
                     <Image
-                      src="/laden.jpg"
+                      src="/Fotos (neu)/Schöner-Fliesen-laden.jpg"
                       alt="Schöner Fliesen Laden"
                       fill
                       className="object-cover"
