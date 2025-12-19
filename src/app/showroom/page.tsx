@@ -27,7 +27,7 @@ function getShowroomImages(): string[] {
     "/Showroom/05_DSC_0097cd.jpg",
     "/Showroom/06_DSC_0102cdneu.jpg",
     "/Showroom/07_D 5530_0059cdneu.jpg",
-    "/Showroom/08_P1020331.jpg",
+    "/Fotos (neu)/Mittel (IMG_1938).jpeg",
     "/Showroom/09_P1020362.jpg",
     "/Showroom/10_DSC_0027cd.jpg",
     "/Showroom/11_DSC_0121cd.jpg",
@@ -35,6 +35,9 @@ function getShowroomImages(): string[] {
     "/Showroom/13_D 5572_0101cd.jpg",
     "/Showroom/14_D 5572_0089cd.jpg",
     "/Showroom/15_D 5572_0099cd.jpg",
+    "/Fotos (neu)/Mittel (EA8D77BA-9A4B-4F49-8B1B-5C7EB5E4D0CE).jpeg",
+    "/Fotos (neu)/Mittel (E6F2D76C-022D-4555-A9A3-43169B7C58F2).jpeg",
+    
   ];
 
   const dir = path.join(process.cwd(), "public", "Fotos (showroom)");
