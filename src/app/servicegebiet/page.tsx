@@ -91,7 +91,7 @@ const serviceAreas = [
     ],
   },
   {
-    category: "Eifel (Auszug)",
+    category: "Eifel",
     cities: [
       { name: "Euskirchen", distance: "35 km" },
       { name: "Mechernich", distance: "45 km" },

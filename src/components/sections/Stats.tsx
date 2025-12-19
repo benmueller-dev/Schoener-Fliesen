@@ -38,7 +38,7 @@ const stats: Omit<StatItemProps, "delay">[] = [
     description: "Jedes Projekt mit Leidenschaft umgesetzt.",
   },
   {
-    value: "30",
+    value: "50",
     label: "Partnerhersteller",
     description: "Führende Marken für höchste Materialqualität.",
   },

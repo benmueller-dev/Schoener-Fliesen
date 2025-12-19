@@ -210,7 +210,7 @@ export default function HerstellerPage() {
             <AnimateIn delay={0.2}>
               <div className="flex flex-wrap justify-center gap-4">
                 <div className="px-6 py-3 backdrop-blur-md bg-white/10 border border-white/20 rounded-full hover:bg-white/15 hover:border-[var(--gold)]/30 transition-all duration-300">
-                  <span className="text-2xl font-light text-white">30+</span>
+                  <span className="text-2xl font-light text-white">50+</span>
                   <span className="text-sm text-zinc-300 ml-2">Partnerhersteller</span>
                 </div>
                 <div className="px-6 py-3 backdrop-blur-md bg-white/10 border border-white/20 rounded-full hover:bg-white/15 hover:border-[var(--gold)]/30 transition-all duration-300">
