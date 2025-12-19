@@ -3,7 +3,9 @@ import { Footer } from "@/components/sections";
 import { AnimateIn } from "@/components/AnimateIn";
 import { SectionBadge } from "@/components/SectionBadge";
 import Image from "next/image";
-import { Bath, Droplets, Wrench, Flame, Lightbulb, Palette } from "lucide-react";
+import { services } from "@/lib/services";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export const metadata = {
   title: "Leistungen | Badsanierung, Fliesen & Heizung Sankt Augustin",
@@ -15,74 +17,6 @@ export const metadata = {
     type: "website",
   },
 };
-
-const services = [
-  {
-    icon: Bath,
-    title: "Badsanierung & Bäderbau",
-    subtitle: "Von der Planung bis zur Fertigstellung – alles aus einer Hand.",
-    features: [
-      "Beratung & Planung",
-      "CAD-Visualisierung",
-      "Barrierefreie Bäder",
-      "Fachbauleitung aller Gewerke",
-    ],
-  },
-  {
-    icon: Droplets,
-    title: "Fliesen & Naturstein",
-    subtitle: "Präzise Verlegung für langlebige Ergebnisse.",
-    features: [
-      "Wand- und Bodenfliesen",
-      "Naturstein & Mosaike",
-      "Untergrundvorbereitung",
-      "Fugen- und Abdichtungsarbeiten",
-    ],
-  },
-  {
-    icon: Wrench,
-    title: "Sanitärinstallation & Kundendienst",
-    subtitle: "Zuverlässige Arbeit – sauber ausgeführt.",
-    features: [
-      "Sanitär- und Klima-Installationen",
-      "Armaturentausch",
-      "Reparatur & Wartung",
-      "Kundendienst im Bestand",
-    ],
-  },
-  {
-    icon: Flame,
-    title: "Heizungsmodernisierung",
-    subtitle: "Effiziente Technik für Wärme mit Zukunft.",
-    features: [
-      "Heizungsplanung & Montage",
-      "Modernisierung bestehender Anlagen",
-      "ATAG-Premiumsysteme",
-      "Wartung & Inspektion",
-    ],
-  },
-  {
-    icon: Lightbulb,
-    title: "Spanndecken & Beleuchtung",
-    subtitle: "Licht schafft Atmosphäre.",
-    features: [
-      "Spanndecken mit LED-Technik",
-      "Individuelle Lichtkonzepte",
-      "Integration in Bad- und Wohnräume",
-    ],
-  },
-  {
-    icon: Palette,
-    title: "Hochwertiges Baddesign & Beratung",
-    subtitle: "Raumgestaltung mit Persönlichkeit.",
-    features: [
-      "Farb- und Materialberatung",
-      "3D-Planung",
-      "Dekor- und Ausstattungsauswahl",
-      "Kooperation mit Swarovski Lighting",
-    ],
-  },
-];
 
 export default function LeistungenPage() {
   return (
@@ -128,28 +62,40 @@ export default function LeistungenPage() {
         <section className="py-20 md:py-28 bg-black">
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.map((service, index) => (
-                <AnimateIn key={index} delay={index * 0.1}>
-                  <div className="group p-8 rounded-2xl bg-zinc-950 border border-white/5 hover:border-[var(--gold)]/30 transition-all duration-300 h-full">
-                    <div className="w-12 h-12 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/20 flex items-center justify-center mb-6 group-hover:bg-[var(--gold)]/20 transition-colors">
-                      <service.icon className="w-6 h-6 text-[var(--gold)]" strokeWidth={1.5} />
-                    </div>
-
-                    <h3 className="text-xl font-light text-white mb-2">{service.title}</h3>
-                    <p className="text-zinc-500 text-sm mb-6">{service.subtitle}</p>
-
-                    <div className="space-y-2">
-                      <p className="text-xs uppercase tracking-wider text-zinc-600 mb-3">Leistungen:</p>
-                      {service.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-sm text-zinc-400">
-                          <span className="w-1 h-1 rounded-full bg-[var(--gold)]" />
-                          {feature}
+              {services.map((service, index) => {
+                const Icon = service.icon;
+                return (
+                  <AnimateIn key={index} delay={index * 0.1}>
+                    <Link href={`/leistungen/${service.slug}`} className="block h-full">
+                      <div className="group p-8 rounded-2xl bg-zinc-950 border border-white/5 hover:border-[var(--gold)]/30 transition-all duration-300 h-full cursor-pointer">
+                        <div className="w-12 h-12 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/20 flex items-center justify-center mb-6 group-hover:bg-[var(--gold)]/20 transition-colors">
+                          <Icon className="w-6 h-6 text-[var(--gold)]" strokeWidth={1.5} />
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                </AnimateIn>
-              ))}
+
+                        <h3 className="text-xl font-light text-white mb-2 group-hover:text-[var(--gold)] transition-colors">
+                          {service.title}
+                        </h3>
+                        <p className="text-zinc-500 text-sm mb-6">{service.subtitle}</p>
+
+                        <div className="space-y-2 mb-6">
+                          <p className="text-xs uppercase tracking-wider text-zinc-600 mb-3">Leistungen:</p>
+                          {service.features.map((feature, idx) => (
+                            <div key={idx} className="flex items-center gap-2 text-sm text-zinc-400">
+                              <span className="w-1 h-1 rounded-full bg-[var(--gold)]" />
+                              {feature}
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="flex items-center gap-2 text-sm text-[var(--gold)] group-hover:gap-3 transition-all">
+                          Mehr erfahren
+                          <ArrowRight className="w-4 h-4" />
+                        </div>
+                      </div>
+                    </Link>
+                  </AnimateIn>
+                );
+              })}
             </div>
           </div>
         </section>
