@@ -11,6 +11,7 @@ declare global {
     turnstile?: {
       render: (element: string | HTMLElement, options: {
         sitekey: string;
+        size?: 'normal' | 'compact' | 'invisible';
         callback: (token: string) => void;
       }) => string;
       reset: (widgetId: string) => void;
