@@ -131,6 +131,34 @@ export default async function CityPage({ params }: CityPageProps) {
           </div>
         </section>
 
+        {/* FAQ - stadtspezifisch direkt oben */}
+        <FAQ
+          headline={`Badsanierung in ${city.name}: Häufige Fragen`}
+          subline={`Kurz erklärt: Ablauf, Dauer, Vor-Ort-Beratung in ${city.name}`}
+          items={[
+            {
+              question: `Kommt ihr für eine Beratung nach ${city.name}?`,
+              answer:
+                `Ja. Wir vereinbaren gern einen Termin direkt bei Ihnen in ${city.name}. Auf Basis des Aufmaßes erhalten Sie ein transparentes Festpreisangebot.`,
+            },
+            {
+              question: "Wie lange dauert die Badsanierung?",
+              answer:
+                "Je nach Größe und Umfang rund 2–3 Wochen bis zur schlüsselfertigen Übergabe.",
+            },
+            {
+              question: "Barrierefrei und seniorengerecht in eurer Region?",
+              answer:
+                "Wir realisieren bodengleiche Duschen, rutschhemmende Beläge, Haltegriffe, Sitzlösungen und unterfahrbare Waschtische – ideal für Seniorinnen/Senioren und Mobilitätseinschränkungen.",
+            },
+            {
+              question: `Zeigt ihr Referenzen aus ${city.name} oder der Nähe?`,
+              answer:
+                `Ja – in unseren Referenzen finden sich Projekte aus ${city.name} und den Nachbarorten. Auf Wunsch zeigen wir passende Beispiele im Beratungstermin.`,
+            },
+          ]}
+        />
+
         {/* Stats Section - EXAKT wie auf Startseite */}
         <Stats />
 
@@ -215,24 +243,40 @@ export default async function CityPage({ params }: CityPageProps) {
         {/* Details - EXAKT wie auf Startseite */}
         <Details />
 
-        {/* FAQ - lokal bezogen */}
+        {/* FAQ - allgemeine Fragen wie auf Startseite */}
         <FAQ
-          headline={`FAQ zur Badsanierung in ${city.name}`}
+          headline="Allgemeine Fragen zur Badsanierung"
+          subline="Leistungen, Dauer, Garantie, Festpreis & Showroom"
           items={[
             {
-              question: `Kommt ihr auch direkt nach ${city.name}?`,
+              question: "Was beinhaltet eine Badsanierung bei Schöner Fliesen?",
               answer:
-                `Ja. Unser Team ist regelmäßig in ${city.name} und Umgebung im Einsatz. Eine unverbindliche Vor-Ort-Beratung ist möglich.`,
+                "Von der Planung bis zur finalen Umsetzung: Sanitärinstallation, Bäderbau, individuelle Beratung, Materialauswahl sowie – bei Bedarf – barrierefreie Lösungen.",
             },
             {
-              question: "Welche Kosten muss ich einplanen?",
+              question: "Wie lange dauert eine typische Badsanierung?",
               answer:
-                "Das hängt von Größe, Ausstattung und Umbauaufwand ab. Nach dem Aufmaß erhalten Sie ein klares Festpreisangebot – ohne versteckte Kosten.",
+                "In der Regel 2–3 Wochen, abhängig von Größe und Umbauumfang.",
             },
             {
-              question: "Übernehmt ihr auch Teilmodernisierungen?",
+              question: "Was umfasst die 4‑Jahres‑Garantie?",
               answer:
-                "Natürlich – z. B. nur die Dusche erneuern, Fliesen austauschen oder Sanitär tauschen. Wir beraten, was wirtschaftlich sinnvoll ist.",
+                "Sie deckt unsere Arbeiten gegen Verarbeitungsfehler ab. Tritt innerhalb von 4 Jahren ein Problem aufgrund unserer Arbeit auf, beheben wir es kostenfrei.",
+            },
+            {
+              question: "Bieten Sie ein Festpreis‑Angebot an?",
+              answer:
+                "Ja – nach Vor‑Ort‑Besichtigung erhalten Sie ein transparentes Festpreisangebot ohne versteckte Kosten.",
+            },
+            {
+              question: "Sind die Umbauten senioren- und behindertengerecht möglich?",
+              answer:
+                "Ja, inkl. bodengleicher Duschen, rutschhemmender Oberflächen, Haltegriffen, Sitzlösungen und unterfahrbaren Waschtischen.",
+            },
+            {
+              question: "Kann ich Materialien vorher ansehen?",
+              answer:
+                "Gern im Showroom in Sankt Augustin – wir zeigen Fliesen, Armaturen, Möbel und Beleuchtung und beraten zu Pflege & Preis‑Leistung.",
             },
           ]}
         />
