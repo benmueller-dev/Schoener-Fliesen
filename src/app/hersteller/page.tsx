@@ -3,6 +3,8 @@ import { Footer } from "@/components/sections";
 import { AnimateIn } from "@/components/AnimateIn";
 import { SectionBadge } from "@/components/SectionBadge";
 import Image from "next/image";
+import fs from "fs";
+import path from "path";
 
 export const metadata = {
   title: "Hersteller & Partner | Schöner Fliesen Sankt Augustin",
@@ -22,7 +24,7 @@ const heatingPartners = [
 ];
 
 // Weitere Material-/Hersteller-Logos (nur vorhandene Dateien referenziert)
-const materialPartners: { name: string; src: string }[] = [
+const baseMaterialPartners: { name: string; src: string }[] = [
   { name: "Avenarius", src: "/Logos/neu/avenarius.png" },
   { name: "Föhrer Panno", src: "/Logos/neu/fohrer panno.png" },
   { name: "Laguna", src: "/Logos/neu/laguna.png" },
@@ -70,6 +72,36 @@ const materialPartners: { name: string; src: string }[] = [
   { name: "Brenner & Klaudt", src: "/Logos/brenner-und-klaudt.jpg" },
   { name: "Richter + Frenzel", src: "/Logos/richter-frenzel.jpg" },
 ];
+
+function resolveWaboLogo(): string | null {
+  const base = path.join(process.cwd(), "public", "Logos");
+  const candidates = [
+    // root-level public files
+    path.join(process.cwd(), "public", "wabo.png"),
+    path.join(process.cwd(), "public", "wabo.jpg"),
+    // within /Logos and /Logos/neu
+    path.join(base, "wabo.png"),
+    path.join(base, "wabo.jpg"),
+    path.join(base, "neu", "wabo.png"),
+    path.join(base, "neu", "wabo.jpg"),
+  ];
+  for (const p of candidates) {
+    try {
+      if (fs.existsSync(p)) {
+        const rel = p.split("public")[1];
+        return rel.replace(/\\/g, "/");
+      }
+    } catch {}
+  }
+  return null;
+}
+
+const materialPartners: { name: string; src: string }[] = (() => {
+  const list = [...baseMaterialPartners];
+  const waboSrc = resolveWaboLogo();
+  if (waboSrc) list.push({ name: "Wabo", src: waboSrc });
+  return list;
+})();
 
 export default function HerstellerPage() {
   return (

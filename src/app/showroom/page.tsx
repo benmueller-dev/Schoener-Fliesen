@@ -4,6 +4,8 @@ import { AnimateIn } from "@/components/AnimateIn";
 import { SectionBadge } from "@/components/SectionBadge";
 import Image from "next/image";
 import { ShowroomGrid } from "./ShowroomGrid";
+import fs from "fs";
+import path from "path";
 
 export const metadata = {
   title: "Showroom | Fliesenausstellung & Badausstellung Sankt Augustin",
@@ -16,25 +18,50 @@ export const metadata = {
   },
 };
 
-const showroomImages: string[] = [
-  "/Showroom/01_DSC_0001cd.jpg",
-  "/Showroom/02_D 5530_0053cd.jpg",
-  "/Showroom/03_DSC_0137cd.jpg",
-  "/Showroom/04_D 5534_0029cd.jpg",
-  "/Showroom/05_DSC_0097cd.jpg",
-  "/Showroom/06_DSC_0102cdneu.jpg",
-  "/Showroom/07_D 5530_0059cdneu.jpg",
-  "/Showroom/08_P1020331.jpg",
-  "/Showroom/09_P1020362.jpg",
-  "/Showroom/10_DSC_0027cd.jpg",
-  "/Showroom/11_DSC_0121cd.jpg",
-  "/Showroom/12_DSC_0068cd.jpg",
-  "/Showroom/13_D 5572_0101cd.jpg",
-  "/Showroom/14_D 5572_0089cd.jpg",
-  "/Showroom/15_D 5572_0099cd.jpg",
-];
+function getShowroomImages(): string[] {
+  const curated = [
+    "/Showroom/01_DSC_0001cd.jpg",
+    "/Showroom/02_D 5530_0053cd.jpg",
+    "/Showroom/03_DSC_0137cd.jpg",
+    "/Showroom/04_D 5534_0029cd.jpg",
+    "/Showroom/05_DSC_0097cd.jpg",
+    "/Showroom/06_DSC_0102cdneu.jpg",
+    "/Showroom/07_D 5530_0059cdneu.jpg",
+    "/Showroom/08_P1020331.jpg",
+    "/Showroom/09_P1020362.jpg",
+    "/Showroom/10_DSC_0027cd.jpg",
+    "/Showroom/11_DSC_0121cd.jpg",
+    "/Showroom/12_DSC_0068cd.jpg",
+    "/Showroom/13_D 5572_0101cd.jpg",
+    "/Showroom/14_D 5572_0089cd.jpg",
+    "/Showroom/15_D 5572_0099cd.jpg",
+  ];
+
+  const dir = path.join(process.cwd(), "public", "Fotos (showroom)");
+  let newFiles: string[] = [];
+  try {
+    newFiles = fs
+      .readdirSync(dir)
+      .filter((f) => /\.(jpe?g|png|webp|avif)$/i.test(f))
+      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+  } catch {
+    newFiles = [];
+  }
+
+  const newPaths = newFiles.map((f) => `/Fotos (showroom)/${f}`);
+  const seen = new Set<string>();
+  const combined: string[] = [];
+  for (const p of [...newPaths, ...curated]) {
+    if (!seen.has(p)) {
+      seen.add(p);
+      combined.push(p);
+    }
+  }
+  return combined;
+}
 
 export default function ShowroomPage() {
+  const showroomImages = getShowroomImages();
   return (
     <>
       <Navigation />
@@ -42,13 +69,15 @@ export default function ShowroomPage() {
         {/* Hero */}
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <Image
-              src={encodeURI(showroomImages[0])}
-              alt="Showroom Hintergrund"
-              fill
-              className="object-cover opacity-50"
-              priority
-            />
+            {showroomImages.length > 0 && (
+              <Image
+                src={encodeURI(showroomImages[0])}
+                alt="Showroom Hintergrund"
+                fill
+                className="object-cover opacity-50"
+                priority
+              />
+            )}
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
           </div>
 
