@@ -205,6 +205,17 @@
   scrollbar-width: none;
 }
 
+/* Text Selection */
+::selection {
+  background-color: var(--gold);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: var(--gold);
+  color: #ffffff;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

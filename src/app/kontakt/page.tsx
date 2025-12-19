@@ -9,6 +9,7 @@ import { MapPin, Mail, Phone } from "lucide-react";
 import { useState, FormEvent, useRef, useEffect } from "react";
 import Link from "next/link";
 import Script from "next/script";
+import Image from "next/image";
 
 const contactInfo = [
   {
@@ -104,6 +105,7 @@ export default function KontaktPage() {
       try {
         widgetId.current = window.turnstile.render(turnstileRef.current, {
           sitekey: siteKey,
+          size: 'invisible',
           callback: (token: string) => {
             console.log('✅ Turnstile token received:', token.substring(0, 20) + '...');
             setTurnstileToken(token);
@@ -227,8 +229,18 @@ export default function KontaktPage() {
       <Navigation />
       <main>
         {/* Hero Section */}
-        <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-black">
-          <div className="max-w-7xl mx-auto px-6">
+        <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/2150695024.jpg"
+              alt="Kontakt"
+              fill
+              className="object-cover opacity-50"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
+          </div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-6">
             <div className="max-w-3xl">
               <AnimateIn>
                 <SectionBadge text="Kontakt" />
@@ -382,10 +394,8 @@ export default function KontaktPage() {
                       />
                     </div>
 
-                    {/* Cloudflare Turnstile Widget */}
-                    <div>
-                      <div ref={turnstileRef} className="cf-turnstile"></div>
-                    </div>
+                    {/* Cloudflare Turnstile Widget - Invisible */}
+                    <div ref={turnstileRef} className="cf-turnstile" style={{ display: 'none' }}></div>
 
                     <div className="flex items-start gap-3">
                       <input

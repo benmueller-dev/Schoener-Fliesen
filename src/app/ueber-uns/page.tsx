@@ -111,8 +111,20 @@ export default function UeberUnsPage() {
         </section>
 
         {/* Values Section */}
-        <section className="py-20 md:py-28 bg-zinc-950">
-          <div className="max-w-7xl mx-auto px-6">
+        <section className="relative py-20 md:py-28 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/47894596_logo_make_11_06_2023_272 1.jpg"
+              alt="Unsere Werte"
+              fill
+              className="object-cover"
+            />
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-black/75" />
+          </div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <AnimateIn>
                 <h2 className="text-3xl md:text-4xl font-light tracking-tight text-white mb-4">
@@ -142,7 +154,7 @@ export default function UeberUnsPage() {
                 }
               ].map((value, index) => (
                 <AnimateIn key={index} delay={0.1 * index}>
-                  <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-[var(--gold)]/30 transition-colors h-full">
+                  <div className="p-8 rounded-2xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-[var(--gold)]/30 transition-colors h-full">
                     <h3 className="text-xl font-medium text-white mb-3">{value.title}</h3>
                     <p className="text-zinc-400 text-sm leading-relaxed">{value.description}</p>
                   </div>

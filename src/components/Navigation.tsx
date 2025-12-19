@@ -33,7 +33,7 @@ export function Navigation() {
   return (
     <>
       {/* Top Contact Bar */}
-      <div className="fixed top-0 w-full z-50 bg-black/70 backdrop-blur border-b border-white/10">
+      <div className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 h-9 md:h-10 flex items-center justify-between text-zinc-300">
           <div className="flex items-center gap-5 md:gap-8">
             <a
@@ -60,7 +60,7 @@ export function Navigation() {
       <nav className={`fixed top-9 md:top-10 w-full z-50 transition-all duration-300 ${
         mobileMenuOpen
           ? "bg-black"
-          : "backdrop-blur-xl border-b border-white/5 bg-black/50"
+          : "backdrop-blur-xl border-b border-white/5 bg-black/50 saturate-[180px]"
       }`}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center z-50">

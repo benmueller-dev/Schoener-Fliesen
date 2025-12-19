@@ -112,7 +112,7 @@ export default function HerstellerPage() {
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
           <div className="absolute inset-0 z-0">
             <Image
-              src="/Hero/pexels-fotoaibe-1571462 (1).jpg"
+              src="/47894596_logo_make_11_06_2023_272 1.jpg"
               alt="Premium Materialien"
               fill
               className="object-cover opacity-50"

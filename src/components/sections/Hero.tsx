@@ -120,9 +120,12 @@ export function Hero() {
         </p>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 animate-title animate-delay-300 px-2">
-          <button className="w-full md:w-auto px-8 py-3 bg-[var(--gold)] text-white rounded-full hover:bg-[var(--gold-light)] transition-colors font-medium text-sm tracking-wide">
+          <a
+            href="/kontakt"
+            className="w-full md:w-auto px-8 py-3 bg-[var(--gold)] text-white rounded-full hover:bg-[var(--gold-light)] transition-colors font-medium text-sm tracking-wide text-center"
+          >
             Jetzt Planung anfragen
-          </button>
+          </a>
         </div>
       </div>
 

@@ -234,8 +234,8 @@ function ImageGallery({
         </div>
 
         {/* Label Badge */}
-        <span className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium text-white z-10 ${
-          isGold ? "bg-[var(--gold)]" : "bg-black/70 backdrop-blur-sm"
+        <span className={`absolute top-4 left-4 px-4 py-2 rounded-full text-sm font-medium text-white z-10 backdrop-blur-md ${
+          isGold ? "bg-[var(--gold)]/40" : "bg-black/40"
         }`}>
           {label}
         </span>

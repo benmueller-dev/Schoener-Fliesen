@@ -80,15 +80,13 @@ export default function ShowroomPage() {
         {/* Hero */}
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
           <div className="absolute inset-0 z-0">
-            {showroomImages.length > 0 && (
-              <Image
-                src={encodeURI(showroomImages[0])}
-                alt="Showroom Hintergrund"
-                fill
-                className="object-cover opacity-50"
-                priority
-              />
-            )}
+            <Image
+              src="/Fotos (neu)/Schöner-Fliesen-laden.jpg"
+              alt="Showroom Hintergrund"
+              fill
+              className="object-cover opacity-50 object-top"
+              priority
+            />
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
           </div>
 
