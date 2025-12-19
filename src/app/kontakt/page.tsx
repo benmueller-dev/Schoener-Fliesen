@@ -4,9 +4,11 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/sections";
 import { AnimateIn } from "@/components/AnimateIn";
 import { SectionBadge } from "@/components/SectionBadge";
+import { FileUpload } from "@/components/FileUpload";
 import { MapPin, Mail, Phone } from "lucide-react";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useRef, useEffect } from "react";
 import Link from "next/link";
+import Script from "next/script";
 
 const contactInfo = [
   {
@@ -28,6 +30,26 @@ const contactInfo = [
   },
 ];
 
+// Cloudflare Turnstile types
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (element: string | HTMLElement, options: {
+        sitekey: string;
+        callback: (token: string) => void;
+      }) => string;
+      reset: (widgetId: string) => void;
+    };
+  }
+}
+
+interface UploadedFile {
+  name: string;
+  url: string;
+  size: number;
+  type: string;
+}
+
 export default function KontaktPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -36,15 +58,113 @@ export default function KontaktPage() {
     message: "",
     privacy: false,
   });
+  const [files, setFiles] = useState<UploadedFile[]>([]);
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const widgetId = useRef<string>("");
+
+  // Initialize Cloudflare Turnstile
+  useEffect(() => {
+    const initTurnstile = () => {
+      console.log('=== TURNSTILE DEBUG ===');
+      console.log('turnstileRef.current:', turnstileRef.current);
+      console.log('widgetId.current:', widgetId.current);
+      console.log('window.turnstile:', window.turnstile);
+      console.log('Raw env var:', process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
+      console.log('Type of env var:', typeof process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
+
+      if (!window.turnstile) {
+        console.log('⏳ Turnstile script not loaded yet, retrying...');
+        return false;
+      }
+
+      if (!turnstileRef.current) {
+        console.error('❌ Turnstile ref not ready!');
+        return false;
+      }
+
+      if (widgetId.current) {
+        console.log('⚠️ Widget already rendered');
+        return true;
+      }
+
+      const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
+      if (!siteKey) {
+        console.error('❌ NEXT_PUBLIC_TURNSTILE_SITE_KEY is not set!');
+        return false;
+      }
+
+      console.log('✅ Site Key:', siteKey);
+      console.log('✅ Site Key Type:', typeof siteKey);
+      console.log('✅ Site Key Length:', siteKey.length);
+
+      try {
+        widgetId.current = window.turnstile.render(turnstileRef.current, {
+          sitekey: siteKey,
+          callback: (token: string) => {
+            console.log('✅ Turnstile token received:', token.substring(0, 20) + '...');
+            setTurnstileToken(token);
+          },
+        });
+        console.log('✅ Turnstile widget rendered with ID:', widgetId.current);
+        return true;
+      } catch (error) {
+        console.error('❌ Turnstile render error:', error);
+        return false;
+      }
+    };
+
+    // Retry logic - check every 500ms for up to 10 seconds
+    let attempts = 0;
+    const maxAttempts = 20;
+
+    const interval = setInterval(() => {
+      attempts++;
+      console.log(`🔄 Attempt ${attempts}/${maxAttempts} to initialize Turnstile`);
+
+      const success = initTurnstile();
+
+      if (success) {
+        console.log('✅ Turnstile initialized successfully!');
+        clearInterval(interval);
+      } else if (attempts >= maxAttempts) {
+        console.error('❌ Failed to initialize Turnstile after', maxAttempts, 'attempts');
+        clearInterval(interval);
+      }
+    }, 500);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
+    // Verify Turnstile token
+    if (!turnstileToken) {
+      setSubmitStatus("error");
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
+      // Build file links section for email
+      let fileLinksText = "";
+      if (files.length > 0) {
+        fileLinksText = "\n\n--- Hochgeladene Dateien ---\n";
+        files.forEach((file, index) => {
+          fileLinksText += `\n📎 ${file.name}\n${file.url}\n`;
+        });
+      }
+
+      console.log('📧 Sending email with Turnstile token:', turnstileToken.substring(0, 20) + '...');
+
       // Send directly to Web3Forms from the client
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -59,12 +179,14 @@ export default function KontaktPage() {
           name: formData.name,
           email: formData.email,
           phone: formData.phone || "Nicht angegeben",
-          message: formData.message,
+          message: formData.message + fileLinksText,
+          turnstile_token: turnstileToken, // Send as regular field for logging
           to: ["mueller.ben100@gmail.com", "info@schoener-fliesen.com"],
         }),
       });
 
       const data = await response.json();
+      console.log('📧 Web3Forms response:', data);
 
       if (data.success) {
         setSubmitStatus("success");
@@ -75,6 +197,12 @@ export default function KontaktPage() {
           message: "",
           privacy: false,
         });
+        setFiles([]);
+        // Reset Turnstile
+        if (window.turnstile && widgetId.current) {
+          window.turnstile.reset(widgetId.current);
+        }
+        setTurnstileToken("");
       } else {
         console.error("Web3Forms error:", data);
         setSubmitStatus("error");
@@ -89,6 +217,13 @@ export default function KontaktPage() {
 
   return (
     <>
+      {/* Cloudflare Turnstile Script */}
+      <Script
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+        strategy="afterInteractive"
+        onLoad={() => console.log('✅ Turnstile script loaded!')}
+        onError={(e) => console.error('❌ Turnstile script failed to load:', e)}
+      />
       <Navigation />
       <main>
         {/* Hero Section */}
@@ -234,6 +369,22 @@ export default function KontaktPage() {
                         placeholder="Beschreiben Sie uns Ihr Anliegen..."
                         className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-zinc-600 focus:outline-none focus:border-[var(--gold)]/50 focus:ring-1 focus:ring-[var(--gold)]/50 transition-all resize-none"
                       />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm text-zinc-400 mb-2">
+                        Fotos hochladen (optional)
+                      </label>
+                      <FileUpload
+                        onFilesChange={setFiles}
+                        maxFiles={5}
+                        maxSizeMB={10}
+                      />
+                    </div>
+
+                    {/* Cloudflare Turnstile Widget */}
+                    <div>
+                      <div ref={turnstileRef} className="cf-turnstile"></div>
                     </div>
 
                     <div className="flex items-start gap-3">

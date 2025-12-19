@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { AnimateIn } from "@/components/AnimateIn";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
@@ -126,10 +126,29 @@ function Lightbox({
 export function Details() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const openLightbox = (index: number) => {
     setCurrentIndex(index);
     setLightboxOpen(true);
+    // Auto-scroll pausieren
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+      autoScrollIntervalRef.current = null;
+    }
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    // Nach 3 Sekunden Auto-scroll wieder starten
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current);
+    }
+    pauseTimeoutRef.current = setTimeout(() => {
+      startAutoScroll();
+    }, 3000);
   };
 
   const goToPrev = useCallback(() => {
@@ -139,6 +158,139 @@ export function Details() {
   const goToNext = useCallback(() => {
     setCurrentIndex((prev) => (prev === galleryItems.length - 1 ? 0 : prev + 1));
   }, []);
+
+  const scrollPrev = () => {
+    if (scrollContainerRef.current) {
+      // Auto-scroll pausieren
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
+        autoScrollIntervalRef.current = null;
+      }
+
+      // Scrolle genau ein Bild (Bildbreite + Gap)
+      const imageWidth = window.innerWidth < 768
+        ? window.innerWidth * 0.85  // Mobile: 85vw
+        : 700; // Desktop: 700px
+      const gap = 24; // 6 * 4px (gap-6)
+      scrollContainerRef.current.scrollBy({
+        left: -(imageWidth + gap),
+        behavior: 'smooth'
+      });
+
+      // Nach 3 Sekunden Auto-scroll wieder starten
+      if (pauseTimeoutRef.current) {
+        clearTimeout(pauseTimeoutRef.current);
+      }
+      pauseTimeoutRef.current = setTimeout(() => {
+        startAutoScroll();
+      }, 3000);
+    }
+  };
+
+  const scrollNext = () => {
+    if (scrollContainerRef.current) {
+      // Auto-scroll pausieren
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
+        autoScrollIntervalRef.current = null;
+      }
+
+      // Scrolle genau ein Bild (Bildbreite + Gap)
+      const imageWidth = window.innerWidth < 768
+        ? window.innerWidth * 0.85  // Mobile: 85vw
+        : 700; // Desktop: 700px
+      const gap = 24; // 6 * 4px (gap-6)
+      scrollContainerRef.current.scrollBy({
+        left: imageWidth + gap,
+        behavior: 'smooth'
+      });
+
+      // Nach 3 Sekunden Auto-scroll wieder starten
+      if (pauseTimeoutRef.current) {
+        clearTimeout(pauseTimeoutRef.current);
+      }
+      pauseTimeoutRef.current = setTimeout(() => {
+        startAutoScroll();
+      }, 3000);
+    }
+  };
+
+  const startAutoScroll = useCallback(() => {
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+    }
+    autoScrollIntervalRef.current = setInterval(() => {
+      if (scrollContainerRef.current) {
+        const container = scrollContainerRef.current;
+        const isAtEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 10;
+
+        if (isAtEnd) {
+          // Am Ende angekommen, zum Anfang springen
+          container.scrollTo({
+            left: 0,
+            behavior: 'smooth'
+          });
+        } else {
+          container.scrollBy({
+            left: 1,
+            behavior: 'auto'
+          });
+        }
+      }
+    }, 30); // Scrollt langsam (1px alle 30ms)
+  }, []);
+
+  // Auto-scroll beim Mount starten
+  useEffect(() => {
+    startAutoScroll();
+    return () => {
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
+      }
+      if (pauseTimeoutRef.current) {
+        clearTimeout(pauseTimeoutRef.current);
+      }
+    };
+  }, [startAutoScroll]);
+
+  // Auto-scroll pausieren/fortsetzen basierend auf Lightbox
+  useEffect(() => {
+    if (lightboxOpen) {
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
+        autoScrollIntervalRef.current = null;
+      }
+    }
+  }, [lightboxOpen]);
+
+  // Auto-scroll pausieren bei manuellem Scrollen
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    let scrollTimeout: NodeJS.Timeout;
+    const handleScroll = () => {
+      // Auto-scroll pausieren
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
+        autoScrollIntervalRef.current = null;
+      }
+
+      // Timeout zurücksetzen
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        if (!lightboxOpen) {
+          startAutoScroll();
+        }
+      }, 3000);
+    };
+
+    scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      scrollContainer.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, [lightboxOpen, startAutoScroll]);
 
   return (
     <>
@@ -178,7 +330,25 @@ export function Details() {
               }}
             />
 
-            <div className="flex gap-6 overflow-x-auto no-scrollbar pb-8 snap-x px-6 md:px-12">
+            {/* Left Arrow */}
+            <button
+              onClick={scrollPrev}
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 rounded-full backdrop-blur-md bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+              aria-label="Vorheriges Bild"
+            >
+              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
+            </button>
+
+            {/* Right Arrow */}
+            <button
+              onClick={scrollNext}
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 rounded-full backdrop-blur-md bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+              aria-label="Nächstes Bild"
+            >
+              <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
+            </button>
+
+            <div ref={scrollContainerRef} className="flex gap-6 overflow-x-auto no-scrollbar pb-8 snap-x px-6 md:px-12">
               {galleryItems.map((item, index) => (
                 <div
                   key={index}
@@ -209,7 +379,7 @@ export function Details() {
         <Lightbox
           images={galleryItems}
           currentIndex={currentIndex}
-          onClose={() => setLightboxOpen(false)}
+          onClose={closeLightbox}
           onPrev={goToPrev}
           onNext={goToNext}
           setCurrentIndex={setCurrentIndex}

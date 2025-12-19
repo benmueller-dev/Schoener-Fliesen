@@ -23,8 +23,6 @@ const projects = [
       "/Referenz 1/Vorher/IMG_0080.jpeg",
       "/Referenz 1/Vorher/IMG_0083.jpeg",
       "/Referenz 1/Vorher/IMG_8910.jpeg",
-      "/Referenz 1/Vorher/IMG_8929.jpeg",
-      "/Referenz 1/Vorher/IMG_8934.jpeg",
       "/Referenz 1/Vorher/IMG_9628.jpeg",
       "/Referenz 1/Vorher/IMG_9630.jpeg",
     ],
@@ -50,8 +48,7 @@ const projects = [
       author: "Familie M."
     },
     beforeImages: [
-      "/Referenz 2/Vorher/IMG_6455-min.jpg",
-      "/Referenz 2/Vorher/IMG_6459-min.jpg",
+      "/Referenz 2/Vorher/IMG_6455-min.jpg"
     ],
     afterImages: [
       "/Referenz 2/Nachher/IMG_1938-min.jpg",
