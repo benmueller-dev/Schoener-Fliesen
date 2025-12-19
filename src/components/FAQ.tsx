@@ -86,7 +86,9 @@ export function FAQ({
                   />
                 </button>
                 <div
-                  ref={(el) => (contentRefs.current[i] = el)}
+                  ref={(el) => {
+                    contentRefs.current[i] = el;
+                  }}
                   className="overflow-hidden transition-all duration-300 ease-out"
                   style={{ maxHeight: 0 }}
                 >
