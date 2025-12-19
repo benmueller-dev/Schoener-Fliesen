@@ -38,6 +38,14 @@ function getShowroomImages(): string[] {
     "/Fotos (neu)/Mittel (EA8D77BA-9A4B-4F49-8B1B-5C7EB5E4D0CE).jpeg",
     "/Fotos (neu)/Mittel (E6F2D76C-022D-4555-A9A3-43169B7C58F2).jpeg",
     
+    "/Fotos (neu)/2/73B3893E-9AE9-4C2E-ACB8-5E89090CB669_1_105_c.jpeg",
+    "/Fotos (neu)/2/A2239486-7DB6-46EF-9E42-06F0808EC032_1_105_c.jpeg",
+    "/Fotos (neu)/2/AA684F58-DB7A-4AD5-9586-5971DCB7C871_1_105_c.jpeg",
+    "/Fotos (neu)/2/B04992BD-E9BE-4CE5-BB8D-3425367FD315_1_105_c.jpeg",
+    "/Fotos (neu)/2/D0904354-A85E-413B-9A0E-7FA2A8356182_1_105_c.jpeg",
+    "/Fotos (neu)/2/D8ACB405-7E6C-4989-8B81-2E2EFDCD8C3B_1_105_c.jpeg",
+    "/Fotos (neu)/2/EA8D77BA-9A4B-4F49-8B1B-5C7EB5E4D0CE_1_105_c.jpeg",
+    
   ];
 
   const dir = path.join(process.cwd(), "public", "Fotos (showroom)");
