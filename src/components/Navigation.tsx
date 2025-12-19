@@ -45,7 +45,7 @@ export function Navigation() {
             </a>
             <a
               href="mailto:info@schoener-fliesen.com"
-              className="hidden sm:inline-flex items-center gap-2 hover:text-[var(--gold)] transition-colors"
+              className="inline-flex items-center gap-2 hover:text-[var(--gold)] transition-colors"
             >
               <Mail className="w-3.5 h-3.5 md:w-4 md:h-4" />
               <span className="text-xs md:text-sm">info@schoener-fliesen.com</span>
@@ -126,7 +126,7 @@ export function Navigation() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`text-4xl font-semibold tracking-tight transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                className={`text-4xl font-light tracking-tight transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   pathname === link.href
                     ? "text-[var(--gold)]"
                     : "text-white hover:text-[var(--gold)]"
@@ -145,7 +145,7 @@ export function Navigation() {
             <Link
               href="/kontakt"
               onClick={() => setMobileMenuOpen(false)}
-              className={`text-2xl font-medium text-[var(--gold)] mt-6 flex items-center gap-3 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`text-2xl font-normal text-[var(--gold)] mt-6 flex items-center gap-3 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 mobileMenuOpen
                   ? "opacity-100 translate-x-0"
                   : "opacity-0 -translate-x-8"
