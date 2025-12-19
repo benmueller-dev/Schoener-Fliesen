@@ -9,7 +9,7 @@ import { getAllCitySlugs } from "@/lib/cities";
 
 export const metadata = {
   title: "Servicegebiet | Fliesenleger & Badsanierung Rhein-Sieg-Kreis",
-  description: "Wir sind Ihr Meisterbetrieb für Fliesen & Bad in Sankt Augustin, Bonn, Siegburg, Troisdorf, Hennef, Königswinter, Niederkassel und Umgebung. 50km Radius.",
+  description: "Wir sind Ihr Meisterbetrieb für Fliesen & Bad in Sankt Augustin, Bonn, Köln, Siegburg, Troisdorf, Hennef, Königswinter, Niederkassel, Eifel u.v.m. 80km Radius.",
   keywords: "Fliesenleger Bonn, Badsanierung Siegburg, Badezimmer Troisdorf, Fliesen Hennef, Bad Königswinter, Fliesenleger Niederkassel, Bornheim, Alfter, Meckenheim, Rheinbach",
   openGraph: {
     title: "Servicegebiet | Fliesenleger Rhein-Sieg-Kreis",
@@ -20,9 +20,9 @@ export const metadata = {
 
 const serviceAreas = [
   {
-    category: "Hauptstädte",
+    category: "Hauptorte",
     cities: [
-      { name: "Sankt Augustin", distance: "0 km", highlight: true },
+      { name: "Sankt Augustin", distance: "0 km" },
       { name: "Bonn", distance: "8 km" },
       { name: "Siegburg", distance: "6 km" },
       { name: "Troisdorf", distance: "7 km" },
@@ -71,11 +71,34 @@ const serviceAreas = [
     ],
   },
   {
-    category: "Köln (teilweise)",
+    category: "Köln",
     cities: [
       { name: "Porz", distance: "15 km" },
       { name: "Rodenkirchen", distance: "20 km" },
       { name: "Ensen", distance: "18 km" },
+      { name: "Innenstadt", distance: "25 km" },
+      { name: "Lindenthal", distance: "28 km" },
+      { name: "Ehrenfeld", distance: "30 km" },
+      { name: "Nippes", distance: "30 km" },
+      { name: "Chorweiler", distance: "37 km" },
+      { name: "Mülheim", distance: "33 km" },
+      { name: "Kalk", distance: "30 km" },
+      { name: "Deutz", distance: "27 km" },
+      { name: "Sülz", distance: "27 km" },
+      { name: "Klettenberg", distance: "28 km" },
+      { name: "Bayenthal", distance: "26 km" },
+      { name: "Marienburg", distance: "26 km" },
+    ],
+  },
+  {
+    category: "Eifel (Auszug)",
+    cities: [
+      { name: "Euskirchen", distance: "35 km" },
+      { name: "Mechernich", distance: "45 km" },
+      { name: "Bad Münstereifel", distance: "45 km" },
+      { name: "Zülpich", distance: "40 km" },
+      { name: "Kall", distance: "55 km" },
+      { name: "Weilerswist", distance: "30 km" },
     ],
   },
 ];
@@ -126,7 +149,7 @@ export default function ServicegebietPage() {
               <AnimateIn delay={0.2}>
                 <p className="text-lg md:text-xl text-zinc-400 leading-relaxed">
                   Von Sankt Augustin aus betreuen wir Kunden in der gesamten Region.
-                  Unser Einzugsgebiet umfasst einen Radius von 50 km – für kurze Anfahrtswege
+                  Unser Einzugsgebiet umfasst einen Radius von 80 km – für kurze Anfahrtswege
                   und schnelle Reaktionszeiten.
                 </p>
               </AnimateIn>
@@ -143,7 +166,7 @@ export default function ServicegebietPage() {
                   <div className="w-16 h-16 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/20 flex items-center justify-center mx-auto mb-4">
                     <MapPin className="w-8 h-8 text-[var(--gold)]" />
                   </div>
-                  <h3 className="text-2xl font-light text-white mb-2">50 km Radius</h3>
+                  <h3 className="text-2xl font-light text-white mb-2">80 km Radius</h3>
                   <p className="text-zinc-400 text-sm">Unser Einzugsgebiet rund um Sankt Augustin</p>
                 </div>
               </AnimateIn>
@@ -184,12 +207,12 @@ export default function ServicegebietPage() {
                           .replace(/ß/g, 'ss')
                           .replace(/\s+/g, '-');
 
-                        // Only linkable if city has a dedicated page and is not our main office
-                        const isLinkable = !city.highlight && availableCitySlugs.includes(citySlug);
+                        // Link if a city page exists
+                        const isLinkable = availableCitySlugs.includes(citySlug);
 
                         const content = (
                           <div className="flex items-start justify-between gap-2">
-                            <h3 className={`font-light ${city.highlight ? "text-[var(--gold)]" : "text-white"}`}>
+                            <h3 className={`font-light text-white`}>
                               {city.name}
                             </h3>
                             <span className="text-xs text-zinc-500">{city.distance}</span>
@@ -206,11 +229,8 @@ export default function ServicegebietPage() {
                                 {content}
                               </Link>
                             ) : (
-                              <div
-                                className={`p-4 rounded-xl border transition-all duration-300 bg-[var(--gold)]/10 border-[var(--gold)]/30`}
-                              >
+                              <div className={`p-4 rounded-xl border transition-all duration-300 bg-white/5 border-white/10`}>
                                 {content}
-                                <p className="text-xs text-[var(--gold)]/70 mt-1">Unser Hauptsitz</p>
                               </div>
                             )}
                           </div>

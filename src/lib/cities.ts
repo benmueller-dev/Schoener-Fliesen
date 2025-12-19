@@ -10,6 +10,14 @@ export interface City {
 
 export const cities: City[] = [
   {
+    slug: "sankt-augustin",
+    name: "Sankt Augustin",
+    region: "Stadt",
+    distance: "0 km",
+    postalCodes: ["53757"],
+    keywords: ["Fliesenleger Sankt Augustin", "Badsanierung Sankt Augustin", "Badezimmer Sankt Augustin", "Heizung Sankt Augustin"],
+  },
+  {
     slug: "bonn",
     name: "Bonn",
     region: "Bundesstadt",
@@ -17,6 +25,21 @@ export const cities: City[] = [
     postalCodes: ["53111", "53113", "53115", "53117", "53119", "53121", "53123", "53125", "53127", "53129"],
     keywords: ["Fliesenleger Bonn", "Badsanierung Bonn", "Badezimmer Renovierung Bonn", "Naturstein Bonn", "Heizung Bonn"],
   },
+  // Stadtteile Sankt Augustin
+  { slug: "menden", name: "Menden", region: "Stadtteil Sankt Augustin", distance: "2 km", keywords: ["Fliesenleger Menden", "Badsanierung Menden"] },
+  { slug: "niederpleis", name: "Niederpleis", region: "Stadtteil Sankt Augustin", distance: "3 km", keywords: ["Fliesenleger Niederpleis", "Badsanierung Niederpleis"] },
+  { slug: "hangelar", name: "Hangelar", region: "Stadtteil Sankt Augustin", distance: "4 km", keywords: ["Fliesenleger Hangelar", "Badsanierung Hangelar"] },
+  { slug: "muelldorf", name: "Mülldorf", region: "Stadtteil Sankt Augustin", distance: "2 km", keywords: ["Fliesenleger Mülldorf", "Badsanierung Mülldorf"] },
+  { slug: "birlinghoven", name: "Birlinghoven", region: "Stadtteil Sankt Augustin", distance: "3 km", keywords: ["Fliesenleger Birlinghoven", "Badsanierung Birlinghoven"] },
+
+  // Stadtteile Bonn
+  { slug: "beuel", name: "Beuel", region: "Stadtbezirk Bonn", distance: "5 km", keywords: ["Fliesenleger Beuel", "Badsanierung Beuel"] },
+  { slug: "bad-godesberg", name: "Bad Godesberg", region: "Stadtbezirk Bonn", distance: "10 km", keywords: ["Fliesenleger Bad Godesberg", "Badsanierung Bad Godesberg"] },
+  { slug: "poppelsdorf", name: "Poppelsdorf", region: "Stadtteil Bonn", distance: "9 km", keywords: ["Fliesenleger Poppelsdorf", "Badsanierung Poppelsdorf"] },
+  { slug: "duisdorf", name: "Duisdorf", region: "Stadtteil Bonn", distance: "11 km", keywords: ["Fliesenleger Duisdorf", "Badsanierung Duisdorf"] },
+  { slug: "mehlem", name: "Mehlem", region: "Stadtteil Bonn", distance: "14 km", keywords: ["Fliesenleger Mehlem", "Badsanierung Mehlem"] },
+  { slug: "vilich", name: "Vilich", region: "Stadtteil Bonn", distance: "6 km", keywords: ["Fliesenleger Vilich", "Badsanierung Vilich"] },
+  { slug: "holzlar", name: "Holzlar", region: "Stadtteil Bonn", distance: "4 km", keywords: ["Fliesenleger Holzlar", "Badsanierung Holzlar"] },
   {
     slug: "siegburg",
     name: "Siegburg",
@@ -65,6 +88,36 @@ export const cities: City[] = [
     postalCodes: ["53859"],
     keywords: ["Fliesenleger Niederkassel", "Badsanierung Niederkassel", "Bad Niederkassel"],
   },
+  // Köln Stadtbezirke und Stadtteile (Auswahl)
+  { slug: "porz", name: "Porz", region: "Stadtbezirk Köln", distance: "15 km", keywords: ["Fliesenleger Porz", "Badsanierung Porz"] },
+  { slug: "rodenkirchen", name: "Rodenkirchen", region: "Stadtbezirk Köln", distance: "20 km", keywords: ["Fliesenleger Rodenkirchen", "Badsanierung Rodenkirchen"] },
+  { slug: "ensen", name: "Ensen", region: "Stadtteil Köln", distance: "18 km", keywords: ["Fliesenleger Ensen", "Badsanierung Ensen"] },
+  { slug: "innenstadt", name: "Innenstadt", region: "Stadtbezirk Köln", distance: "25 km", keywords: ["Fliesenleger Köln Innenstadt", "Badsanierung Köln Innenstadt"] },
+  { slug: "lindenthal", name: "Lindenthal", region: "Stadtbezirk Köln", distance: "28 km", keywords: ["Fliesenleger Lindenthal", "Badsanierung Lindenthal"] },
+  { slug: "ehrenfeld", name: "Ehrenfeld", region: "Stadtbezirk Köln", distance: "30 km", keywords: ["Fliesenleger Ehrenfeld", "Badsanierung Ehrenfeld"] },
+  { slug: "nippes", name: "Nippes", region: "Stadtbezirk Köln", distance: "30 km", keywords: ["Fliesenleger Nippes", "Badsanierung Nippes"] },
+  { slug: "chorweiler", name: "Chorweiler", region: "Stadtbezirk Köln", distance: "37 km", keywords: ["Fliesenleger Chorweiler", "Badsanierung Chorweiler"] },
+  { slug: "muelheim", name: "Mülheim", region: "Stadtbezirk Köln", distance: "33 km", keywords: ["Fliesenleger Mülheim", "Badsanierung Mülheim"] },
+  { slug: "kalk", name: "Kalk", region: "Stadtbezirk Köln", distance: "30 km", keywords: ["Fliesenleger Kalk", "Badsanierung Kalk"] },
+  { slug: "deutz", name: "Deutz", region: "Stadtteil Köln", distance: "27 km", keywords: ["Fliesenleger Deutz", "Badsanierung Deutz"] },
+  { slug: "suelz", name: "Sülz", region: "Stadtteil Köln", distance: "27 km", keywords: ["Fliesenleger Sülz", "Badsanierung Sülz"] },
+  { slug: "klettenberg", name: "Klettenberg", region: "Stadtteil Köln", distance: "28 km", keywords: ["Fliesenleger Klettenberg", "Badsanierung Klettenberg"] },
+  { slug: "bayenthal", name: "Bayenthal", region: "Stadtteil Köln", distance: "26 km", keywords: ["Fliesenleger Bayenthal", "Badsanierung Bayenthal"] },
+  { slug: "marienburg", name: "Marienburg", region: "Stadtteil Köln", distance: "26 km", keywords: ["Fliesenleger Marienburg", "Badsanierung Marienburg"] },
+
+  // Rand Köln / Region
+  { slug: "huerth", name: "Hürth", region: "Stadt", distance: "32 km", keywords: ["Fliesenleger Hürth", "Badsanierung Hürth"] },
+  { slug: "frechen", name: "Frechen", region: "Stadt", distance: "35 km", keywords: ["Fliesenleger Frechen", "Badsanierung Frechen"] },
+  { slug: "bruehl", name: "Brühl", region: "Stadt", distance: "28 km", keywords: ["Fliesenleger Brühl", "Badsanierung Brühl"] },
+  { slug: "pulheim", name: "Pulheim", region: "Stadt", distance: "40 km", keywords: ["Fliesenleger Pulheim", "Badsanierung Pulheim"] },
+
+  // Eifel / Kreis Euskirchen (Auswahl)
+  { slug: "euskirchen", name: "Euskirchen", region: "Kreisstadt", distance: "35 km", keywords: ["Fliesenleger Euskirchen", "Badsanierung Euskirchen"] },
+  { slug: "mechernich", name: "Mechernich", region: "Stadt", distance: "45 km", keywords: ["Fliesenleger Mechernich", "Badsanierung Mechernich"] },
+  { slug: "bad-muenstereifel", name: "Bad Münstereifel", region: "Stadt", distance: "45 km", keywords: ["Fliesenleger Bad Münstereifel", "Badsanierung Bad Münstereifel"] },
+  { slug: "zuelpich", name: "Zülpich", region: "Stadt", distance: "40 km", keywords: ["Fliesenleger Zülpich", "Badsanierung Zülpich"] },
+  { slug: "kall", name: "Kall", region: "Gemeinde", distance: "55 km", keywords: ["Fliesenleger Kall", "Badsanierung Kall"] },
+  { slug: "weilerswist", name: "Weilerswist", region: "Gemeinde", distance: "30 km", keywords: ["Fliesenleger Weilerswist", "Badsanierung Weilerswist"] },
   {
     slug: "bornheim",
     name: "Bornheim",

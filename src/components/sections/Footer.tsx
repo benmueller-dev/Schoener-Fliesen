@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Instagram, Facebook, MapPin, Mail, Phone } from "lucide-react";
+import { Instagram, Facebook, MapPin, Mail, Phone, ShoppingBag } from "lucide-react";
 
 const navLinks = [
   { href: "/ueber-uns", label: "Über uns" },
@@ -54,6 +54,29 @@ export function Footer() {
             <p className="text-zinc-500 text-sm mb-4">
               Meisterbetrieb für exklusive Bad- und Heizungslösungen im Rhein-Sieg-Kreis.
             </p>
+            {/* Social & Shop */}
+            <div className="flex items-center gap-3 mt-4">
+              <a
+                href="https://www.instagram.com/schoenerfliesen?igsh=cWhmajlxOG94OXpx"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10 text-zinc-300 hover:text-white hover:border-[var(--gold)]/30 hover:bg-white/10 transition-colors text-xs"
+              >
+                <Instagram className="w-4 h-4 text-[var(--gold)]" />
+                Instagram
+              </a>
+              <a
+                href="https://schoener-fliesen.store/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Online Shop"
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10 text-zinc-300 hover:text-white hover:border-[var(--gold)]/30 hover:bg-white/10 transition-colors text-xs"
+              >
+                <ShoppingBag className="w-4 h-4 text-[var(--gold)]" />
+                Online‑Shop
+              </a>
+            </div>
           </div>
 
           {/* Navigation */}

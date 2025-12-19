@@ -57,6 +57,10 @@ export function StructuredData() {
       },
       {
         "@type": "City",
+        "name": "Köln"
+      },
+      {
+        "@type": "City",
         "name": "Siegburg"
       },
       {
@@ -130,7 +134,7 @@ export function StructuredData() {
           "latitude": "50.7731",
           "longitude": "7.1847"
         },
-        "geoRadius": "50000"
+        "geoRadius": "80000"
       }
     ],
     "hasOfferCatalog": {
