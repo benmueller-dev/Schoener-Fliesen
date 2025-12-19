@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X, Phone, Mail } from "lucide-react";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
@@ -32,7 +32,32 @@ export function Navigation() {
 
   return (
     <>
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      {/* Top Contact Bar */}
+      <div className="fixed top-0 w-full z-50 bg-black/70 backdrop-blur border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-6 h-9 md:h-10 flex items-center justify-between text-zinc-300">
+          <div className="flex items-center gap-5 md:gap-8">
+            <a
+              href="tel:+491754018760"
+              className="inline-flex items-center gap-2 hover:text-[var(--gold)] transition-colors"
+            >
+              <Phone className="w-3.5 h-3.5 md:w-4 md:h-4" />
+              <span className="text-xs md:text-sm">0175 4018760</span>
+            </a>
+            <a
+              href="mailto:info@schoener-fliesen.com"
+              className="hidden sm:inline-flex items-center gap-2 hover:text-[var(--gold)] transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5 md:w-4 md:h-4" />
+              <span className="text-xs md:text-sm">info@schoener-fliesen.com</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Spacer to offset fixed top bar in document flow */}
+      <div className="h-9 md:h-10" aria-hidden="true" />
+
+      <nav className={`fixed top-9 md:top-10 w-full z-50 transition-all duration-300 ${
         mobileMenuOpen
           ? "bg-black"
           : "backdrop-blur-xl border-b border-white/5 bg-black/50"
