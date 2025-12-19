@@ -42,7 +42,7 @@ export function Hero() {
   }, [goToNext]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <section className="relative min-h-[75vh] lg:min-h-[65vh] flex items-center justify-center pt-20 overflow-hidden">
       {/* Background Image Slider */}
       <div className="absolute inset-0 z-0">
         {heroImages.map((src, index) => (
