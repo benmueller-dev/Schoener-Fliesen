@@ -4,8 +4,7 @@ import { AnimateIn } from "@/components/AnimateIn";
 import { SectionBadge } from "@/components/SectionBadge";
 import Image from "next/image";
 import { ShowroomGrid } from "./ShowroomGrid";
-import fs from "fs";
-import path from "path";
+// All images are curated manually below; no fs/path needed
 
 export const metadata = {
   title: "Showroom | Fliesenausstellung & Badausstellung Sankt Augustin",
@@ -21,54 +20,55 @@ export const metadata = {
 function getShowroomImages(): string[] {
   const curated = [
     "/Showroom/01_DSC_0001cd.jpg",
-    "/Showroom/02_D 5530_0053cd.jpg",
+   
     "/Showroom/03_DSC_0137cd.jpg",
     "/Showroom/04_D 5534_0029cd.jpg",
     "/Showroom/05_DSC_0097cd.jpg",
     "/Showroom/06_DSC_0102cdneu.jpg",
     "/Showroom/07_D 5530_0059cdneu.jpg",
-    "/Fotos (neu)/Mittel (IMG_1938).jpeg",
-    "/Showroom/09_P1020362.jpg",
+    
+
     "/Showroom/10_DSC_0027cd.jpg",
     "/Showroom/11_DSC_0121cd.jpg",
     "/Showroom/12_DSC_0068cd.jpg",
     "/Showroom/13_D 5572_0101cd.jpg",
     "/Showroom/14_D 5572_0089cd.jpg",
     "/Showroom/15_D 5572_0099cd.jpg",
-    "/Fotos (neu)/Mittel (EA8D77BA-9A4B-4F49-8B1B-5C7EB5E4D0CE).jpeg",
-    "/Fotos (neu)/Mittel (E6F2D76C-022D-4555-A9A3-43169B7C58F2).jpeg",
-    
+    "/Showroom/09_P1020362.jpg",
+    "/Fotos (showroom)/34FECE9F-0BB6-49E4-9D1A-CDFB480812C5-min.jpg",
+
+    //Bad 1
+  
     "/Fotos (neu)/2/73B3893E-9AE9-4C2E-ACB8-5E89090CB669_1_105_c.jpeg",
-    "/Fotos (neu)/2/A2239486-7DB6-46EF-9E42-06F0808EC032_1_105_c.jpeg",
-    "/Fotos (neu)/2/AA684F58-DB7A-4AD5-9586-5971DCB7C871_1_105_c.jpeg",
-    "/Fotos (neu)/2/B04992BD-E9BE-4CE5-BB8D-3425367FD315_1_105_c.jpeg",
-    "/Fotos (neu)/2/D0904354-A85E-413B-9A0E-7FA2A8356182_1_105_c.jpeg",
-    "/Fotos (neu)/2/D8ACB405-7E6C-4989-8B81-2E2EFDCD8C3B_1_105_c.jpeg",
-    "/Fotos (neu)/2/EA8D77BA-9A4B-4F49-8B1B-5C7EB5E4D0CE_1_105_c.jpeg",
+    "/Fotos (neu)/Mittel (IMG_1938).jpeg",
+    "/Fotos (showroom)/DSC02104-min.jpg",
+   
+
+    //Bad 2
+    "/Fotos (showroom)/51F45CF5-CC9E-4595-A057-CE28AB5346EE-min.jpg",
+    "/Fotos (showroom)/065B9E2A-9AF3-4A4B-B668-255C66B021AB-min.jpg",
     
+    
+    "/Fotos (showroom)/7936E3E8-6A42-447A-8D3B-D37A0849E407-min.jpg",
+    
+    "/Fotos (showroom)/DSC02180-min.jpg",
+
+
+
+    //artweger
+    "/Fotos (neu)/2/A2239486-7DB6-46EF-9E42-06F0808EC032_1_105_c.jpeg",
+    "/Showroom/02_D 5530_0053cd.jpg",
+    "/Fotos (neu)/2/D0904354-A85E-413B-9A0E-7FA2A8356182_1_105_c.jpeg",
+
+
+
+
+    "/Fotos (neu)/Mittel (EA8D77BA-9A4B-4F49-8B1B-5C7EB5E4D0CE).jpeg",
+    "/Fotos (neu)/Mittel (E6F2D76C-022D-4555-A9A3-43169B7C58F2).jpeg",  
   ];
 
-  const dir = path.join(process.cwd(), "public", "Fotos (showroom)");
-  let newFiles: string[] = [];
-  try {
-    newFiles = fs
-      .readdirSync(dir)
-      .filter((f) => /\.(jpe?g|png|webp|avif)$/i.test(f))
-      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
-  } catch {
-    newFiles = [];
-  }
-
-  const newPaths = newFiles.map((f) => `/Fotos (showroom)/${f}`);
-  const seen = new Set<string>();
-  const combined: string[] = [];
-  for (const p of [...newPaths, ...curated]) {
-    if (!seen.has(p)) {
-      seen.add(p);
-      combined.push(p);
-    }
-  }
-  return combined;
+  // Exclusively return the manually curated list
+  return curated;
 }
 
 export default function ShowroomPage() {
