@@ -142,8 +142,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
             <AnimateIn delay={0.2}>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
                 {service.features.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-[var(--gold)] shrink-0 mt-0.5" />
+                  <div key={index} className="flex items-center gap-2">
+                    <Check className="w-5 h-5 text-[var(--gold)] shrink-0" />
                     <span className="text-sm text-zinc-400">{feature}</span>
                   </div>
                 ))}
@@ -229,6 +229,18 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 </AnimateIn>
               ))}
             </div>
+
+            <AnimateIn delay={0.5}>
+              <div className="flex justify-center mt-12">
+                <Link
+                  href="/kontakt"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--gold)] text-white rounded-full hover:bg-[var(--gold-light)] transition-colors font-medium text-base"
+                >
+                  Jetzt Beratung anfragen
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </div>
+            </AnimateIn>
           </div>
         </section>
 
