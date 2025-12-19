@@ -10,6 +10,7 @@ import { useState, FormEvent, useRef, useEffect } from "react";
 import Link from "next/link";
 import Script from "next/script";
 import Image from "next/image";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 const contactInfo = [
   {
@@ -228,6 +229,7 @@ export default function KontaktPage() {
         onError={(e) => console.error('❌ Turnstile script failed to load:', e)}
       />
       <Navigation />
+      <Breadcrumbs />
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">

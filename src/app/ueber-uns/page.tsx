@@ -4,6 +4,7 @@ import { Stats } from "@/components/sections";
 import { AnimateIn } from "@/components/AnimateIn";
 import { SectionBadge } from "@/components/SectionBadge";
 import Image from "next/image";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata = {
   title: "Über uns | Meisterbetrieb Schöner Fliesen Sankt Augustin",
@@ -14,12 +15,16 @@ export const metadata = {
     description: "Seit über 25 Jahren Ihr Meisterbetrieb für Bad & Heizung in Sankt Augustin",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.schoener-fliesen.com/ueber-uns",
+  },
 };
 
 export default function UeberUnsPage() {
   return (
     <>
       <Navigation />
+      <Breadcrumbs />
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">

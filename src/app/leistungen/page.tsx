@@ -6,6 +6,8 @@ import Image from "next/image";
 import { services } from "@/lib/services";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { FAQ } from "@/components/FAQ";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata = {
   title: "Leistungen | Badsanierung, Fliesen & Heizung Sankt Augustin",
@@ -16,12 +18,16 @@ export const metadata = {
     description: "Badsanierung, Fliesenverlegung, Heizungsmodernisierung & mehr in Sankt Augustin",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.schoener-fliesen.com/leistungen",
+  },
 };
 
 export default function LeistungenPage() {
   return (
     <>
       <Navigation />
+      <Breadcrumbs />
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
@@ -137,6 +143,33 @@ export default function LeistungenPage() {
             </AnimateIn>
           </div>
         </section>
+
+        {/* FAQ Section */}
+        <FAQ
+          headline="FAQ zur Badsanierung & Fliesen"
+          items={[
+            {
+              question: "Was kostet eine komplette Badsanierung?",
+              answer:
+                "Je nach Größe, Ausstattung und Umbauaufwand liegen Komplettsanierungen meist zwischen 15.000–40.000 €. Nach der Vor-Ort-Beratung erhalten Sie ein transparentes Festpreisangebot.",
+            },
+            {
+              question: "Wie lange dauert die Sanierung?",
+              answer:
+                "Der Umbau eines Standardbades dauert im Schnitt 2–3 Wochen. Bei besonderen Arbeiten (z. B. Spanndecken, Sonderanfertigungen) kann es etwas länger dauern.",
+            },
+            {
+              question: "Bietet ihr barrierefreie Lösungen?",
+              answer:
+                "Ja. Bodengleiche Duschen, rutschhemmende Fliesen, Haltegriffe und passende Sanitärobjekte planen und montieren wir regelmäßig.",
+            },
+            {
+              question: "Kann ich Material selbst stellen?",
+              answer:
+                "Auf Wunsch verbauen wir kundenseitig bereitgestellte Produkte. Empfehlung: Wir beraten zu passenden Marken, damit Qualität und Garantie stimmen.",
+            },
+          ]}
+        />
       </main>
       <Footer />
     </>

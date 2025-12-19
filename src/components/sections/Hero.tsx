@@ -5,10 +5,10 @@ import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const heroImages = [
-  "https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=1920&auto=format&fit=crop",
+  "/Hero/pexels-fotoaibe-1571462 (1).jpg",
   "/Fotos/Badezimmer-Sankt-Augustin.png",
   "/Hero/pexels-ranamatloob567-35189673.jpg",
-  "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1920&auto=format&fit=crop",
+  "/Fotos/Badezimmer-Waschbecken-Sankt-Augustin.png",
   "/Fotos/Badezimmer-Dusche-Sankt-Augustin.png"
 ];
 

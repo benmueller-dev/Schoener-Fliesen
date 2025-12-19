@@ -8,6 +8,8 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { Check, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import Script from "next/script";
 
 interface ServicePageProps {
   params: Promise<{
@@ -35,6 +37,9 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
       description: service.seo.description,
       type: "website",
     },
+    alternates: {
+      canonical: `https://www.schoener-fliesen.com/leistungen/${service.slug}`,
+    },
   };
 }
 
@@ -54,11 +59,45 @@ export default async function ServicePage({ params }: ServicePageProps) {
   }
 
   const Icon = service.icon;
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.description,
+    provider: {
+      "@type": "LocalBusiness",
+      name: "Schöner Fliesen GmbH",
+      telephone: "+491754018760",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Hennefer Straße 25",
+        addressLocality: "Sankt Augustin",
+        postalCode: "53757",
+        addressCountry: "DE",
+      },
+    },
+    areaServed: ["Sankt Augustin", "Bonn", "Siegburg", "Troisdorf", "Rhein-Sieg-Kreis"],
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "EUR",
+      price: "0",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "EUR",
+        minPrice: 1500,
+        maxPrice: 40000,
+      },
+      availability: "https://schema.org/InStock",
+      url: `https://www.schoener-fliesen.com/leistungen/${service.slug}`,
+    },
+  };
 
   return (
     <>
       <Navigation />
+      <Breadcrumbs />
       <main>
+        <Script id="schema-service" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
           <div className="absolute inset-0 z-0">

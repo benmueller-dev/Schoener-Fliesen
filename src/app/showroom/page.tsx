@@ -4,6 +4,7 @@ import { AnimateIn } from "@/components/AnimateIn";
 import { SectionBadge } from "@/components/SectionBadge";
 import Image from "next/image";
 import { ShowroomGrid } from "./ShowroomGrid";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 // All images are curated manually below; no fs/path needed
 
 export const metadata = {
@@ -14,6 +15,9 @@ export const metadata = {
     title: "Showroom | Fliesenausstellung Sankt Augustin",
     description: "Besuchen Sie unseren Showroom in Sankt Augustin. Fliesen, Bad-Exponate & Beratung.",
     type: "website",
+  },
+  alternates: {
+    canonical: "https://www.schoener-fliesen.com/showroom",
   },
 };
 
@@ -76,6 +80,7 @@ export default function ShowroomPage() {
   return (
     <>
       <Navigation />
+      <Breadcrumbs />
       <main>
         {/* Hero */}
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">

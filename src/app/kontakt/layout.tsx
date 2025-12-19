@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     description: "Kontaktieren Sie uns für Badsanierung & Fliesen. Tel: 0175 4018760. Kostenlose Beratung!",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.schoener-fliesen.com/kontakt",
+  },
 };
 
 export default function KontaktLayout({

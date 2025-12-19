@@ -27,6 +27,7 @@ export function StructuredData() {
       "latitude": "50.7731",
       "longitude": "7.1847"
     },
+    "hasMap": "https://www.google.com/maps?q=50.7731,7.1847",
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",

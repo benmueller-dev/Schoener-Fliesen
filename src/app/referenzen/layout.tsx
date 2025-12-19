@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     description: "Unsere Referenzen: Vorher-Nachher Bilder von Badsanierungen in Sankt Augustin & Umgebung",
     type: "website",
   },
+  alternates: {
+    canonical: "https://www.schoener-fliesen.com/referenzen",
+  },
 };
 
 export default function ReferenzenLayout({

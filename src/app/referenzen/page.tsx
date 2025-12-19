@@ -8,6 +8,7 @@ import Image from "next/image";
 import { Quote, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 const projects = [
   {
@@ -296,6 +297,7 @@ export default function ReferenzenPage() {
   return (
     <>
       <Navigation />
+      <Breadcrumbs />
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">

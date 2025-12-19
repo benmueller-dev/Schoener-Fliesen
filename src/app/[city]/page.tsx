@@ -14,6 +14,8 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { AnimateIn } from "@/components/AnimateIn";
 import { SectionBadge } from "@/components/SectionBadge";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FAQ } from "@/components/FAQ";
 
 interface CityPageProps {
   params: Promise<{
@@ -36,6 +38,9 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
     title: `Badsanierung ${city.name} | Heizung & Fliesen | Schöner Fliesen`,
     description: `Ihr Meisterbetrieb für Badsanierung & Fliesen in ${city.name}. 25+ Jahre Erfahrung. Nur ${city.distance} von ${city.name}. Kostenlose Beratung! ☎ 0175 4018760`,
     keywords: city.keywords.join(", "),
+    alternates: {
+      canonical: `https://www.schoener-fliesen.com/${city.slug}`,
+    },
     openGraph: {
       title: `Badsanierung ${city.name} | Schöner Fliesen`,
       description: `Meisterbetrieb für Badsanierung & Fliesen in ${city.name}. 25+ Jahre Erfahrung.`,
@@ -62,13 +67,14 @@ export default async function CityPage({ params }: CityPageProps) {
   return (
     <>
       <Navigation />
+      <Breadcrumbs />
       <main>
         {/* Hero Section - GLEICHE Komponente wie Startseite, nur Text angepasst */}
-        <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <section className="relative min-h-[75vh] lg:min-h-[65vh] flex items-center justify-center pt-20 overflow-hidden">
           {/* Background Image - gleich wie Startseite */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=1920&auto=format&fit=crop"
+              src="/Hero/pexels-ranamatloob567-35189673.jpg"
               alt={`Badezimmer ${city.name}`}
               fill
               className="object-cover opacity-90"
@@ -208,6 +214,28 @@ export default async function CityPage({ params }: CityPageProps) {
 
         {/* Details - EXAKT wie auf Startseite */}
         <Details />
+
+        {/* FAQ - lokal bezogen */}
+        <FAQ
+          headline={`FAQ zur Badsanierung in ${city.name}`}
+          items={[
+            {
+              question: `Kommt ihr auch direkt nach ${city.name}?`,
+              answer:
+                `Ja. Unser Team ist regelmäßig in ${city.name} und Umgebung im Einsatz. Eine unverbindliche Vor-Ort-Beratung ist möglich.`,
+            },
+            {
+              question: "Welche Kosten muss ich einplanen?",
+              answer:
+                "Das hängt von Größe, Ausstattung und Umbauaufwand ab. Nach dem Aufmaß erhalten Sie ein klares Festpreisangebot – ohne versteckte Kosten.",
+            },
+            {
+              question: "Übernehmt ihr auch Teilmodernisierungen?",
+              answer:
+                "Natürlich – z. B. nur die Dusche erneuern, Fliesen austauschen oder Sanitär tauschen. Wir beraten, was wirtschaftlich sinnvoll ist.",
+            },
+          ]}
+        />
 
         {/* CTA Section - stadtspezifisch */}
         <section className="relative py-20 md:py-28 overflow-hidden">

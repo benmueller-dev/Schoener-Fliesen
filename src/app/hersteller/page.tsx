@@ -5,6 +5,7 @@ import { SectionBadge } from "@/components/SectionBadge";
 import Image from "next/image";
 import fs from "fs";
 import path from "path";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata = {
   title: "Hersteller & Partner | Schöner Fliesen Sankt Augustin",
@@ -14,6 +15,9 @@ export const metadata = {
     title: "Hersteller & Partner | Schöner Fliesen",
     description: "30+ Premium-Hersteller für höchste Material- und Designqualität",
     type: "website",
+  },
+  alternates: {
+    canonical: "https://www.schoener-fliesen.com/hersteller",
   },
 };
 
@@ -107,6 +111,7 @@ export default function HerstellerPage() {
   return (
     <>
       <Navigation />
+      <Breadcrumbs />
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">

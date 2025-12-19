@@ -6,6 +6,7 @@ import { MapPin, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { getAllCitySlugs } from "@/lib/cities";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata = {
   title: "Servicegebiet | Fliesenleger & Badsanierung Rhein-Sieg-Kreis",
@@ -15,6 +16,9 @@ export const metadata = {
     title: "Servicegebiet | Fliesenleger Rhein-Sieg-Kreis",
     description: "Ihr Meisterbetrieb für Fliesen & Bad in der Region",
     type: "website",
+  },
+  alternates: {
+    canonical: "https://www.schoener-fliesen.com/servicegebiet",
   },
 };
 
@@ -120,6 +124,7 @@ export default function ServicegebietPage() {
   return (
     <>
       <Navigation />
+      <Breadcrumbs />
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">

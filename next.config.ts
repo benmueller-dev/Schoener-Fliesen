@@ -1,6 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      // Force www canonical host
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'schoener-fliesen.com' }],
+        destination: 'https://www.schoener-fliesen.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

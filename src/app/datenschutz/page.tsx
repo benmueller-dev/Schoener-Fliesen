@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/sections";
 import { AnimateIn } from "@/components/AnimateIn";
 import { SectionBadge } from "@/components/SectionBadge";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata = {
   title: "Datenschutzerklärung | Schöner Fliesen GmbH",
@@ -10,12 +11,16 @@ export const metadata = {
     index: false,
     follow: true,
   },
+  alternates: {
+    canonical: "https://www.schoener-fliesen.com/datenschutz",
+  },
 };
 
 export default function DatenschutzPage() {
   return (
     <>
       <Navigation />
+      <Breadcrumbs />
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-black">
