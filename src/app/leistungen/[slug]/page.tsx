@@ -184,15 +184,15 @@ export default async function ServicePage({ params }: ServicePageProps) {
               </AnimateIn>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="max-w-4xl mx-auto space-y-8">
               {service.process.map((step, index) => (
                 <AnimateIn key={index} delay={0.1 * index}>
-                  <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors">
-                    <div className="flex flex-col items-center text-center">
-                      <div className="shrink-0 w-16 h-16 rounded-full bg-[var(--gold)] flex items-center justify-center text-white font-medium text-2xl mb-6">
-                        {step.step}
-                      </div>
-                      <h3 className="text-xl font-light text-white mb-4">{step.title}</h3>
+                  <div className="flex gap-6 items-start">
+                    <div className="shrink-0 w-12 h-12 rounded-full bg-[var(--gold)] flex items-center justify-center text-white font-medium">
+                      {step.step}
+                    </div>
+                    <div className="flex-1 backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
+                      <h3 className="text-xl font-light text-white mb-2">{step.title}</h3>
                       <p className="text-zinc-400 leading-relaxed">{step.description}</p>
                     </div>
                   </div>
