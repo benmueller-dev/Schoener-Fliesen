@@ -3,7 +3,6 @@ import { getAllCitySlugs } from '@/lib/cities'
 import { getAllServiceSlugs } from '@/lib/services'
 
 export const runtime = 'nodejs'
-export const revalidate = 60 * 60 * 6 // 6h
 
 function xmlEscape(value: string) {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -53,4 +52,3 @@ export async function GET() {
     },
   })
 }
-
