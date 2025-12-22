@@ -14,7 +14,27 @@ const heroImages = [
 
 ];
 
-export function Hero() {
+interface HeroProps {
+  badge?: string;
+  titleLine1?: string;
+  titleLine2?: string;
+  description?: string;
+  primaryButtonText?: string;
+  primaryButtonHref?: string;
+  secondaryButtonText?: string;
+  secondaryButtonHref?: string;
+}
+
+export function Hero({
+  badge = "Über 25 Jahre Erfahrung",
+  titleLine1 = "Komplettrenovierung",
+  titleLine2 = "vom Badprofi.",
+  description = "Hochwertige Badgestaltung muss nicht teuer sein. Wir kombinieren Qualität und Stil mit transparenten, fairen Festpreisen.",
+  primaryButtonText = "Jetzt Planung anfragen",
+  primaryButtonHref = "/kontakt",
+  secondaryButtonText,
+  secondaryButtonHref,
+}: HeroProps = {}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -44,7 +64,7 @@ export function Hero() {
   }, [goToNext]);
 
   return (
-    <section className="relative min-h-[75vh] lg:min-h-[65vh] flex items-center justify-center pt-20 overflow-hidden">
+    <section className="relative min-h-[75vh] lg:min-h-[65vh] flex items-center justify-center pt-20 overflow-x-clip">
       {/* Background Image Slider */}
       <div className="absolute inset-0 z-0">
         {heroImages.map((src, index) => (
@@ -95,20 +115,20 @@ export function Hero() {
       </button>
 
       {/* Content */}
-      <div className="relative z-20 text-center max-w-[823px] mx-auto px-6 md:px-8">
+      <div className="relative z-20 text-center max-w-[823px] mx-auto px-8 md:px-12 lg:px-16">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--gold)]/20 bg-[var(--gold)]/5 mb-8 animate-title">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
           <span className="text-xs uppercase tracking-widest text-[var(--gold-light)] font-medium">
-            Über 25 Jahre Erfahrung
+            {badge}
           </span>
         </div>
 
-        <h1 className="text-4xl md:text-7xl lg:text-8xl font-light tracking-tighter mb-8 leading-[0.9]">
+        <h1 className="text-4xl md:text-7xl lg:text-8xl font-light tracking-tighter mb-8 leading-[0.9] break-words">
           <span className="block text-white animate-title animate-delay-100 font-light text-[40px] md:text-[60px]">
-            Komplettrenovierung
+            {titleLine1}
           </span>
-          <span className="block gold-gradient animate-title animate-delay-200 pb-2 pt-[11px] tracking-[-1.5px] md:tracking-[-2.7px]">
-            vom Badprofi.
+          <span className="block gold-gradient animate-title animate-delay-200 pb-2 pt-[11px] tracking-[-1.5px] md:tracking-[-2.7px] break-words hyphens-auto" lang="de">
+            {titleLine2}
           </span>
         </h1>
 
@@ -116,18 +136,24 @@ export function Hero() {
           className="text-base md:text-xl text-zinc-400 font-light max-w-[728px] mx-auto mb-12 animate-title animate-delay-300 leading-relaxed px-2"
           style={{ fontFamily: "Poppins" }}
         >
-          Hochwertige Badgestaltung muss nicht teuer sein.{" "}
-          <br className="hidden md:block" />
-          Wir kombinieren Qualität und Stil mit transparenten, fairen Festpreisen.
+          {description}
         </p>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 animate-title animate-delay-300 px-2">
           <a
-            href="/kontakt"
+            href={primaryButtonHref}
             className="w-full md:w-auto px-8 py-3 bg-[var(--gold)] text-white rounded-full hover:bg-[var(--gold-light)] transition-colors font-medium text-sm tracking-wide text-center"
           >
-            Jetzt Planung anfragen
+            {primaryButtonText}
           </a>
+          {secondaryButtonText && secondaryButtonHref && (
+            <a
+              href={secondaryButtonHref}
+              className="w-full md:w-auto px-8 py-3 bg-white/5 border border-white/10 text-white rounded-full hover:border-[var(--gold)]/30 transition-colors font-medium text-sm"
+            >
+              {secondaryButtonText}
+            </a>
+          )}
         </div>
       </div>
 

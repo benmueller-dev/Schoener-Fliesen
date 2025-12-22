@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import {
+  Hero,
   Stats,
   About,
   GalleryMarquee,
@@ -70,93 +71,15 @@ export default async function CityPage({ params }: CityPageProps) {
       <Breadcrumbs />
       <main>
         {/* Hero Section - GLEICHE Komponente wie Startseite, nur Text angepasst */}
-        <section className="relative min-h-[75vh] lg:min-h-[65vh] flex items-center justify-center pt-20 overflow-hidden">
-          {/* Background Image - gleich wie Startseite */}
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/Hero/pexels-ranamatloob567-35189673.jpg"
-              alt={`Badezimmer ${city.name}`}
-              fill
-              className="object-cover opacity-90"
-              sizes="100vw"
-              priority
-            />
-          </div>
-
-          {/* Vignette & Gradient Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-10" />
-
-          {/* Content - stadtspezifisch */}
-          <div className="relative z-20 text-center max-w-[823px] mx-auto px-6 md:px-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--gold)]/20 bg-[var(--gold)]/5 mb-8 animate-title">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
-              <span className="text-xs uppercase tracking-widest text-[var(--gold-light)] font-medium">
-                Ihr Meisterbetrieb in {city.name}
-              </span>
-            </div>
-
-            <h1 className="text-4xl md:text-7xl lg:text-8xl font-light tracking-tighter mb-8 leading-[0.9]">
-              <span className="block text-white animate-title animate-delay-100 font-light text-[40px] md:text-[60px]">
-                Badsanierung
-              </span>
-              <span className="block gold-gradient animate-title animate-delay-200 pb-2 pt-[11px] tracking-[-1.5px] md:tracking-[-2.7px]">
-                in {city.name}
-              </span>
-            </h1>
-
-            <p
-              className="text-base md:text-xl text-zinc-400 font-light max-w-[728px] mx-auto mb-12 animate-title animate-delay-300 leading-relaxed px-2"
-              style={{ fontFamily: "Poppins" }}
-            >
-              Nur {city.distance} von {city.name} entfernt.{" "}
-              <br className="hidden md:block" />
-              Meisterbetrieb mit 25+ Jahren Erfahrung für Ihre Badsanierung.
-            </p>
-
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4 animate-title animate-delay-300 px-2">
-              <a
-                href="/kontakt"
-                className="w-full md:w-auto px-8 py-3 bg-[var(--gold)] text-white rounded-full hover:bg-[var(--gold-light)] transition-colors font-medium text-sm tracking-wide"
-              >
-                Jetzt Beratung anfragen
-              </a>
-              <a
-                href="tel:+491754018760"
-                className="w-full md:w-auto px-8 py-3 bg-white/5 border border-white/10 text-white rounded-full hover:border-[var(--gold)]/30 transition-colors font-medium text-sm"
-              >
-                0175 4018760
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ - stadtspezifisch direkt oben */}
-        <FAQ
-          headline={`Badsanierung in ${city.name}: Häufige Fragen`}
-          subline={`Kurz erklärt: Ablauf, Dauer, Vor-Ort-Beratung in ${city.name}`}
-          items={[
-            {
-              question: `Kommt ihr für eine Beratung nach ${city.name}?`,
-              answer:
-                `Ja. Wir vereinbaren gern einen Termin direkt bei Ihnen in ${city.name}. Auf Basis des Aufmaßes erhalten Sie ein transparentes Festpreisangebot.`,
-            },
-            {
-              question: "Wie lange dauert die Badsanierung?",
-              answer:
-                "Je nach Größe und Umfang rund 2–3 Wochen bis zur schlüsselfertigen Übergabe.",
-            },
-            {
-              question: "Barrierefrei und seniorengerecht in eurer Region?",
-              answer:
-                "Wir realisieren bodengleiche Duschen, rutschhemmende Beläge, Haltegriffe, Sitzlösungen und unterfahrbare Waschtische – ideal für Seniorinnen/Senioren und Mobilitätseinschränkungen.",
-            },
-            {
-              question: `Zeigt ihr Referenzen aus ${city.name} oder der Nähe?`,
-              answer:
-                `Ja – in unseren Referenzen finden sich Projekte aus ${city.name} und den Nachbarorten. Auf Wunsch zeigen wir passende Beispiele im Beratungstermin.`,
-            },
-          ]}
+        <Hero
+          badge={`Ihr Meisterbetrieb in ${city.name}`}
+          titleLine1="Badsanierung"
+          titleLine2={`in ${city.name}`}
+          description={`Nur ${city.distance} von ${city.name} entfernt. Meisterbetrieb mit 25+ Jahren Erfahrung für Ihre Badsanierung.`}
+          primaryButtonText="Jetzt Beratung anfragen"
+          primaryButtonHref="/kontakt"
+          secondaryButtonText="0175 4018760"
+          secondaryButtonHref="tel:+491754018760"
         />
 
         {/* Stats Section - EXAKT wie auf Startseite */}
@@ -242,6 +165,34 @@ export default async function CityPage({ params }: CityPageProps) {
 
         {/* Details - EXAKT wie auf Startseite */}
         <Details />
+
+        {/* FAQ - stadtspezifisch */}
+        <FAQ
+          headline={`Badsanierung in ${city.name}: Häufige Fragen`}
+          subline={`Kurz erklärt: Ablauf, Dauer, Vor-Ort-Beratung in ${city.name}`}
+          items={[
+            {
+              question: `Kommt ihr für eine Beratung nach ${city.name}?`,
+              answer:
+                `Ja. Wir vereinbaren gern einen Termin direkt bei Ihnen in ${city.name}. Auf Basis des Aufmaßes erhalten Sie ein transparentes Festpreisangebot.`,
+            },
+            {
+              question: "Wie lange dauert die Badsanierung?",
+              answer:
+                "Je nach Größe und Umfang rund 2–3 Wochen bis zur schlüsselfertigen Übergabe.",
+            },
+            {
+              question: "Barrierefrei und seniorengerecht in eurer Region?",
+              answer:
+                "Wir realisieren bodengleiche Duschen, rutschhemmende Beläge, Haltegriffe, Sitzlösungen und unterfahrbare Waschtische – ideal für Seniorinnen/Senioren und Mobilitätseinschränkungen.",
+            },
+            {
+              question: `Zeigt ihr Referenzen aus ${city.name} oder der Nähe?`,
+              answer:
+                `Ja – in unseren Referenzen finden sich Projekte aus ${city.name} und den Nachbarorten. Auf Wunsch zeigen wir passende Beispiele im Beratungstermin.`,
+            },
+          ]}
+        />
 
         {/* FAQ - allgemeine Fragen wie auf Startseite */}
         <FAQ
