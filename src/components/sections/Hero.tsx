@@ -5,11 +5,13 @@ import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const heroImages = [
-  "/Hero/pexels-fotoaibe-1571462 (1).jpg",
+  "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1920&auto=format&fit=crop",
   "/Fotos/Badezimmer-Sankt-Augustin.png",
   "/Hero/pexels-ranamatloob567-35189673.jpg",
-  "/Fotos/Badezimmer-Waschbecken-Sankt-Augustin.png",
-  "/Fotos/Badezimmer-Dusche-Sankt-Augustin.png"
+  "/Fotos (showroom)/DSC02104-min.jpg",
+  "/Referenz 1/Nachher/Badezimmer-Sankt-Augustin-Warm2.png",
+  "/Referenz 1/Nachher/Badezimmer-Sankt-Augustin-Warm.png",
+
 ];
 
 export function Hero() {
