@@ -184,7 +184,7 @@ export default function KontaktPage() {
           email: formData.email,
           phone: formData.phone || "Nicht angegeben",
           message: formData.message + fileLinksText,
-          "h-captcha-response": turnstileToken,
+          turnstile_token: turnstileToken, // Send as regular field for logging
           to: ["mueller.ben100@gmail.com", "info@schoener-fliesen.com"],
         }),
       });
