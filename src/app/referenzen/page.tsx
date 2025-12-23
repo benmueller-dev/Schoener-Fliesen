@@ -49,6 +49,8 @@ const projects = [
       author: "Familie M."
     },
     beforeImages: [
+      "/1.jpeg",
+      "/2.jpeg",
       "/Referenz 2/Vorher/IMG_6455-min.jpg"
     ],
     afterImages: [
