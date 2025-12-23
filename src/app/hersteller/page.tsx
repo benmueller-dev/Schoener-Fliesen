@@ -158,7 +158,7 @@ export default function HerstellerPage() {
               {heatingPartners.map((p, i) => (
                 <AnimateIn key={p.name} delay={i * 0.05}>
                   <div className="p-4 md:p-6 rounded-2xl bg-zinc-950 border border-white/5 flex items-center justify-center">
-                    <Image src={p.src} alt={`${p.name} Logo`} width={220} height={100} className="object-contain w-auto h-12 md:h-16" />
+                    <Image src={p.src} alt={`${p.name} Logo`} width={160} height={80} className="object-contain w-auto h-10 md:h-12" />
                   </div>
                 </AnimateIn>
               ))}
@@ -175,8 +175,8 @@ export default function HerstellerPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
               {materialPartners.map((p, i) => (
                 <AnimateIn key={p.name} delay={i * 0.02}>
-                  <div className="p-4 rounded-xl bg-zinc-950 border border-white/5 flex items-center justify-center h-20 md:h-24">
-                    <Image src={p.src} alt={`${p.name} Logo`} width={200} height={96} className="object-contain w-auto h-full" />
+                  <div className="p-4 rounded-xl bg-zinc-950 border border-white/5 flex items-center justify-center h-16 md:h-20">
+                    <Image src={p.src} alt={`${p.name} Logo`} width={140} height={80} className="object-contain w-auto h-full" />
                   </div>
                 </AnimateIn>
               ))}

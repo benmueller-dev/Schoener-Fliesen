@@ -51,7 +51,7 @@ const stats: Omit<StatItemProps, "delay">[] = [
 
 export function Stats() {
   return (
-    <section className="py-20 md:py-28 relative bg-zinc-950">
+    <section className="py-16 md:py-20 relative bg-zinc-950">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {stats.map((stat, index) => (

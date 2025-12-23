@@ -68,7 +68,8 @@ function getShowroomImages(): string[] {
 
 
     "/Fotos (neu)/Mittel (EA8D77BA-9A4B-4F49-8B1B-5C7EB5E4D0CE).jpeg",
-    "/Fotos (neu)/Mittel (E6F2D76C-022D-4555-A9A3-43169B7C58F2).jpeg",  
+    "/Fotos (neu)/Mittel (E6F2D76C-022D-4555-A9A3-43169B7C58F2).jpeg",
+    "/Showroom 5.jpg",
   ];
 
   // Exclusively return the manually curated list

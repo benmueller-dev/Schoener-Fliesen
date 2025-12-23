@@ -24,7 +24,7 @@ const projects = [
       "/Referenz 1/Vorher/IMG_0080.jpeg",
       "/Referenz 1/Vorher/IMG_0083.jpeg",
       "/Referenz 1/Vorher/IMG_8910.jpeg",
-      "/Referenz 1/Vorher/IMG_9628.jpeg",
+      "/Referenz 1/Vorher/test.jpg",
       "/Referenz 1/Vorher/IMG_9630.jpeg",
     ],
     afterImages: [
@@ -91,6 +91,24 @@ const projects = [
       "/Referenz 4/projekt2_n1.jpeg",
       "/Referenz 4/projekt2_n2.jpg",
       "/Referenz 4/projekt2_n3.jpeg",
+    ],
+  },
+  {
+    title: "Moderne Badsanierung",
+    description: "Ein weiteres gelungenes Projekt: Die vollständige Transformation eines Badezimmers in einen modernen, funktionalen Raum. Hochwertige Materialien und durchdachte Planung schaffen ein harmonisches Gesamtbild, das keine Wünsche offen lässt.",
+    type: "Komplettrenovierung",
+    duration: "3 Wochen",
+    testimonial: {
+      text: "Wir sind absolut begeistert von unserem neuen Bad! Die Planung war super durchdacht und die Umsetzung erfolgte professionell und termingerecht. Das Team war immer freundlich und zuverlässig.",
+      author: "Familie R."
+    },
+    beforeImages: [
+      "/Referenz 5/Vorher/4E57A115-7EBE-42C5-AE03-38338C5394C3_1_105_c.jpeg",
+      "/Referenz 5/Vorher/881E1FAD-5D54-4875-BD67-D231D5867CD4_1_105_c.jpeg",
+    ],
+    afterImages: [
+      "/Referenz 5/Nachher/5C020528-4E3C-454F-8535-75B40358A5E7_1_105_c.jpeg",
+      "/Referenz 5/Nachher/79D5FB45-550F-48AC-83EC-1C1209C246BA_1_105_c.jpeg",
     ],
   },
 ];
