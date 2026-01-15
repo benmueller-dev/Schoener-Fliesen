@@ -105,12 +105,16 @@ const projects = [
       author: "Familie R."
     },
     beforeImages: [
-      "/Referenz 5/Vorher/4E57A115-7EBE-42C5-AE03-38338C5394C3_1_105_c.jpeg",
-      "/Referenz 5/Vorher/881E1FAD-5D54-4875-BD67-D231D5867CD4_1_105_c.jpeg",
+      "/Referenz 6/vorher/vorher1.jpeg",
+      "/Referenz 6/vorher/vorher2.jpeg",
+      "/Referenz 6/vorher/vorher3.jpeg",
     ],
     afterImages: [
-      "/Referenz 5/Nachher/5C020528-4E3C-454F-8535-75B40358A5E7_1_105_c.jpeg",
-      "/Referenz 5/Nachher/79D5FB45-550F-48AC-83EC-1C1209C246BA_1_105_c.jpeg",
+      "/Referenz 6/nacher/nachher1.jpeg",
+      "/Referenz 6/nacher/nachher2.jpeg",
+      "/Referenz 6/nacher/nachher3.jpeg",
+      "/Referenz 6/nacher/nachher4.jpeg",
+      "/Referenz 6/nacher/nachher5.jpeg",
     ],
   },
 ];
