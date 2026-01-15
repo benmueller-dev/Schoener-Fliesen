@@ -54,13 +54,10 @@ function getShowroomImages(): string[] {
     
     
     "/Fotos (showroom)/7936E3E8-6A42-447A-8D3B-D37A0849E407-min.jpg",
-    
-    "/Fotos (showroom)/DSC02180-min.jpg",
-
-
 
     //artweger
     "/Fotos (neu)/2/A2239486-7DB6-46EF-9E42-06F0808EC032_1_105_c.jpeg",
+    "/Showroom/showroom-bad-schwarz-weiss.jpeg",
     "/Showroom/02_D 5530_0053cd.jpg",
     "/Fotos (neu)/2/D0904354-A85E-413B-9A0E-7FA2A8356182_1_105_c.jpeg",
 
