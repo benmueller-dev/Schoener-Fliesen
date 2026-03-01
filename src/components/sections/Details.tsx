@@ -5,7 +5,12 @@ import { AnimateIn } from "@/components/AnimateIn";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { motion, useMotionValue, animate as fmAnimate } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  animate as fmAnimate,
+  type PanInfo,
+} from "framer-motion";
 
 const galleryItems = [
   {
@@ -135,13 +140,13 @@ export function Details() {
   const [mobileSlide, setMobileSlide] = useState(0);
   const [slideWidth, setSlideWidth] = useState(0);
   const dragX = useMotionValue(0);
-  const mobileTouchStartX = useRef(0);
-  const mobileTouchStartTime = useRef(0);
+  const isDragging = useRef(false);
 
   // Calculate slide width for mobile
   useEffect(() => {
     const update = () => {
       if (window.innerWidth < 768) {
+        // 85vw + 16px gap
         setSlideWidth(window.innerWidth * 0.85 + 16);
       }
     };
@@ -150,9 +155,9 @@ export function Details() {
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  // Animate mobile carousel to current slide
+  // Animate mobile carousel to current slide when not dragging
   useEffect(() => {
-    if (slideWidth > 0) {
+    if (!isDragging.current && slideWidth > 0) {
       const controls = fmAnimate(dragX, -(mobileSlide * slideWidth), {
         type: "spring",
         stiffness: 300,
@@ -162,26 +167,36 @@ export function Details() {
     }
   }, [mobileSlide, slideWidth, dragX]);
 
-  const handleMobileTouchStart = useCallback((e: React.TouchEvent) => {
-    mobileTouchStartX.current = e.touches[0].clientX;
-    mobileTouchStartTime.current = Date.now();
+  const handleMobileDragStart = useCallback(() => {
+    isDragging.current = true;
   }, []);
 
-  const handleMobileTouchEnd = useCallback((e: React.TouchEvent) => {
-    const diff = mobileTouchStartX.current - e.changedTouches[0].clientX;
-    const timeDiff = Date.now() - mobileTouchStartTime.current;
-    const velocity = Math.abs(diff) / timeDiff;
+  const handleMobileDragEnd = useCallback(
+    (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+      isDragging.current = false;
 
-    if (Math.abs(diff) > 50 || velocity > 0.5) {
-      if (diff > 0) {
-        setMobileSlide((prev) => Math.min(prev + 1, galleryItems.length - 1));
+      if (slideWidth === 0) return;
+
+      const currentPosition = dragX.get();
+      const currentSlideEstimate = -currentPosition / slideWidth;
+
+      let targetSlide: number;
+      if (info.velocity.x < -500) {
+        targetSlide = Math.ceil(currentSlideEstimate);
+      } else if (info.velocity.x > 500) {
+        targetSlide = Math.floor(currentSlideEstimate);
       } else {
-        setMobileSlide((prev) => Math.max(prev - 1, 0));
+        targetSlide = Math.round(currentSlideEstimate);
       }
-    }
-  }, []);
+
+      targetSlide = Math.max(0, Math.min(galleryItems.length - 1, targetSlide));
+      setMobileSlide(targetSlide);
+    },
+    [slideWidth, dragX]
+  );
 
   const openLightbox = (index: number) => {
+    if (isDragging.current) return;
     setCurrentIndex(index);
     setLightboxOpen(true);
     if (autoScrollIntervalRef.current) {
@@ -374,15 +389,19 @@ export function Details() {
               <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
             </button>
 
-            {/* Mobile Carousel - Framer Motion snap-to-image */}
-            <div
-              className="md:hidden overflow-hidden"
-              onTouchStart={handleMobileTouchStart}
-              onTouchEnd={handleMobileTouchEnd}
-            >
+            {/* Mobile Carousel - real drag with Framer Motion */}
+            <div className="md:hidden overflow-hidden">
               <motion.div
-                className="flex gap-4 px-6"
-                style={{ x: dragX }}
+                className="flex gap-4 px-6 cursor-grab active:cursor-grabbing"
+                drag="x"
+                dragConstraints={{
+                  left: -(slideWidth * (galleryItems.length - 1)),
+                  right: 0,
+                }}
+                dragElastic={0.1}
+                onDragStart={handleMobileDragStart}
+                onDragEnd={handleMobileDragEnd}
+                style={{ x: dragX, touchAction: "pan-y" }}
               >
                 {galleryItems.map((item, index) => (
                   <div
