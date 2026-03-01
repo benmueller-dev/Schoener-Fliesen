@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const heroImages = [
   "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1920&auto=format&fit=crop",
@@ -11,7 +12,6 @@ const heroImages = [
   "/Fotos (showroom)/DSC02104-min.jpg",
   "/Referenz 1/Nachher/Badezimmer-Sankt-Augustin-Warm2.png",
   "/Referenz 1/Nachher/Badezimmer-Sankt-Augustin-Warm.png",
-
 ];
 
 interface HeroProps {
@@ -37,6 +37,8 @@ export function Hero({
 }: HeroProps = {}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const touchStartX = useRef(0);
+  const touchStartTime = useRef(0);
 
   const goToSlide = useCallback((index: number) => {
     if (isTransitioning) return;
@@ -44,7 +46,7 @@ export function Hero({
     if (newIndex === currentIndex) return;
     setIsTransitioning(true);
     setCurrentIndex(newIndex);
-    setTimeout(() => setIsTransitioning(false), 1000);
+    setTimeout(() => setIsTransitioning(false), 800);
   }, [isTransitioning, currentIndex]);
 
   const goToPrevious = useCallback(() => {
@@ -55,26 +57,47 @@ export function Hero({
     goToSlide(currentIndex + 1);
   }, [currentIndex, goToSlide]);
 
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartTime.current = Date.now();
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    const timeDiff = Date.now() - touchStartTime.current;
+    const velocity = Math.abs(diff) / timeDiff;
+
+    if (Math.abs(diff) > 50 || velocity > 0.5) {
+      if (diff > 0) goToNext();
+      else goToPrevious();
+    }
+  }, [goToNext, goToPrevious]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       goToNext();
     }, 6000);
-
     return () => clearInterval(interval);
   }, [goToNext]);
 
   return (
-    <section className="relative min-h-[80vh] lg:min-h-[70vh] flex items-center justify-center pt-20 overflow-x-clip">
+    <section
+      className="relative h-[100svh] flex items-center justify-center overflow-x-clip"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Background Image Slider */}
       <div className="absolute inset-0 z-0">
         {heroImages.map((src, index) => (
-          <div
+          <motion.div
             key={index}
-            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-              index === currentIndex
-                ? "opacity-90 scale-100"
-                : "opacity-0 scale-105"
-            }`}
+            initial={false}
+            animate={{
+              opacity: index === currentIndex ? 0.9 : 0,
+              scale: index === currentIndex ? 1 : 1.05,
+            }}
+            transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+            className="absolute inset-0"
           >
             <Image
               src={src}
@@ -84,7 +107,7 @@ export function Hero({
               sizes="100vw"
               priority={index === 0}
             />
-          </div>
+          </motion.div>
         ))}
       </div>
 
@@ -95,7 +118,7 @@ export function Hero({
       {/* Left Arrow */}
       <button
         onClick={goToPrevious}
-        className="group/left absolute left-0 top-0 bottom-0 w-24 md:w-32 z-20 flex items-center justify-start pl-4 md:pl-8 cursor-pointer"
+        className="group/left absolute left-0 top-0 bottom-0 w-24 md:w-32 z-20 hidden md:flex items-center justify-start pl-4 md:pl-8 cursor-pointer"
         aria-label="Vorheriges Bild"
       >
         <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-full p-3 md:p-4 transition-all duration-300 opacity-0 -translate-x-full group-hover/left:opacity-100 group-hover/left:translate-x-0 group-hover/left:bg-white/10 group-hover/left:scale-110">
@@ -106,7 +129,7 @@ export function Hero({
       {/* Right Arrow */}
       <button
         onClick={goToNext}
-        className="group/right absolute right-0 top-0 bottom-0 w-24 md:w-32 z-20 flex items-center justify-end pr-4 md:pr-8 cursor-pointer"
+        className="group/right absolute right-0 top-0 bottom-0 w-24 md:w-32 z-20 hidden md:flex items-center justify-end pr-4 md:pr-8 cursor-pointer"
         aria-label="Nächstes Bild"
       >
         <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-full p-3 md:p-4 transition-all duration-300 opacity-0 translate-x-full group-hover/right:opacity-100 group-hover/right:translate-x-0 group-hover/right:bg-white/10 group-hover/right:scale-110">
@@ -116,7 +139,7 @@ export function Hero({
 
       {/* Content */}
       <div className="relative z-20 text-center max-w-[823px] mx-auto px-8 md:px-12 lg:px-16">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--gold)]/20 bg-[var(--gold)]/5 mb-8 animate-title">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-xl mb-8 animate-title">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
           <span className="text-xs uppercase tracking-widest text-[var(--gold-light)] font-medium">
             {badge}

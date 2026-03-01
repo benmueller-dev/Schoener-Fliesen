@@ -5,6 +5,7 @@ import { AnimateIn } from "@/components/AnimateIn";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { motion, useMotionValue, animate as fmAnimate } from "framer-motion";
 
 const galleryItems = [
   {
@@ -130,10 +131,59 @@ export function Details() {
   const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Mobile carousel state
+  const [mobileSlide, setMobileSlide] = useState(0);
+  const [slideWidth, setSlideWidth] = useState(0);
+  const dragX = useMotionValue(0);
+  const mobileTouchStartX = useRef(0);
+  const mobileTouchStartTime = useRef(0);
+
+  // Calculate slide width for mobile
+  useEffect(() => {
+    const update = () => {
+      if (window.innerWidth < 768) {
+        setSlideWidth(window.innerWidth * 0.85 + 16);
+      }
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  // Animate mobile carousel to current slide
+  useEffect(() => {
+    if (slideWidth > 0) {
+      const controls = fmAnimate(dragX, -(mobileSlide * slideWidth), {
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+      });
+      return controls.stop;
+    }
+  }, [mobileSlide, slideWidth, dragX]);
+
+  const handleMobileTouchStart = useCallback((e: React.TouchEvent) => {
+    mobileTouchStartX.current = e.touches[0].clientX;
+    mobileTouchStartTime.current = Date.now();
+  }, []);
+
+  const handleMobileTouchEnd = useCallback((e: React.TouchEvent) => {
+    const diff = mobileTouchStartX.current - e.changedTouches[0].clientX;
+    const timeDiff = Date.now() - mobileTouchStartTime.current;
+    const velocity = Math.abs(diff) / timeDiff;
+
+    if (Math.abs(diff) > 50 || velocity > 0.5) {
+      if (diff > 0) {
+        setMobileSlide((prev) => Math.min(prev + 1, galleryItems.length - 1));
+      } else {
+        setMobileSlide((prev) => Math.max(prev - 1, 0));
+      }
+    }
+  }, []);
+
   const openLightbox = (index: number) => {
     setCurrentIndex(index);
     setLightboxOpen(true);
-    // Auto-scroll pausieren
     if (autoScrollIntervalRef.current) {
       clearInterval(autoScrollIntervalRef.current);
       autoScrollIntervalRef.current = null;
@@ -142,7 +192,6 @@ export function Details() {
 
   const closeLightbox = () => {
     setLightboxOpen(false);
-    // Nach 3 Sekunden Auto-scroll wieder starten
     if (pauseTimeoutRef.current) {
       clearTimeout(pauseTimeoutRef.current);
     }
@@ -161,23 +210,16 @@ export function Details() {
 
   const scrollPrev = () => {
     if (scrollContainerRef.current) {
-      // Auto-scroll pausieren
       if (autoScrollIntervalRef.current) {
         clearInterval(autoScrollIntervalRef.current);
         autoScrollIntervalRef.current = null;
       }
-
-      // Scrolle genau ein Bild (Bildbreite + Gap)
-      const imageWidth = window.innerWidth < 768
-        ? window.innerWidth * 0.85  // Mobile: 85vw
-        : 700; // Desktop: 700px
-      const gap = 24; // 6 * 4px (gap-6)
+      const imageWidth = 700;
+      const gap = 24;
       scrollContainerRef.current.scrollBy({
         left: -(imageWidth + gap),
-        behavior: 'smooth'
+        behavior: "smooth",
       });
-
-      // Nach 3 Sekunden Auto-scroll wieder starten
       if (pauseTimeoutRef.current) {
         clearTimeout(pauseTimeoutRef.current);
       }
@@ -189,23 +231,16 @@ export function Details() {
 
   const scrollNext = () => {
     if (scrollContainerRef.current) {
-      // Auto-scroll pausieren
       if (autoScrollIntervalRef.current) {
         clearInterval(autoScrollIntervalRef.current);
         autoScrollIntervalRef.current = null;
       }
-
-      // Scrolle genau ein Bild (Bildbreite + Gap)
-      const imageWidth = window.innerWidth < 768
-        ? window.innerWidth * 0.85  // Mobile: 85vw
-        : 700; // Desktop: 700px
-      const gap = 24; // 6 * 4px (gap-6)
+      const imageWidth = 700;
+      const gap = 24;
       scrollContainerRef.current.scrollBy({
         left: imageWidth + gap,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
-
-      // Nach 3 Sekunden Auto-scroll wieder starten
       if (pauseTimeoutRef.current) {
         clearTimeout(pauseTimeoutRef.current);
       }
@@ -222,27 +257,22 @@ export function Details() {
     autoScrollIntervalRef.current = setInterval(() => {
       if (scrollContainerRef.current) {
         const container = scrollContainerRef.current;
-        const isAtEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 10;
-
+        const isAtEnd =
+          container.scrollLeft + container.clientWidth >= container.scrollWidth - 10;
         if (isAtEnd) {
-          // Am Ende angekommen, zum Anfang springen
-          container.scrollTo({
-            left: 0,
-            behavior: 'smooth'
-          });
+          container.scrollTo({ left: 0, behavior: "smooth" });
         } else {
-          container.scrollBy({
-            left: 1,
-            behavior: 'auto'
-          });
+          container.scrollBy({ left: 1, behavior: "auto" });
         }
       }
-    }, 30); // Scrollt langsam (1px alle 30ms)
+    }, 30);
   }, []);
 
-  // Auto-scroll beim Mount starten
+  // Auto-scroll for desktop only
   useEffect(() => {
-    startAutoScroll();
+    if (window.innerWidth >= 768) {
+      startAutoScroll();
+    }
     return () => {
       if (autoScrollIntervalRef.current) {
         clearInterval(autoScrollIntervalRef.current);
@@ -253,7 +283,7 @@ export function Details() {
     };
   }, [startAutoScroll]);
 
-  // Auto-scroll pausieren/fortsetzen basierend auf Lightbox
+  // Pause auto-scroll when lightbox is open
   useEffect(() => {
     if (lightboxOpen) {
       if (autoScrollIntervalRef.current) {
@@ -263,31 +293,28 @@ export function Details() {
     }
   }, [lightboxOpen]);
 
-  // Auto-scroll pausieren bei manuellem Scrollen
+  // Pause auto-scroll on manual scroll (desktop)
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
     if (!scrollContainer) return;
 
     let scrollTimeout: NodeJS.Timeout;
     const handleScroll = () => {
-      // Auto-scroll pausieren
       if (autoScrollIntervalRef.current) {
         clearInterval(autoScrollIntervalRef.current);
         autoScrollIntervalRef.current = null;
       }
-
-      // Timeout zurücksetzen
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
-        if (!lightboxOpen) {
+        if (!lightboxOpen && window.innerWidth >= 768) {
           startAutoScroll();
         }
       }, 3000);
     };
 
-    scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
+    scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
-      scrollContainer.removeEventListener('scroll', handleScroll);
+      scrollContainer.removeEventListener("scroll", handleScroll);
       clearTimeout(scrollTimeout);
     };
   }, [lightboxOpen, startAutoScroll]);
@@ -312,59 +339,115 @@ export function Details() {
           </div>
         </div>
 
-        {/* Horizontal Gallery - Full Width */}
         <AnimateIn delay={0.3}>
           <div className="relative">
-            {/* Left fade overlay */}
+            {/* Left fade overlay - desktop only */}
             <div
-              className="absolute left-0 top-0 bottom-8 w-40 md:w-80 z-10 pointer-events-none"
+              className="absolute left-0 top-0 bottom-8 w-40 md:w-80 z-10 pointer-events-none hidden md:block"
               style={{
-                background: "linear-gradient(to right, rgb(0,0,0) 0%, rgba(0,0,0,0.6) 25%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%)"
+                background:
+                  "linear-gradient(to right, rgb(0,0,0) 0%, rgba(0,0,0,0.6) 25%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%)",
               }}
             />
-            {/* Right fade overlay */}
+            {/* Right fade overlay - desktop only */}
             <div
-              className="absolute right-0 top-0 bottom-8 w-40 md:w-80 z-10 pointer-events-none"
+              className="absolute right-0 top-0 bottom-8 w-40 md:w-80 z-10 pointer-events-none hidden md:block"
               style={{
-                background: "linear-gradient(to left, rgb(0,0,0) 0%, rgba(0,0,0,0.6) 25%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%)"
+                background:
+                  "linear-gradient(to left, rgb(0,0,0) 0%, rgba(0,0,0,0.6) 25%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%)",
               }}
             />
 
-            {/* Left Arrow */}
+            {/* Desktop arrows */}
             <button
               onClick={scrollPrev}
-              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 rounded-full backdrop-blur-md bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 rounded-full backdrop-blur-md bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110 hidden md:flex"
               aria-label="Vorheriges Bild"
             >
               <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
             </button>
-
-            {/* Right Arrow */}
             <button
               onClick={scrollNext}
-              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 rounded-full backdrop-blur-md bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 rounded-full backdrop-blur-md bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110 hidden md:flex"
               aria-label="Nächstes Bild"
             >
               <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
             </button>
 
-            <div ref={scrollContainerRef} className="flex gap-6 overflow-x-auto no-scrollbar pb-8 snap-x px-6 md:px-12">
+            {/* Mobile Carousel - Framer Motion snap-to-image */}
+            <div
+              className="md:hidden overflow-hidden"
+              onTouchStart={handleMobileTouchStart}
+              onTouchEnd={handleMobileTouchEnd}
+            >
+              <motion.div
+                className="flex gap-4 px-6"
+                style={{ x: dragX }}
+              >
+                {galleryItems.map((item, index) => (
+                  <div
+                    key={index}
+                    onClick={() => openLightbox(index)}
+                    className="min-w-[85vw] h-[500px] bg-zinc-900 rounded-3xl overflow-hidden relative shrink-0 border border-white/5 cursor-pointer group"
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.title}
+                      fill
+                      className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                      sizes="85vw"
+                    />
+                    <div className="absolute bottom-8 left-8">
+                      <span className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
+                        <span className="text-lg text-white font-medium">
+                          {item.title}
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+
+              {/* Mobile dot indicators */}
+              <div className="flex justify-center gap-2 mt-6">
+                {galleryItems.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setMobileSlide(idx)}
+                    className={`rounded-full transition-all duration-300 ${
+                      idx === mobileSlide
+                        ? "w-6 h-2 bg-[var(--gold)]"
+                        : "w-2 h-2 bg-white/30 hover:bg-white/50"
+                    }`}
+                    aria-label={`Bild ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop Gallery - Auto-scroll */}
+            <div
+              ref={scrollContainerRef}
+              className="hidden md:flex gap-6 overflow-x-auto no-scrollbar pb-8 snap-x px-6 md:px-12"
+            >
               {galleryItems.map((item, index) => (
                 <div
                   key={index}
                   onClick={() => openLightbox(index)}
-                  className="min-w-[85vw] md:min-w-[700px] h-[500px] md:h-[600px] bg-zinc-900 rounded-3xl overflow-hidden relative snap-center shrink-0 border border-white/5 cursor-pointer group"
+                  className="min-w-[700px] h-[600px] bg-zinc-900 rounded-3xl overflow-hidden relative snap-center shrink-0 border border-white/5 cursor-pointer group"
                 >
                   <Image
                     src={item.src}
                     alt={item.title}
                     fill
                     className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-                    sizes="(max-width: 768px) 85vw, 700px"
+                    sizes="700px"
                   />
                   <div className="absolute bottom-8 left-8">
                     <span className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
-                      <span className="text-lg text-white font-medium">{item.title}</span>
+                      <span className="text-lg text-white font-medium">
+                        {item.title}
+                      </span>
                     </span>
                   </div>
                 </div>
@@ -375,17 +458,19 @@ export function Details() {
       </section>
 
       {/* Fullscreen Lightbox */}
-      {lightboxOpen && typeof document !== "undefined" && createPortal(
-        <Lightbox
-          images={galleryItems}
-          currentIndex={currentIndex}
-          onClose={closeLightbox}
-          onPrev={goToPrev}
-          onNext={goToNext}
-          setCurrentIndex={setCurrentIndex}
-        />,
-        document.body
-      )}
+      {lightboxOpen &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <Lightbox
+            images={galleryItems}
+            currentIndex={currentIndex}
+            onClose={closeLightbox}
+            onPrev={goToPrev}
+            onNext={goToNext}
+            setCurrentIndex={setCurrentIndex}
+          />,
+          document.body
+        )}
     </>
   );
 }

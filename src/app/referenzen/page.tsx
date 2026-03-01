@@ -6,8 +6,9 @@ import { AnimateIn } from "@/components/AnimateIn";
 import { SectionBadge } from "@/components/SectionBadge";
 import Image from "next/image";
 import { Quote, ChevronLeft, ChevronRight, X } from "lucide-react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
+import { motion } from "framer-motion";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 const projects = [
@@ -228,6 +229,9 @@ function ImageGallery({
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const touchStartX = useRef(0);
+  const touchStartTime = useRef(0);
+  const isSwiping = useRef(false);
 
   const goToPrev = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
@@ -237,24 +241,55 @@ function ImageGallery({
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   }, [images.length]);
 
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartTime.current = Date.now();
+    isSwiping.current = false;
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    const timeDiff = Date.now() - touchStartTime.current;
+    const velocity = Math.abs(diff) / timeDiff;
+
+    if (Math.abs(diff) > 40 || velocity > 0.4) {
+      isSwiping.current = true;
+      if (diff > 0) goToNext();
+      else goToPrev();
+    }
+  }, [goToNext, goToPrev]);
+
+  const handleClick = useCallback(() => {
+    if (!isSwiping.current) {
+      setIsLightboxOpen(true);
+    }
+  }, []);
+
   return (
     <>
       <div className="relative group">
-        {/* Main Image - Click to open fullscreen */}
+        {/* Main Image - Swipe + Click to open fullscreen */}
         <div
           className="aspect-[4/3] rounded-2xl overflow-hidden relative cursor-pointer"
-          onClick={() => setIsLightboxOpen(true)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onClick={handleClick}
         >
           {images.map((src, idx) => (
-            <Image
+            <motion.div
               key={idx}
-              src={src}
-              alt={`${label} ${idx + 1}`}
-              fill
-              className={`object-cover transition-opacity duration-500 ${
-                idx === currentIndex ? "opacity-100" : "opacity-0"
-              }`}
-            />
+              initial={false}
+              animate={{ opacity: idx === currentIndex ? 1 : 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={src}
+                alt={`${label} ${idx + 1}`}
+                fill
+                className="object-cover"
+              />
+            </motion.div>
           ))}
         </div>
 

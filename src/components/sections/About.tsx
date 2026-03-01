@@ -62,7 +62,7 @@ export function About() {
                 />
               </div>
               {/* Floating Badge */}
-              <div className="absolute -bottom-6 -left-6 bg-zinc-900 border border-white/10 rounded-xl p-6 backdrop-blur-sm">
+              <div className="absolute -bottom-6 -left-6 bg-white/10 border border-white/15 rounded-xl p-6 backdrop-blur-xl shadow-lg">
                 <div className="text-3xl font-light text-white mb-1">25+</div>
                 <div className="text-sm text-[var(--gold)]">Jahre Erfahrung</div>
               </div>
